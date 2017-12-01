@@ -1,24 +1,15 @@
-markdown: kramdown
-permalink: /:title.html
-url: https://blog.ixxoo.me
-lsi: true
-rouge: true
-safe: true
-
-# presonal config
-title: likebeta's Blog
-feed: /atom.xml
-comments: disqus
-
-author:
-  name: likebeta
-  nickname: likebeta
-  email: ixxoo.me@gmail.com
-  gmail: ixxoo.me@gmail.com
-  qqmail: http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=GnZzcX94f257WmtrNHl1dw
-  qqlist: http://list.qq.com/cgi-bin/qf_invite?id=eff06957927177ae5d491bb3c18e4a3c5fc328c95b6ae04f
-  site: https://www.ixxoo.me
-
-seo:
-  keyword:
-  description:
+permalink: /:categories/:title.html
+url: "http://pasindud.github.io/jekyll-masonry/"
+full_name: "Your Full Name"
+first_name: "First Name"
+last_name: "Last Name"
+blog_title: "Blog title "
+author_img_name_path: "/images/users/user.jpg"
+disqus_shortname: "pasinduland"
+copyright_year: "2014"
+google_analytics_code: ""
+aboutme: "Something about the author here"
+twitter: "Ghosteyes1"
+github: "pasindud"
+facebook: "mepasindu"
+linkined_url: ""

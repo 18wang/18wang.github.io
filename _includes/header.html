@@ -1,17 +1,10 @@
-        <div id="header">
-            <header id="blog_title">
-                <h1><a href="/">{{site.title}}</a></h1>
-            </header>
-            <nav id="menu">
-                <ul class="header-nav">
-                    <li><a href="http://app.ixxoo.me" target="_blank">App</a></li>
-                    <li><a href="https://github.com/likebeta/note/issues" target="_blank">Note</a></li>
-                    <li><a href="https://github.com/likebeta" target="_blank">Github</a></li>
-                    <li{% if page.read %} class="current"{% endif %}><a href="/read">Read</a></li>
-                    <li{% if page.photo %} class="current"{% endif %}><a href="/photo">Photo</a></li>
-                    <li{% if page.about %} class="current"{% endif %}><a href="/about">About</a></li>
-                    <li><a href="{{site.feed}}" class="menu-rss" target="_blank"></a></li>
-                </ul>
-            </nav>
-            <div class="clear"></div>
-        </div>
+<div id='heading'>
+				<div id='logo'><a href='{{site.url}}'>{{site.first_name}}</a> <a href='{{site.url}}' id='logo_docs'>
+			{{site.last_name}}</a></div>
+			<div id='links'>
+				<a href='https://github.com/{{site.github}}' >
+					<span class="icon-github" ></span>
+				</a> |
+				<a href='https://twitter.com/{{site.twitter}}' class="icon-twitter"></a> |
+				<a href='{{site.twitter}}' class="icon-linkedin"></a>
+			</div>
