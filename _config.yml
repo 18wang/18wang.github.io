@@ -7,19 +7,19 @@ highlighter: rouge
 markdown: kramdown
 disqus: dbyll
 google_analytics: dbyll
-title: dbyll
+title: Wang
 
 defaults:
   -
     scope:
       path: "" # empty string for all files
     values:
-      title: dbyll
+      title: Wang
 
-description: Stylish Jekyll Theme
+description: Wang's blog
 author:
-  name: dbyll
-  email: dbyll@ismaildemirbilek.com
+  name: Wang
+  email: jswxingyu@gmail.com
   github: dbtek
   twitter: dbtek
   pinterest: asd123
