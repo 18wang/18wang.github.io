@@ -16,12 +16,10 @@ defaults:
     values:
       title: dbyll
 
-description: Stylish Jekyll Theme
+description: Wang's blog Theme
 author:
-  name: dbyll
-  email: dbyll@ismaildemirbilek.com
-  github: dbtek
-  twitter: dbtek
+  name: Wang_xy  email: jswxingyu@gmail.com
+  github: 18wang  twitter: 
   pinterest: asd123
   linkedin: asd123
   bio: Your stylish, minimalist theme!
