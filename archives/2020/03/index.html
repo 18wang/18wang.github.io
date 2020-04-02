@@ -18,7 +18,7 @@
 
   <!-- 页面元数据 -->
   
-    <title>归档：2020/3 - 18wang</title>
+    <title>Archive: 2020/3 - 18wang</title>
   
   
 
@@ -432,8 +432,6 @@
         
           
         
-          
-        
       
     
     
@@ -508,12 +506,12 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      <h1 id="SVG-学习"><a href="#SVG-学习" class="headerlink" title="SVG 学习"></a>SVG 学习</h1><p>主要教程网站<a href="https://developer.mozilla.org/zh-CN/docs/Web/SVG/Tutorial" target="_blank" rel="noopener">mozilla developer</a> 主要记录我的一些草稿和学习内容.</p>
+      <h1 id="SVG-学习"><a href="#SVG-学习" class="headerlink" title="SVG 学习"></a>SVG 学习</h1><p>主要教程网站<a href="https://developer.mozilla.org/zh-CN/docs/Web/SVG/Tutorial" target="_blank" rel="noopener">mozilla developer</a><br>主要记录我的一些草稿和学习内容.<br><br>SVG的主要<a href="https://developer.mozilla.org/zh-CN/docs/Web/SVG" target="_blank" rel="noopener">参考文档</a></p>
 <h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><p>SVG是一种XML语言的，和XHTML很像，它可以用来绘制矢量图形，例如右面展示的图形。SVG可以通过<u>定义必要的线和形状</u>来创建一个图形，也可以<u>修改已有的位图</u>，或者将这两种方式<u>结合起来</u>创建图形。图形和其组成部分可以形变（be transformed）、合成、或者通过滤镜完全改变外观。</p>
 <p>所有的现代浏览器都支持SVG, 但是各种SVG浏览器是有差异的, 可能会出现显示方面的问题. 最接近的“完整版”SVG版本是1.1版, SVG 2.0正在制定当中.</p>
 <h3 id="一个简单的例子"><a href="#一个简单的例子" class="headerlink" title="一个简单的例子"></a>一个简单的例子</h3><p>下面是一段<code>xml</code>代码, 文件名是 <code>**.svg</code> , 但也可以使用 <code>**.xml</code> , 在浏览器中打开都会显示svg图片.<br><em>在服务器支持gzip时, 也可以用 <code>**.svgz</code> 命名并压缩大型SVG文件</em></p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">version</span>=<span class="string">"2"</span>    </span></span><br><span class="line"><span class="tag">     <span class="attr">baseProfile</span>=<span class="string">"full"</span></span></span><br><span class="line"><span class="tag">     <span class="attr">width</span>=<span class="string">"300"</span> <span class="attr">height</span>=<span class="string">"200"</span></span></span><br><span class="line"><span class="tag">     <span class="attr">xmlns</span>=<span class="string">"http://www.w3.org/2000/svg"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">rect</span> <span class="attr">width</span>=<span class="string">"100%"</span> <span class="attr">height</span>=<span class="string">"100%"</span> <span class="attr">fill</span>=<span class="string">"red"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">circle</span> <span class="attr">cx</span>=<span class="string">"150"</span> <span class="attr">cy</span>=<span class="string">"100"</span> <span class="attr">r</span>=<span class="string">"80"</span> <span class="attr">fill</span>=<span class="string">"green"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">"150"</span> <span class="attr">y</span>=<span class="string">"125"</span> <span class="attr">font-size</span>=<span class="string">"60"</span> <span class="attr">text-anchor</span>=<span class="string">"middle"</span> <span class="attr">fill</span>=<span class="string">"white"</span>&gt;</span>汉字<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="/test/svg-1.svg" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/18wang/media/svg_blog/svg-1.svg" alt=""></p>
 <p>服务器配置错误是svg文件出错的常见原因, 容易出现文本和乱码, 一定要努力保证在该环节没有问题.</p>
 <h2 id="坐标定位"><a href="#坐标定位" class="headerlink" title="坐标定位"></a>坐标定位</h2><p>SVG采用常见的Canvas坐标定位, 从高到低从左到右, 单位距离为1px</p>
 <center>
@@ -522,109 +520,192 @@
 
 <p>定义一个<code>100*100</code>的矩形</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">version</span>=<span class="string">"2"</span></span></span><br><span class="line"><span class="tag">     <span class="attr">baseProfile</span>=<span class="string">"full"</span></span></span><br><span class="line"><span class="tag">     <span class="attr">xmlns</span>=<span class="string">"http://www.w3.org/2000/svg"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">"0"</span> <span class="attr">y</span>=<span class="string">"0"</span> <span class="attr">width</span>=<span class="string">"100"</span> <span class="attr">height</span>=<span class="string">"100"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>就会出现一个大黑块<br><img src="/test/svg-2.svg" alt=""></p>
+<p>就会出现一个大黑块<br><img src="https://cdn.jsdelivr.net/gh/18wang/media/svg_blog/svg-2.svg" alt=""></p>
 <h3 id="像素大小"><a href="#像素大小" class="headerlink" title="像素大小"></a>像素大小</h3><p>通常 <code>1px</code> 便是用户屏幕的1个像素, 和CSS一样, SVG也能定义相对大小和绝对大小.<br>在SVG根元素中, 可以如下定义 </p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">width</span>=<span class="string">"50"</span> <span class="attr">height</span>=<span class="string">"50"</span> <span class="attr">viewBox</span>=<span class="string">"0 0 100 100"</span> &gt;</span></span><br></pre></td></tr></table></figure>
 <p>定义画布尺寸为<code>50*50px</code>, 显示的坐标范围<code>100*100px</code>, 实现了缩小一半的效果.</p>
-<p><img src="/test/svg-3.svg" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/18wang/media/svg_blog/svg-3.svg" alt=""></p>
 <p>和Qt类似, 用户设备和单位像素的映射关系叫<u><strong><em>用户坐标系统</em></strong></u>, <code>缩放、旋转、倾斜、翻转</code>等功能均可实现. </p>
 <h2 id="基本形状"><a href="#基本形状" class="headerlink" title="基本形状"></a>基本形状</h2><p>下面是一些常见的基本形状, 我们可以直接运用他们或者用他们构建出更复杂的形状.</p>
-<p><img src="/test/svg-4.svg" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/18wang/media/svg_blog/svg-4.svg" alt=""></p>
 <p>分别是 <code>矩形, 圆角矩形, 圆, 椭圆, 直线, 折线, 多边形, 曲线</code></p>
 <h3 id="矩形-圆角矩形"><a href="#矩形-圆角矩形" class="headerlink" title="矩形 圆角矩形"></a>矩形 圆角矩形</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">"10"</span> <span class="attr">y</span>=<span class="string">"10"</span> <span class="attr">width</span>=<span class="string">"30"</span> <span class="attr">height</span>=<span class="string">"30"</span> <span class="attr">stroke</span>=<span class="string">"black"</span> <span class="attr">fill</span>=<span class="string">"transparent"</span> <span class="attr">stroke-width</span>=<span class="string">"5"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">"60"</span> <span class="attr">y</span>=<span class="string">"10"</span> <span class="attr">rx</span>=<span class="string">"10"</span> <span class="attr">ry</span>=<span class="string">"10"</span> <span class="attr">width</span>=<span class="string">"30"</span> <span class="attr">height</span>=<span class="string">"30"</span> <span class="attr">stroke</span>=<span class="string">"black"</span> <span class="attr">fill</span>=<span class="string">"transparent"</span> <span class="attr">stroke-width</span>=<span class="string">"5"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
 <p>参数: <code>左上角的x,y坐标 长度 宽度 rx ry圆角半径</code></p>
 <h3 id="圆-椭圆"><a href="#圆-椭圆" class="headerlink" title="圆 椭圆"></a>圆 椭圆</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">circle</span> <span class="attr">cx</span>=<span class="string">"25"</span> <span class="attr">cy</span>=<span class="string">"75"</span> <span class="attr">r</span>=<span class="string">"20"</span> <span class="attr">stroke</span>=<span class="string">"red"</span> <span class="attr">fill</span>=<span class="string">"transparent"</span> <span class="attr">stroke-width</span>=<span class="string">"5"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ellipse</span> <span class="attr">cx</span>=<span class="string">"75"</span> <span class="attr">cy</span>=<span class="string">"75"</span> <span class="attr">rx</span>=<span class="string">"20"</span> <span class="attr">ry</span>=<span class="string">"5"</span> <span class="attr">stroke</span>=<span class="string">"red"</span> <span class="attr">fill</span>=<span class="string">"transparent"</span> <span class="attr">stroke-width</span>=<span class="string">"5"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-<p>参数: <code>cx cy中心坐标 r半径 rx ry长短半轴</code><br><em>椭圆的参数还挺难受的, 不过中心点也还行</em>  </p>
+<p>参数: <code>cx cy中心坐标 r半径 rx x方向半轴 ry y方向半轴</code>  </p>
+<ul>
+<li>椭圆的参数还挺难受的, 不过中心点也还行</li>
+</ul>
 <h3 id="线-折线-多边形"><a href="#线-折线-多边形" class="headerlink" title="线 折线 多边形"></a>线 折线 多边形</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">line</span> <span class="attr">x1</span>=<span class="string">"10"</span> <span class="attr">x2</span>=<span class="string">"50"</span> <span class="attr">y1</span>=<span class="string">"110"</span> <span class="attr">y2</span>=<span class="string">"150"</span> <span class="attr">stroke</span>=<span class="string">"orange"</span> <span class="attr">fill</span>=<span class="string">"transparent"</span> <span class="attr">stroke-width</span>=<span class="string">"5"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">polyline</span> <span class="attr">points</span>=<span class="string">"60 110 65 120 70 115 75 130 80 125 85 140 90 135 95 150 100 145"</span> <span class="attr">stroke</span>=<span class="string">"orange"</span> <span class="attr">fill</span>=<span class="string">"transparent"</span> <span class="attr">stroke-width</span>=<span class="string">"5"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">polygon</span> <span class="attr">points</span>=<span class="string">"50 160 55 180 70 180 60 190 65 205 50 195 35 205 40 190 30 180 45 180"</span> <span class="attr">stroke</span>=<span class="string">"green"</span> <span class="attr">fill</span>=<span class="string">"transparent"</span> <span class="attr">stroke-width</span>=<span class="string">"5"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
 <p>参数: <code>x y起点终点坐标 points点集 xi yi</code></p>
 <ul>
 <li>多边形和折线不同的是, 多边形最终回到原点, 折线落在最后一点.</li>
 <li>点集中每个数字用<strong>空白符、逗号、终止命令或者换行符</strong>分隔开, 每个点必须包含2个数字</li>
 </ul>
-<h3 id="曲线"><a href="#曲线" class="headerlink" title="曲线"></a>曲线</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M20,230 Q40,205 50,230 T90,230"</span> <span class="attr">fill</span>=<span class="string">"none"</span> <span class="attr">stroke</span>=<span class="string">"blue"</span> <span class="attr">stroke-width</span>=<span class="string">"5"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-<p>参数: <code>d一个点集数列</code><br>曲线几乎是万能的, 也是最常见的, 可以用来绘制一切线条.</p>
+<h3 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M20,230 Q40,205 50,230 T90,230"</span> <span class="attr">fill</span>=<span class="string">"none"</span> <span class="attr">stroke</span>=<span class="string">"blue"</span> <span class="attr">stroke-width</span>=<span class="string">"5"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>参数: <code>d一个点集数列</code><br>路径几乎是万能的, 也是最常见的, 可以用来绘制一切线条.</p>
+<h2 id="路径作图详解"><a href="#路径作图详解" class="headerlink" title="路径作图详解"></a>路径作图详解</h2><p>path元素的形状是通过属性<code>d</code>定义的，属性<code>d</code>的值是一个“命令+参数”的序列.</p>
+<table>
+<thead>
+<tr>
+<th align="center">缩写</th>
+<th align="center">意义</th>
+<th align="center">备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"></td>
+<td align="center">当前点坐标($x_0$,$y_0$)</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">M x y</td>
+<td align="center">画笔移动到点($x,y$)</td>
+<td align="center">移动不产生笔迹</td>
+</tr>
+<tr>
+<td align="center">L x y</td>
+<td align="center">画($x_0$,$y_0$)到点($x$,$y$)的线段</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">H x</td>
+<td align="center">画($x_0$,$y_0$)到点(x,$y_0$)的水平线</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">V y</td>
+<td align="center">画($x_0$,$y_0$)到点($x_0$,$y$)的垂直线</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">Z/z</td>
+<td align="center">画($x_0$,$y_0$)到路径起点</td>
+<td align="center">无参数,不区分大小写</td>
+</tr>
+<tr>
+<td align="center">C $x_1$ $y_1$, $x_2$ $y_2$, $x$ $y$</td>
+<td align="center"><img src="https://cdn.jsdelivr.net/gh/18wang/media/svg_blog/Bézier_3_big.gif" width="70%"> <br>三次贝塞尔曲线</td>
+<td align="center">对应点 $P_0 $ $x_0,y_0$ / $P_1 $ $x_1,y_1$ / $P_2$ $x_2,y_2$ / $P_3$ $x,y$</td>
+</tr>
+<tr>
+<td align="center">S  $x_2$ $y_2$, $x$ $y$</td>
+<td align="center"><img src="https://cdn.jsdelivr.net/gh/18wang/media/svg_blog/ShortCut_Cubic_Bezier.png" width="36%">  <br> 简化的多个三次贝塞尔曲线</td>
+<td align="center">每个曲线的$P_1$控制点和前一曲线$P_2$对称, 可省(蓝点)</td>
+</tr>
+<tr>
+<td align="center">Q $x_1$ $y_1$, $x$ $y$</td>
+<td align="center"><img src="https://cdn.jsdelivr.net/gh/18wang/media/svg_blog/Bézier_2_big.gif" width="70%"> <br> 二次贝塞尔曲线</td>
+<td align="center">类似三次…</td>
+</tr>
+<tr>
+<td align="center">T $x$ $y$</td>
+<td align="center"><img src="https://cdn.jsdelivr.net/gh/18wang/media/svg_blog/Shortcut_Quadratic_Bezier.png" width="40%"> <br>简化的多个二次贝塞尔曲线</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">A $rx\  ry\ x-axis-rotation$<br> $large-arc-flag\ sweep-flag\ x\ y$</td>
+<td align="center"><img src="https://cdn.jsdelivr.net/gh/18wang/media/svg_blog/SVGArcs_Flags.png" width="80%"><br>弧形命令</td>
+<td align="center">$rx$ x方向半轴<br>$ry$ y方向半轴<br> $x-axis-rotation$ 关于x轴旋转角度<br>$large-arc-flag$ 0劣弧 1优弧<br>$sweep-flag$起点到终点 0逆时针弧 1顺时针弧<br>$x,y$终点</td>
+</tr>
+<tr>
+<td align="center">m, l, v, h, z, c, s, q, t, a $dx_i \ dy_i$</td>
+<td align="center">小写是大写的简化, 只需要坐标变化量即可</td>
+<td align="center">便捷但可读性不强</td>
+</tr>
+</tbody></table>
+<ol>
+<li><p><strong><em>每次使用path前, 都需要使用<code>M</code>移动到具体位置</em></strong></p>
+</li>
+<li><p>贝塞尔曲线广泛应用于计算机平滑曲线制作, 包括 .ttf 字体设计.<br>三次贝塞尔曲线参数形式:<br>$$\mathbf{B}(t)=\mathbf{P}<em>{0}(1-t)^{3}+3 \mathbf{P}</em>{1} t(1-t)^{2}+3 \mathbf{P}<em>{2} t^{2}(1-t)+\mathbf{P}</em>{3} t^{3}, t \in[0,1]$$<br>贝塞尔曲线一般参数形式:<br>$$\mathbf{B}(t)=\sum_{i=0}^{n}\left(\begin{array}{l}n \ i\end{array}\right) \mathbf{P}_{i}(1-t)^{n-i} t^{i}, t \in[0,1]$$</p>
+</li>
+<li><p>以知两点和椭圆长短半轴和旋转角度通常可以画<strong>四条弧</strong>, <code>A</code>中的参数就是为了确定是哪一条弧.</p>
+<center>
+<img src="https://cdn.jsdelivr.net/gh/18wang/media/svg_blog/SVGArcs_XAxisRotation_with_grid_ellipses.png" width="30%">
+</center>
+</li>
+<li><p><code>z</code>只能在一个path命令中使用,即一笔画 </p>
+</li>
+</ol>
+<h3 id="一些例子"><a href="#一些例子" class="headerlink" title="一些例子"></a>一些例子</h3><p>我用上面的所有path语法, 乱画一通, 如下</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.1" standalone="no"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">width</span>=<span class="string">"200px"</span> <span class="attr">height</span>=<span class="string">"200px"</span> <span class="attr">version</span>=<span class="string">"1.1"</span> <span class="attr">xmlns</span>=<span class="string">"http://www.w3.org/2000/svg"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M10 10 L 20 100"</span> <span class="attr">stroke</span>=<span class="string">"black"</span> <span class="attr">fill</span>=<span class="string">"transparent"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M20 100 V 5 "</span> <span class="attr">stroke</span>=<span class="string">"green"</span> <span class="attr">fill</span>=<span class="string">"transparent"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M20 5 H 60 "</span> <span class="attr">stroke</span>=<span class="string">"orange"</span> <span class="attr">fill</span>=<span class="string">"transparent"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M60 5 C 30 20, 30 60, 65 100 "</span> <span class="attr">stroke</span>=<span class="string">"purple"</span> <span class="attr">fill</span>=<span class="string">"transparent"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M65 100 S 100 140, 20 160 "</span> <span class="attr">stroke</span>=<span class="string">"red"</span> <span class="attr">fill</span>=<span class="string">"transparent"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M20 160 Q 70 180, 80 160 "</span> <span class="attr">stroke</span>=<span class="string">"blue"</span> <span class="attr">fill</span>=<span class="string">"transparent"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M80 160 T 130 170 "</span> <span class="attr">stroke</span>=<span class="string">"yellow"</span> <span class="attr">fill</span>=<span class="string">"transparent"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M130 170 A 30 60 0 0 0 170 50 "</span> <span class="attr">stroke</span>=<span class="string">"brown"</span> <span class="attr">fill</span>=<span class="string">"transparent"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M10 10 L170 50  "</span> <span class="attr">stroke</span>=<span class="string">"pink"</span> <span class="attr">fill</span>=<span class="string">"transparent"</span>/&gt;</span></span><br><span class="line">  </span><br><span class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>结果如下:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/18wang/media/svg_blog/svg-5.svg" alt=""></p>
+<h2 id="Fill-和-Stroke-属性"><a href="#Fill-和-Stroke-属性" class="headerlink" title="Fill 和 Stroke 属性"></a>Fill 和 Stroke 属性</h2><p><code>fill</code>和<code>stroke</code>分别对应填充颜色和线条颜色. 此外还有很多他们的延申属性.</p>
+<h3 id="着色"><a href="#着色" class="headerlink" title="着色"></a>着色</h3><p>画一个红边蓝底的矩形框<br><code>**-opacity</code>代表透明度设置, 颜色命名方案支持CSS颜色命名方案, 即颜色名（如red）、rgb值（如rgb(255,0,0)）、十六进制值、rgba值   </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">"10"</span> <span class="attr">y</span>=<span class="string">"10"</span> <span class="attr">height</span>=<span class="string">"50"</span> <span class="attr">width</span>=<span class="string">"50"</span> <span class="attr">stroke</span>=<span class="string">"rgb(255,0,0)"</span> <span class="attr">fill</span>=<span class="string">"#0000FF"</span> </span></span><br><span class="line"><span class="tag"><span class="attr">fill-opacity</span>=<span class="string">"0.3"</span> <span class="attr">stroke-opacity</span>=<span class="string">"0.8"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 
-      
-        
-      
-    </div>
-  </section>
-</article>
+<h3 id="描边"><a href="#描边" class="headerlink" title="描边"></a>描边</h3><p><code>stroke-width</code> 线宽<br><code>stroke-linecap</code> 描边方式三种: 无描边, 方形描边, 圆角描边   </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">line</span> <span class="attr">x1</span>=<span class="string">"20"</span> <span class="attr">x2</span>=<span class="string">"70"</span> <span class="attr">y1</span>=<span class="string">"80"</span> <span class="attr">y2</span>=<span class="string">"80"</span> <span class="attr">stroke</span>=<span class="string">"black"</span> <span class="attr">stroke-width</span>=<span class="string">"6"</span> <span class="attr">stroke-linecap</span>=<span class="string">"butt"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">line</span> <span class="attr">x1</span>=<span class="string">"20"</span> <span class="attr">x2</span>=<span class="string">"70"</span> <span class="attr">y1</span>=<span class="string">"100"</span> <span class="attr">y2</span>=<span class="string">"100"</span> <span class="attr">stroke</span>=<span class="string">"rgb(255,255,255)"</span> <span class="attr">stroke-width</span>=<span class="string">"8"</span> <span class="attr">stroke-linecap</span>=<span class="string">"square"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">line</span> <span class="attr">x1</span>=<span class="string">"20"</span> <span class="attr">x2</span>=<span class="string">"70"</span> <span class="attr">y1</span>=<span class="string">"120"</span> <span class="attr">y2</span>=<span class="string">"120"</span> <span class="attr">stroke</span>=<span class="string">"#FFFFFF"</span> <span class="attr">stroke-width</span>=<span class="string">"10"</span> <span class="attr">stroke-linecap</span>=<span class="string">"round"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>还有, <code>stroke-linejoin</code>属性控制折线折角风格<br>|值|效果|<br>|:—:|:—:|<br>|miter|尖角无修饰|<br>|round|圆角, 圆润|<br>|bevel|斜角,切去尖角|</p>
+<p><code>stroke-dasharray</code>用于画虚线, 接 $n_1,n_2…n_i$, 分别代表 $n_i$px 个填充或空白, 循环着色.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M 10 75 Q 50 10 100 75 T 190 75"</span> <span class="attr">stroke</span>=<span class="string">"black"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">stroke-linecap</span>=<span class="string">"round"</span> <span class="attr">stroke-dasharray</span>=<span class="string">"5,10,5"</span> <span class="attr">fill</span>=<span class="string">"none"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M 10 75 L 190 75"</span> <span class="attr">stroke</span>=<span class="string">"red"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">stroke-linecap</span>=<span class="string">"round"</span> <span class="attr">stroke-width</span>=<span class="string">"1"</span> <span class="attr">stroke-dasharray</span>=<span class="string">"5,5"</span> <span class="attr">fill</span>=<span class="string">"none"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>还有一些其他常见的修饰属性, 查阅<a href="https://developer.mozilla.org/zh-CN/docs/Web/SVG/Attribute" target="_blank" rel="noopener">参考文档</a>.</p>
+<h3 id="使用CSS"><a href="#使用CSS" class="headerlink" title="使用CSS"></a>使用CSS</h3><p>可以像在Html中一样使用CSS, 有些地方需要更换一下属性名字. 但是根据SVG的规范, <a href="https://www.w3.org/TR/SVG/propidx.html" target="_blank" rel="noopener">properties</a> 可以用CSS设置, <a href="https://www.w3.org/TR/SVG/attindex.html" target="_blank" rel="noopener">attributes</a>则不可以.</p>
+<ol>
+<li>直接在元素行间设置属性<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">"10"</span> <span class="attr">height</span>=<span class="string">"180"</span> <span class="attr">y</span>=<span class="string">"10"</span> <span class="attr">width</span>=<span class="string">"180"</span> <span class="attr">style</span>=<span class="string">"stroke: red; stroke-width: 5; fill: blue;"</span>/&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>设置样式段落<br>利用<code>&lt;style&gt;</code>设置一段样式段落, 在html里这样的<code>&lt;style&gt;</code>一般放在<code>&lt;head&gt;</code>里，<strong>在svg里<code>&lt;style&gt;</code>则放在<code>&lt;defs&gt;</code>标签里</strong><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">defs</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span>&lt;![CDATA[</span><br><span class="line"><span class="css">    <span class="selector-id">#MyRect</span> &#123;</span></span><br><span class="line">      stroke: green;</span><br><span class="line">      stroke-width: 7;</span><br><span class="line">      fill: yellow;</span><br><span class="line">    &#125;</span><br><span class="line">  ]]&gt;<span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">defs</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">"10"</span> <span class="attr">height</span>=<span class="string">"180"</span> <span class="attr">y</span>=<span class="string">"10"</span> <span class="attr">width</span>=<span class="string">"180"</span> <span class="attr">id</span>=<span class="string">"MyRect"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>定义外部样式表<br>要求符合<a href="http://www.w3.org/TR/xml-stylesheet/" target="_blank" rel="noopener">normal XML-stylesheet syntax</a>的规则. 可以在SVG中运用.<img src="https://cdn.jsdelivr.net/gh/18wang/media/svg_blog/svg-7.svg" >
+最好学一点CSS的知识, 获得更好的表现能力. 此外一些CSS可能在SVG中无法正常工作.
 
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="渐变"><a href="#渐变" class="headerlink" title="渐变"></a>渐变</h2><p>渐变是很多很酷的显示效果的基础功能, 一般有<code>线性渐变</code>和<code>径向渐变</code>.<br>我们一般将渐变定义在<code>&lt;defs&gt;</code>中, 并用一个<code>id属性</code>指代它们, 方便复用.   </p>
+<img src="https://cdn.jsdelivr.net/gh/18wang/media/svg_blog/SVG_Linear_Gradient_Example.png">
 
+<p>线性渐变    </p>
+<img src="https://cdn.jsdelivr.net/gh/18wang/media/svg_blog/SVG_Radial_Gradient_Example.png">
 
-  <section class='meta'>
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/2020/03/22/test1/">
-      test1
-    </a>
-  </h2>
+<p>径向渐变</p>
+<p>较为复杂且费力, 这会是一个很有帮助的参考, 必要时学习并使用.<br><a href="https://developer.mozilla.org/zh-CN/docs/Web/SVG/Tutorial/Gradients" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/SVG/Tutorial/Gradients</a></p>
+<h2 id="图案"><a href="#图案" class="headerlink" title="图案"></a>图案</h2><p>图案可以之前学过的任意图形来实现对画布的填充.</p>
+<p><strong>一个天蓝色矩形, 一个边长是前者一半大小的红色矩形, 一个半透明的圆</strong>, 组成了最基本的图案单元.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" standalone="no"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">width</span>=<span class="string">"750"</span> <span class="attr">height</span>=<span class="string">"200"</span> <span class="attr">xmlns</span>=<span class="string">"http://www.w3.org/2000/svg"</span> <span class="attr">version</span>=<span class="string">"1.1"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">defs</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">linearGradient</span> <span class="attr">id</span>=<span class="string">"Gradient1"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">stop</span> <span class="attr">offset</span>=<span class="string">"5%"</span> <span class="attr">stop-color</span>=<span class="string">"white"</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">stop</span> <span class="attr">offset</span>=<span class="string">"95%"</span> <span class="attr">stop-color</span>=<span class="string">"blue"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">linearGradient</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">linearGradient</span> <span class="attr">id</span>=<span class="string">"Gradient2"</span> <span class="attr">x1</span>=<span class="string">"0"</span> <span class="attr">x2</span>=<span class="string">"0"</span> <span class="attr">y1</span>=<span class="string">"0"</span> <span class="attr">y2</span>=<span class="string">"1"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">stop</span> <span class="attr">offset</span>=<span class="string">"5%"</span> <span class="attr">stop-color</span>=<span class="string">"red"</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">stop</span> <span class="attr">offset</span>=<span class="string">"95%"</span> <span class="attr">stop-color</span>=<span class="string">"orange"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">linearGradient</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">pattern</span> <span class="attr">id</span>=<span class="string">"Pattern"</span> <span class="attr">x</span>=<span class="string">"0"</span> <span class="attr">y</span>=<span class="string">"0"</span> <span class="attr">width</span>=<span class="string">".25"</span> <span class="attr">height</span>=<span class="string">".25"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">"0"</span> <span class="attr">y</span>=<span class="string">"0"</span> <span class="attr">width</span>=<span class="string">"50"</span> <span class="attr">height</span>=<span class="string">"50"</span> <span class="attr">fill</span>=<span class="string">"skyblue"</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">"0"</span> <span class="attr">y</span>=<span class="string">"0"</span> <span class="attr">width</span>=<span class="string">"25"</span> <span class="attr">height</span>=<span class="string">"25"</span> <span class="attr">fill</span>=<span class="string">"url(#Gradient2)"</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">circle</span> <span class="attr">cx</span>=<span class="string">"25"</span> <span class="attr">cy</span>=<span class="string">"25"</span> <span class="attr">r</span>=<span class="string">"20"</span> <span class="attr">fill</span>=<span class="string">"url(#Gradient1)"</span> <span class="attr">fill-opacity</span>=<span class="string">"0.5"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">pattern</span> <span class="attr">id</span>=<span class="string">"Pattern1"</span> <span class="attr">width</span>=<span class="string">".25"</span> <span class="attr">height</span>=<span class="string">".25"</span> <span class="attr">patternContentUnits</span>=<span class="string">"objectBoundingBox"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">"0"</span> <span class="attr">y</span>=<span class="string">"0"</span> <span class="attr">width</span>=<span class="string">".25"</span> <span class="attr">height</span>=<span class="string">".25"</span> <span class="attr">fill</span>=<span class="string">"skyblue"</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">"0"</span> <span class="attr">y</span>=<span class="string">"0"</span> <span class="attr">width</span>=<span class="string">".125"</span> <span class="attr">height</span>=<span class="string">".125"</span> <span class="attr">fill</span>=<span class="string">"url(#Gradient2)"</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">circle</span> <span class="attr">cx</span>=<span class="string">".125"</span> <span class="attr">cy</span>=<span class="string">".125"</span> <span class="attr">r</span>=<span class="string">".1"</span> <span class="attr">fill</span>=<span class="string">"url(#Gradient1)"</span> <span class="attr">fill-opacity</span>=<span class="string">"0.5"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">pattern</span> <span class="attr">id</span>=<span class="string">"Pattern2"</span> <span class="attr">x</span>=<span class="string">"10"</span> <span class="attr">y</span>=<span class="string">"10"</span> <span class="attr">width</span>=<span class="string">"50"</span> <span class="attr">height</span>=<span class="string">"50"</span> <span class="attr">patternUnits</span>=<span class="string">"userSpaceOnUse"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">"0"</span> <span class="attr">y</span>=<span class="string">"0"</span> <span class="attr">width</span>=<span class="string">"50"</span> <span class="attr">height</span>=<span class="string">"50"</span> <span class="attr">fill</span>=<span class="string">"skyblue"</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">"0"</span> <span class="attr">y</span>=<span class="string">"0"</span> <span class="attr">width</span>=<span class="string">"25"</span> <span class="attr">height</span>=<span class="string">"25"</span> <span class="attr">fill</span>=<span class="string">"url(#Gradient2)"</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">circle</span> <span class="attr">cx</span>=<span class="string">"25"</span> <span class="attr">cy</span>=<span class="string">"25"</span> <span class="attr">r</span>=<span class="string">"20"</span> <span class="attr">fill</span>=<span class="string">"url(#Gradient1)"</span> <span class="attr">fill-opacity</span>=<span class="string">"0.5"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;/<span class="name">defs</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">rect</span> <span class="attr">fill</span>=<span class="string">"url(#Pattern)"</span> <span class="attr">stroke</span>=<span class="string">"black"</span> <span class="attr">x</span>=<span class="string">"0"</span> <span class="attr">y</span>=<span class="string">"0"</span> <span class="attr">width</span>=<span class="string">"250"</span> <span class="attr">height</span>=<span class="string">"200"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">rect</span> <span class="attr">fill</span>=<span class="string">"url(#Pattern1)"</span> <span class="attr">stroke</span>=<span class="string">"black"</span> <span class="attr">x</span>=<span class="string">"250"</span> <span class="attr">y</span>=<span class="string">"0"</span> <span class="attr">width</span>=<span class="string">"250"</span> <span class="attr">height</span>=<span class="string">"200"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">rect</span> <span class="attr">fill</span>=<span class="string">"url(#Pattern2)"</span> <span class="attr">stroke</span>=<span class="string">"black"</span> <span class="attr">x</span>=<span class="string">"500"</span> <span class="attr">y</span>=<span class="string">"0"</span> <span class="attr">width</span>=<span class="string">"250"</span> <span class="attr">height</span>=<span class="string">"200"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/18wang/media/svg_blog/svg-8.svg" alt="">    </p>
+<ol>
+<li><p>Pattern<br>注意到<code>width=&quot;.25&quot; height=&quot;.25&quot;</code>, 4<em>4填充, *</em>不会拉伸**, 不够的地方是空白.</p>
+</li>
+<li><p>Pattern1<br>使用<code>patternContentUnits</code>, 默认值为<code>userSpaceOnUse</code>, 当设置其值为<code>objectBoundingBox</code>, 将不再使用Pattern本身的坐标而是使用画布的坐标系统, 需要计算宽和高的比例 <code>0~1</code>, 可以<strong>产生拉伸效果</strong>.</p>
+</li>
+<li><p>Pattern2<br>属性<code>patternUnits</code>, 默认值为<code>objectBoundingBox</code>, 当设置其值为<code>userSpaceOnUse</code>, 可以加入<code>x=&quot;10&quot; y=&quot;10&quot;</code>设置Pattern的偏移量, 也可以写成<code>x=&quot;1/30&quot; y=&quot;0.05&quot;</code>. 10/300=1/30 10/200=0.05. 可以<strong>产生平移效果</strong>.</p>
+</li>
+</ol>
+<h2 id="文字"><a href="#文字" class="headerlink" title="文字"></a>文字</h2><p>SVG能显示一切字符, 拥有丰富的格式修饰</p>
+<p><code>&lt;text&gt;</code>元素用来放文字, 可以指定<code>位置, 字号, 对齐, 填充, 描边</code><br><code>text-anchor</code>有start、middle、end或inherit几种值可选.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">version</span>=<span class="string">"1.1"</span> <span class="attr">baseProfile</span>=<span class="string">"full"</span> <span class="attr">width</span>=<span class="string">"600"</span> <span class="attr">height</span>=<span class="string">"100"</span> <span class="attr">xmlns</span>=<span class="string">"http://www.w3.org/2000/svg"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">rect</span> <span class="attr">width</span>=<span class="string">"100%"</span> <span class="attr">height</span>=<span class="string">"100%"</span> <span class="attr">fill</span>=<span class="string">"red"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">text</span> <span class="attr">id</span>=<span class="string">"example"</span> <span class="attr">x</span>=<span class="string">"350"</span> <span class="attr">y</span>=<span class="string">"50"</span> <span class="attr">font-size</span>=<span class="string">"30"</span> <span class="attr">text-anchor</span>=<span class="string">"middle"</span> <span class="attr">stroke</span>=<span class="string">"green"</span> <span class="attr">fill</span>=<span class="string">"yellow"</span>&gt;</span>₰汉字⅝English🌊π🦾</span><br><span class="line">        <span class="tag">&lt;<span class="name">tspan</span> <span class="attr">font-weight</span>=<span class="string">"bold"</span> <span class="attr">fill</span>=<span class="string">"red"</span>&gt;</span> bold and red<span class="tag">&lt;/<span class="name">tspan</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">path</span> <span class="attr">id</span>=<span class="string">"my_path"</span> <span class="attr">d</span>=<span class="string">"M 20,20 C 40,40 80,40 100,20"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">text</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">textPath</span> <span class="attr">xmlns:xlink</span>=<span class="string">"http://www.w3.org/1999/xlink"</span> <span class="attr">xlink:href</span>=<span class="string">"#my_path"</span>&gt;</span>This text follows a curve.<span class="tag">&lt;/<span class="name">textPath</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/18wang/media/svg_blog/svg-9.svg" alt=""></p>
+<p>常见的属性包括<code>font-family、font-style、font-weight、font-variant、font-stretch、font-size、font-size-adjust、kerning、letter-spacing、word-spacing和text-decoration</code>可以被设置为<strong>一个SVG属性</strong>或者成为<strong>一个CSS声明</strong></p>
+<h3 id="一些特别的元素"><a href="#一些特别的元素" class="headerlink" title="一些特别的元素"></a>一些特别的元素</h3><ol>
+<li><p><code>tspan</code><br>该元素用来标记大块文本的子部分，它必须是一个text元素或别的tspan元素的子元素。<br>它的一些属性可以重新定义文字位置, 旋转文字, 定义文本长度</p>
+</li>
+<li><p><code>tref</code><br>引用已经定义的文本，高效地把它复制到当前位置(貌似没用)</p>
+</li>
+<li><p><code>textPath</code><br>利用它的<code>xlink:href</code>属性取得一个任意路径，把字符对齐到路径</p>
+</li>
+</ol>
+<h2 id="基础变形"><a href="#基础变形" class="headerlink" title="基础变形"></a>基础变形</h2><p>包括<code>平移, 旋转, 斜切, 缩放</code>等基本的图形变换.</p>
+<h3 id="平移"><a href="#平移" class="headerlink" title="平移"></a>平移</h3><p><code>translate(dx,dy)</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">"0"</span> <span class="attr">y</span>=<span class="string">"0"</span> <span class="attr">width</span>=<span class="string">"10"</span> <span class="attr">height</span>=<span class="string">"10"</span> <span class="attr">transform</span>=<span class="string">"translate(30,40)"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 
+<h3 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h3><p><code>rotate(α)</code>按角度计算</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">"20"</span> <span class="attr">y</span>=<span class="string">"20"</span> <span class="attr">width</span>=<span class="string">"20"</span> <span class="attr">height</span>=<span class="string">"20"</span> <span class="attr">transform</span>=<span class="string">"rotate(45)"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 
-      
-      <div class='new-meta-box'>
-        
-          
-        
-          
-            
-<div class='new-meta-item author'>
-  <a href="https://github.com/18wang" target="_blank" rel="nofollow noopener">
-    <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
-    <p>Wang Xy</p>
-  </a>
-</div>
+<h3 id="斜切"><a href="#斜切" class="headerlink" title="斜切"></a>斜切</h3><p><code>skewX(α), skewY(θ)</code>角度确定元素斜切到哪里</p>
+<h3 id="缩放"><a href="#缩放" class="headerlink" title="缩放"></a>缩放</h3><p><code>scale(x%, y%)</code>规定缩放的比例, 通常用小数, y轴的比例可以省略</p>
+<h2 id="剪裁和遮罩"><a href="#剪裁和遮罩" class="headerlink" title="剪裁和遮罩"></a>剪裁和遮罩</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/SVG/Tutorial/Clipping_and_masking" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/SVG/Tutorial/Clipping_and_masking</a></p>
+<h2 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h2><p>为了表达对小袁的思念, 在她面前做了这个图, </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">svg</span> <span class="meta-keyword">PUBLIC</span> <span class="meta-string">"-//W3C//DTD SVG 1.1//EN"</span> </span></span><br><span class="line"><span class="meta">  <span class="meta-string">"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">version</span>=<span class="string">"1.1"</span> <span class="attr">standalone</span>=<span class="string">"no"</span> <span class="attr">width</span>=<span class="string">"900"</span> <span class="attr">height</span>=<span class="string">"600"</span> <span class="attr">xmlns</span>=<span class="string">"http://www.w3.org/2000/svg"</span>  <span class="attr">xmlns:xlink</span>= <span class="string">"http://www.w3.org/1999/xlink"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">rect</span> <span class="attr">width</span>=<span class="string">"100%"</span> <span class="attr">height</span>=<span class="string">"100%"</span> <span class="attr">fill</span>=<span class="string">"purple"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">"450"</span> <span class="attr">y</span>=<span class="string">"100"</span> <span class="attr">font-size</span>=<span class="string">"40"</span> <span class="attr">text-anchor</span>=<span class="string">"middle"</span> <span class="attr">fill</span>=<span class="string">"white"</span>&gt;</span>我爱小袁<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">  </span><br><span class="line">  <span class="tag">&lt;<span class="name">image</span> <span class="attr">xlink:href</span>=<span class="string">"https://cdn.jsdelivr.net/gh/18wang/media/xy.jpg"</span> <span class="attr">x</span>=<span class="string">"250"</span> <span class="attr">y</span>=<span class="string">"200"</span> <span class="attr">height</span>=<span class="string">"400"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/18wang/media/%E6%88%91%E7%88%B1%E5%B0%8F%E8%A2%81.svg" alt=""><br>一个<code>xlink:href</code>属性引用了一个将呈现在SVG对象中的.jpg图像, 注意要包含<code>xmlns:xlink= &quot;http://www.w3.org/1999/xlink</code>才行, 否则会出错.<br>还有一些注意点:   </p>
+<ul>
+<li>如果你没有设置x属性或y属性，它们自动被设置为0。</li>
+<li>如果你没有设置height属性或width属性，它们自动被设置为0。</li>
+<li>如果width属性或height等于0，将不会呈现这个图像。</li>
+<li>图片可以是来自文件或者网页(只要有网全世界都可以看到该图片)</li>
+</ul>
 
-          
-        
-          
-            
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>发布于：Mar 22, 2020</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <h1 id="dfdfdfdf"><a href="#dfdfdfdf" class="headerlink" title="dfdfdfdf"></a>dfdfdfdf</h1>
       
         
       
@@ -893,19 +974,19 @@
       
     
       
-        <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+        <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
 </div>
       
     
       
-        本站使用
+        Use
         <a href="https://volantis.js.org/" target="_blank" class="codename">Volantis</a>
-        作为主题
+        as theme
         
-          ，
-          总访问量为
+          , 
+          total visits
           <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
-          次
+          times
         
       
     
