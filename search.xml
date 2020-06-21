@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>pdf添加页码</title>
+      <link href="/2020/06/21/pdf%E6%B7%BB%E5%8A%A0%E9%A1%B5%E7%A0%81/"/>
+      <url>/2020/06/21/pdf%E6%B7%BB%E5%8A%A0%E9%A1%B5%E7%A0%81/</url>
+      
+        <content type="html"><![CDATA[<h1 id="给PDF文件添加页码"><a class="header-anchor" href="#给PDF文件添加页码"></a>给PDF文件添加页码</h1><p>有些扫描的, 或者本身没有添加页码的pdf文件, 很长, 也没有书签目录可以跳转, 尽管很多pdf编辑器可以手动添加目录, 但仍然不符合效率的原则.</p><p>当然, 我们可以写程序实现, 在需要编辑的pdf样本比较少的情况下, 小工具也可以很有用.</p><p><strong><a href="https://www.jianshu.com/p/9683e7094871" target="_blank" rel="noopener">这篇博客</a>给我提供了很大的帮助.</strong></p><ol><li><p>下载&quot;老马&quot;自己写的<strong>PdgCntEditor</strong></p><p>博客地址:<br><a href="https://www.cnblogs.com/stronghorse/" target="_blank" rel="noopener">https://www.cnblogs.com/stronghorse/</a></p><p>最新软件下载地址：</p><p>链接：<a href="https://pan.baidu.com/s/1BC0JTOACnfePv8LokD5GCg" target="_blank" rel="noopener">https://pan.baidu.com/s/1BC0JTOACnfePv8LokD5GCg</a><br>提取码：tyor</p><p>English version:</p><p><a href="http://www.mediafire.com/folder/f0z2hexqdnr9a/Software" target="_blank" rel="noopener">http://www.mediafire.com/folder/f0z2hexqdnr9a/Software</a></p></li><li><p>从京东, 亚马逊, 图书内容等等渠道, 获得文件目录.<br>最好复制到excel里面, 分两栏, 序号标题一栏, 页码一栏(两栏之间天然用制表符Tab分开)</p></li></ol><p><img src="https://cdn.jsdelivr.net/gh/18wang/media/pdf%E6%B7%BB%E5%8A%A0%E9%A1%B5%E7%A0%81/1.png" alt=""></p><ol start="3"><li>运行PdgCntEditor.exe, 打开 ***.pdf, 将目录粘贴到空白处, 选中目录.<ul><li>自动缩进</li><li>设定基准页, 即目录中P1对应的实际PDF页数.</li><li>保存文件</li></ul></li></ol><p><img src="https://cdn.jsdelivr.net/gh/18wang/media/pdf%E6%B7%BB%E5%8A%A0%E9%A1%B5%E7%A0%81/2.png" alt=""></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>蒲宇琦考研成绩排名估算</title>
       <link href="/2020/05/10/%E8%92%B2%E5%AE%87%E7%90%A6%E8%80%83%E7%A0%94%E6%88%90%E7%BB%A9%E6%8E%92%E5%90%8D%E4%BC%B0%E7%AE%97/"/>
       <url>/2020/05/10/%E8%92%B2%E5%AE%87%E7%90%A6%E8%80%83%E7%A0%94%E6%88%90%E7%BB%A9%E6%8E%92%E5%90%8D%E4%BC%B0%E7%AE%97/</url>
