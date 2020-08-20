@@ -461,9 +461,124 @@
         
           
         
+          
+        
       
     
     
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/2020/08/19/kalman_filter/">
+      kalman_filter
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+<div class='new-meta-item author'>
+  <a href="https://github.com/18wang" target="_blank" rel="nofollow noopener">
+    <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png">
+    <p>Wxy</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Aug 19, 2020</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="卡尔曼滤波-应用"><a class="header-anchor" href="#卡尔曼滤波-应用"></a>卡尔曼滤波 应用</h1>
+<p>激光雷达测距的数值经常发生跳变, 显示在软件里的值波动有点大.<br>
+用 matlab 对其进行滤波, 实现更好的显示效果, 提高测量精度.</p>
+<blockquote>
+<p>前情提要</p>
+</blockquote>
+<ul>
+<li>激光雷达的采样率是 1kHz, 1s 采 1000 个数据点</li>
+<li>目前的方法是, 对每1000个点排序, 去掉最大最小各100个点, 取均值, 效果不够好</li>
+<li>拟采用一种滤波的方法, 或者其他任何简单方便的算法, 得到稳定的测距值</li>
+<li>当前只要处理实测距离不变, 测量值的跳变的问题; 若遇实际距离变化, 可能需要其他算法</li>
+</ul>
+<h2 id="数据文件"><a class="header-anchor" href="#数据文件"></a>数据文件</h2>
+<p>存储读数的csv文件结构如 图1 所示</p>
+<p><img src="https://cdn.jsdelivr.net/gh/18wang/media/kalman_filter/1.jpg" alt=""></p>
+<h2 id="卡尔曼滤波器"><a class="header-anchor" href="#卡尔曼滤波器"></a>卡尔曼滤波器</h2>
+<p>实用参考: 卡尔曼滤波 <a href="https://zhuanlan.zhihu.com/p/39912633" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/39912633</a><br>
+Matlab实现 <a href="https://blog.csdn.net/zengxiantao1994/article/details/71170728" target="_blank" rel="noopener">https://blog.csdn.net/zengxiantao1994/article/details/71170728</a></p>
+<p>这里面就不再赘述了, 知识点忘记了就回顾一下<br>
+总之, 卡尔曼滤波在输出预测, 信号滤波方面有着广泛的应用, 而且简单性能不错.</p>
+<p><strong>还可以深入学习的地方就是, 对参数的物理意义进一步深入理解, 便于调解应用</strong></p>
+<h2 id="程序实现"><a class="header-anchor" href="#程序实现"></a>程序实现</h2>
+<p>Matlab 实现</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%% 卡尔曼滤波</span></span><br><span class="line"><span class="comment">% 实用参考: 卡尔曼滤波 https://zhuanlan.zhihu.com/p/39912633</span></span><br><span class="line"><span class="comment">% Matlab实现 https://blog.csdn.net/zengxiantao1994/article/details/71170728</span></span><br><span class="line"></span><br><span class="line">filename = [<span class="string">"2020-4-18-1320.csv"</span>, <span class="string">"2020-4-18-1324.csv"</span> , <span class="string">"2020-4-18-1339.csv"</span>]; </span><br><span class="line">address = <span class="string">'E:\Temp\testdata\';          % 地址</span></span><br><span class="line"><span class="string">pL = 1000;      % 1khz采样 </span></span><br><span class="line"><span class="string">sz = [2, 1];    % 保存 k-1估计值 和 k时刻估计值 即可</span></span><br><span class="line"><span class="string">Q = 1e-10;      % 过程方差，反映连续两个采样点值的方差  Q↑ 稳定性↓ 示数变化速率↑</span></span><br><span class="line"><span class="string">R = 1e0;        % 测量方差，反映激光器的测量精度    R↑ 稳定性↑ 示数变化速率↓  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">% 卡尔曼滤波器 我这里写的是针对线性系统的, 所以对于距离变化这种非线性的情况比较糟糕, 要么反应慢, 要么效果差</span></span><br><span class="line"><span class="string">% 我们可以设定一个阈值判断, 譬如说前后两秒的均值差距超过 T  , 停用滤波, 差距小于 T (距离不变) 启用卡尔曼滤波</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">for i = 1  % length(filename)       % 文件名循环    </span></span><br><span class="line"><span class="string">    data = csvread(strcat(address, filename(i)));</span></span><br><span class="line"><span class="string">    [row, col] = size(data);                    % 每个csv行列大小</span></span><br><span class="line"><span class="string">    mean1s = zeros([fix(row/pL), 1]);           % 均值 每 1s 数据</span></span><br><span class="line"><span class="string">    mean1skal = zeros([fix(row/pL), 1]);        % kalman滤波后均值</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    %% kalman数据初始化</span></span><br><span class="line"><span class="string">    dhat = zeros(sz);       % 对距离的后验估计, 即在k时刻，结合当前采样值与k-1时刻先验估计，得到结果</span></span><br><span class="line"><span class="string">    dhatresult = zeros([pL,1]);     % 存储 dhat 结果</span></span><br><span class="line"><span class="string">    P = zeros(sz);          % 后验估计方差</span></span><br><span class="line"><span class="string">    dhatminus = zeros(sz);  % 先验估计值</span></span><br><span class="line"><span class="string">    Pminus = zeros(sz);     % 先验估计方差 </span></span><br><span class="line"><span class="string">    K = zeros(sz);          % 卡尔曼增益</span></span><br><span class="line"><span class="string">    dhat(1) = data(1,1)+0.; % 最初的估计, 这里用均值</span></span><br><span class="line"><span class="string">    P(1) = 0.1;             % 方差初值</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    for j = 1 :  fix(row/pL)  </span></span><br><span class="line"><span class="string">        % 1s 数据点获取</span></span><br><span class="line"><span class="string">        d1000 = data((j-1)*pL+1:j*pL, 1);        </span></span><br><span class="line"><span class="string">        avg = mean(d1000);      % 均值</span></span><br><span class="line"><span class="string">        mean1s(j) = avg;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        %% 卡尔曼滤波</span></span><br><span class="line"><span class="string">        for k = 2 : pL</span></span><br><span class="line"><span class="string">            dhatminus(2) = dhat(1);       % 时间更新, 沿用之前的估计值</span></span><br><span class="line"><span class="string">            Pminus(2) = P(1) + Q;         % 预测方差=前时刻方差+过程方差</span></span><br><span class="line"><span class="string">            K(2) = Pminus(2) / (Pminus(2) + R); % 计算卡尔曼增益</span></span><br><span class="line"><span class="string">            dhat(2) = dhatminus(2) + K(2) * (d1000(k) - dhatminus(2));  % 校正后最优估计结果</span></span><br><span class="line"><span class="string">            P(2) = (1 - K(2)) * Pminus(2);      % 计算最优估计方差</span></span><br><span class="line"><span class="string">            </span></span><br><span class="line"><span class="string">            if k == 2</span></span><br><span class="line"><span class="string">                dhatresult(k-1) = dhat(k-1);    % 存储 dhat(1)</span></span><br><span class="line"><span class="string">            end</span></span><br><span class="line"><span class="string">            dhatresult(k) = dhat(2);</span></span><br><span class="line"><span class="string">            P(1) = P(2);                       % 更新后验估计方差 </span></span><br><span class="line"><span class="string">            dhat(1) = dhat(2);                 % 更新下 1s 最初的估计, 这里用上一秒最后一个采样点</span></span><br><span class="line"><span class="string">        end</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        mean1skal(j) = mean(dhatresult(1:end));   % 取 某 点以后的</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        % %% 画图 滤波前后 对比结果</span></span><br><span class="line"><span class="string">        % figure(1);</span></span><br><span class="line"><span class="string">        % plot((j-1)*pL+1:j*pL, dhat);</span></span><br><span class="line"><span class="string">        % hold on;</span></span><br><span class="line"><span class="string">        % % plot([lmax+(j-1)*pL, lmin+(j-1)*pL], [dmax,dmin], '</span>ro');</span><br><span class="line">        <span class="comment">% % hold on;</span></span><br><span class="line">        <span class="comment">% plot((j-1)*pL+1:j*pL, d1000);</span></span><br><span class="line">        <span class="comment">% hold on;</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">% plot([(j-1)*pL+1, j*pL], [avg, avg], 'g');</span></span><br><span class="line">        <span class="comment">% % legend(&#123;'datacurve',strcat('extreme point \delta:', num2str(delta), ' avg:', num2str(avg)) &#125;, 'Location', 'best');</span></span><br><span class="line">        <span class="comment">% hold off;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">% % 保存图片</span></span><br><span class="line">        <span class="comment">% saveas(1, strcat(address, 'figure\kalman',  filename(i), '-',num2str(j), '.jpg'));           </span></span><br><span class="line">        <span class="comment">% close;</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="built_in">figure</span>(<span class="built_in">i</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">plot</span>(mean1skal(<span class="number">1</span>:<span class="keyword">end</span>), <span class="string">'-o'</span>);</span><br><span class="line">    <span class="built_in">hold</span> on;</span><br><span class="line">    </span><br><span class="line">    title(<span class="string">'kalman vs ordinary data mean'</span>);</span><br><span class="line">    xlabel(<span class="string">'s'</span>);</span><br><span class="line">    ylabel(<span class="string">'value'</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">plot</span>(mean1s(<span class="number">1</span>:<span class="keyword">end</span>), <span class="string">'--^'</span>);</span><br><span class="line">    <span class="built_in">hold</span> off;   </span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h2 id="结果展示"><a class="header-anchor" href="#结果展示"></a>结果展示</h2>
+<p>取了前10s的信号, 红色是原始信号, 绿色是原始信号均值, 蓝色是滤波后信号, 效果很不错.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/18wang/media/kalman_filter/2.svg" alt="svg"></p>
+<p>把每秒的1000个信号取均值, 画出来的结果, 也显示, 平稳了很多.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/18wang/media/kalman_filter/3.svg" alt="svg"></p>
+<p><em>程序和数据文件被放在了<a href="https://github.com/18wang/media/tree/master/kalman_filter" target="_blank" rel="noopener">这里</a></em></p>
+
+      
+      
+        
+      
+    </div>
+  </section>
+</article>
+
+          </div>
+        
       
         
           <div class='post-wrapper'>
