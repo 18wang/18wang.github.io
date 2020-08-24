@@ -16,7 +16,7 @@
 
   <!-- 页面元数据 -->
   
-    <title>pdf添加页码 - 18wang</title>
+    <title>Python模拟点云生成 - 18wang</title>
   
   
 
@@ -377,8 +377,8 @@
         
   
     <h1 class="title">
-      <a href="/2020/06/21/pdf%E6%B7%BB%E5%8A%A0%E9%A1%B5%E7%A0%81/">
-        pdf添加页码
+      <a href="/2020/08/24/Python%E6%A8%A1%E6%8B%9F%E7%82%B9%E4%BA%91%E7%94%9F%E6%88%90/">
+        Python模拟点云生成
       </a>
     </h1>
   
@@ -409,7 +409,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Jun 21, 2020</p>
+    <p>发布于：Aug 24, 2020</p>
   </a>
 </div>
 
@@ -431,37 +431,18 @@
       <section class="article typo">
         <div class="article-entry" itemprop="articleBody">
           
-          <h1 id="给PDF文件添加页码"><a class="header-anchor" href="#给PDF文件添加页码"></a>给PDF文件添加页码</h1>
-<p>有些扫描的, 或者本身没有添加页码的pdf文件, 很长, 也没有书签目录可以跳转, 尽管很多pdf编辑器可以手动添加目录, 但仍然不符合效率的原则.</p>
-<p>当然, 我们可以写程序实现, 在需要编辑的pdf样本比较少的情况下, 小工具也可以很有用.</p>
-<p><strong><a href="https://www.jianshu.com/p/9683e7094871" target="_blank" rel="noopener">这篇博客</a>给我提供了很大的帮助.</strong></p>
-<ol>
-<li>
-<p>下载&quot;老马&quot;自己写的<strong>PdgCntEditor</strong></p>
-<p>博客地址:<br>
-<a href="https://www.cnblogs.com/stronghorse/" target="_blank" rel="noopener">https://www.cnblogs.com/stronghorse/</a></p>
-<p>最新软件下载地址：</p>
-<p>链接：<a href="https://pan.baidu.com/s/1BC0JTOACnfePv8LokD5GCg" target="_blank" rel="noopener">https://pan.baidu.com/s/1BC0JTOACnfePv8LokD5GCg</a><br>
-提取码：tyor</p>
-<p>English version:</p>
-<p><a href="http://www.mediafire.com/folder/f0z2hexqdnr9a/Software" target="_blank" rel="noopener">http://www.mediafire.com/folder/f0z2hexqdnr9a/Software</a></p>
-</li>
-<li>
-<p>从京东, 亚马逊, 图书内容等等渠道, 获得文件目录.<br>
-最好复制到excel里面, 分两栏, 序号标题一栏, 页码一栏(两栏之间天然用制表符Tab分开)</p>
-</li>
-</ol>
-<p><img src="https://cdn.jsdelivr.net/gh/18wang/media/pdf%E6%B7%BB%E5%8A%A0%E9%A1%B5%E7%A0%81/1.png" alt=""></p>
-<ol start="3">
-<li>运行PdgCntEditor.exe, 打开 ***.pdf, 将目录粘贴到空白处, 选中目录.
-<ul>
-<li>自动缩进</li>
-<li>设定基准页, 即目录中P1对应的实际PDF页数.</li>
-<li>保存文件</li>
-</ul>
-</li>
-</ol>
-<p><img src="https://cdn.jsdelivr.net/gh/18wang/media/pdf%E6%B7%BB%E5%8A%A0%E9%A1%B5%E7%A0%81/2.png" alt=""></p>
+          <h1 id="模拟点云生成"><a class="header-anchor" href="#模拟点云生成"></a>模拟点云生成</h1>
+<p>用python生成点云, 加入一点噪声, 包括平面, 直线和圆柱面的点云</p>
+<p>比较容易, numpy 生成点, 列方程, 画图, 保存(点云的保存要注意一点技巧)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 线点云 </span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">画一个任意线段点云, 加噪 噪声在noise中</span></span><br><span class="line"><span class="string">可以调节 </span></span><br><span class="line"><span class="string">    - 采样步距 </span></span><br><span class="line"><span class="string">    - 点云参数 t 范围</span></span><br><span class="line"><span class="string">    - 直线方程 X = X0+kx*t, Y = Y0+ky*t, Z = Z0+kz*t</span></span><br><span class="line"><span class="string">    - 噪声大小 或 噪声类型</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">step = <span class="number">0.1</span>             <span class="comment"># 步距</span></span><br><span class="line">tlim = [<span class="number">-4</span>, <span class="number">10</span>]          <span class="comment"># 参数 t 范围</span></span><br><span class="line">X0, Y0, Z0 = <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>    <span class="comment"># 参数式方程系数</span></span><br><span class="line">kx, ky, kz = <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> mpl_toolkits.mplot3d <span class="keyword">import</span> Axes3D</span><br><span class="line"></span><br><span class="line">t = np.arange(tlim[<span class="number">0</span>], tlim[<span class="number">1</span>], step)       <span class="comment"># 生成点云 t 坐标 列</span></span><br><span class="line">X = X0 + kx * t</span><br><span class="line">Y = Y0 + ky * t</span><br><span class="line">Z = Z0 + kz * t </span><br><span class="line"></span><br><span class="line">noise = (np.random.rand(t.shape[<span class="number">0</span>])<span class="number">-0.5</span>) * <span class="number">0.1</span>       <span class="comment"># 加噪 [-0.5, 0.5) 噪声</span></span><br><span class="line">Zn = Z + noise</span><br><span class="line"></span><br><span class="line"><span class="comment"># 存储数据点</span></span><br><span class="line">PC = np.dstack((X, Y, Zn))</span><br><span class="line">PCs = PC.reshape((t.shape[<span class="number">0</span>],<span class="number">-1</span>))</span><br><span class="line">np.savetxt(<span class="string">"E:/LinePC.txt"</span>, PCs, delimiter=<span class="string">','</span>, fmt=<span class="string">"%f"</span>)  </span><br><span class="line"></span><br><span class="line"><span class="comment"># 画图</span></span><br><span class="line">fig = plt.figure()                          </span><br><span class="line">ax = Axes3D(fig)</span><br><span class="line">ax.scatter(X, Y, Zn, c=<span class="string">'r'</span>)  <span class="comment"># 绘制数据点</span></span><br><span class="line">ax.set_zlabel(<span class="string">'Z'</span>)           <span class="comment"># 坐标轴</span></span><br><span class="line">ax.set_ylabel(<span class="string">'Y'</span>)</span><br><span class="line">ax.set_xlabel(<span class="string">'X'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/18wang/media/python_pointcloud/1.svg" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 平面点云 </span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">画一个任意平面点云, 加噪 噪声在noise中</span></span><br><span class="line"><span class="string">可以调节 </span></span><br><span class="line"><span class="string">    - X, Y步距 </span></span><br><span class="line"><span class="string">    - 点云 X, Y 范围</span></span><br><span class="line"><span class="string">    - 平面方程 Z = f(X, Y)</span></span><br><span class="line"><span class="string">    - 噪声大小 或 噪声类型</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">step = <span class="number">0.25</span>             <span class="comment"># 步距</span></span><br><span class="line">xlim = [<span class="number">-4</span>, <span class="number">10</span>]          <span class="comment"># 坐标范围</span></span><br><span class="line">ylim = [<span class="number">-4</span>, <span class="number">10</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> mpl_toolkits.mplot3d <span class="keyword">import</span> Axes3D</span><br><span class="line"></span><br><span class="line">X = np.arange(xlim[<span class="number">0</span>], xlim[<span class="number">1</span>], step)       <span class="comment"># 生成点云 x坐标 列</span></span><br><span class="line">Y = np.arange(ylim[<span class="number">0</span>], ylim[<span class="number">1</span>], step)</span><br><span class="line">X, Y = np.meshgrid(X, Y)                    <span class="comment"># 生成网格</span></span><br><span class="line">Z = X+Y <span class="comment"># np.zeros_like(X)</span></span><br><span class="line"></span><br><span class="line">x, y = Z.shape                              <span class="comment"># 加噪 [-0.5, 0.5) 噪声</span></span><br><span class="line">noise = (np.random.rand(x, y)<span class="number">-0.5</span>) * <span class="number">0.1</span> </span><br><span class="line">Zn = Z + noise</span><br><span class="line"></span><br><span class="line"><span class="comment"># 存储数据点</span></span><br><span class="line">PC = np.dstack((X, Y, Zn))</span><br><span class="line">PCs = PC.reshape((x*y,<span class="number">-1</span>))</span><br><span class="line">np.savetxt(<span class="string">"E:/PlanePC.txt"</span>, PCs, delimiter=<span class="string">','</span>, fmt=<span class="string">"%f"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 画图</span></span><br><span class="line">fig = plt.figure()                          </span><br><span class="line">ax = Axes3D(fig)</span><br><span class="line"><span class="comment"># 具体函数方法可用 help(function) 查看，如：help(ax.plot_surface)</span></span><br><span class="line">ax.plot_surface(X, Y, Zn, rstride=<span class="number">1</span>, cstride=<span class="number">1</span>, cmap=<span class="string">'rainbow'</span>)</span><br><span class="line">ax.set_zlabel(<span class="string">'Z'</span>)          <span class="comment"># 坐标轴</span></span><br><span class="line">ax.set_ylabel(<span class="string">'Y'</span>)</span><br><span class="line">ax.set_xlabel(<span class="string">'X'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/18wang/media/python_pointcloud/2.svg" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 圆柱侧面点云 </span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">画一个椭圆柱侧面点云, 以 z轴 为轴心, 向正负方向延申</span></span><br><span class="line"><span class="string">加噪 噪声在noiseX, noiseY中</span></span><br><span class="line"><span class="string">可以调节 </span></span><br><span class="line"><span class="string">    - xoy 截面的采样角度步距 0~2π, z 轴方向的采样步距 </span></span><br><span class="line"><span class="string">    - 点云 z轴 范围</span></span><br><span class="line"><span class="string">    - 椭圆正截面长短轴 (x/a)^2 + (y/b)^2 = 1</span></span><br><span class="line"><span class="string">    - 噪声大小 或 噪声类型</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">stepz = <span class="number">0.2</span>            <span class="comment"># z轴方向步距  </span></span><br><span class="line">stepA = <span class="number">0.1</span>             <span class="comment"># xoy平面角度步距</span></span><br><span class="line">zlim = [<span class="number">-4</span>, <span class="number">1</span>]          <span class="comment"># z坐标范围</span></span><br><span class="line">a, b = <span class="number">1</span>, <span class="number">1</span>             <span class="comment"># 长轴短轴</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> mpl_toolkits.mplot3d <span class="keyword">import</span> Axes3D</span><br><span class="line"></span><br><span class="line">X = a * np.cos(np.arange(<span class="number">0</span>,<span class="number">2</span>*np.pi,stepA))          <span class="comment"># 生成坐标</span></span><br><span class="line">Y = b * np.sin(np.arange(<span class="number">0</span>,<span class="number">2</span>*np.pi,stepA))</span><br><span class="line">Z = np.arange(zlim[<span class="number">0</span>], zlim[<span class="number">1</span>], stepz)</span><br><span class="line">X, _ = np.meshgrid(X, Z)  </span><br><span class="line">Y, Z = np.meshgrid(Y, Z)  </span><br><span class="line"></span><br><span class="line">shape0, shape1 = X.shape[<span class="number">0</span>], X.shape[<span class="number">1</span>]</span><br><span class="line">noiseX = (np.random.rand(shape0, shape1)<span class="number">-0.5</span>) * <span class="number">0.05</span>   <span class="comment"># 加噪 [-0.25, 0.25) 噪声</span></span><br><span class="line">noiseY = (np.random.rand(shape0, shape1)<span class="number">-0.5</span>) * <span class="number">0.05</span>    <span class="comment"># X Y 均加噪</span></span><br><span class="line">Xn = X + noiseX</span><br><span class="line">Yn = Y + noiseY</span><br><span class="line"></span><br><span class="line"><span class="comment"># 存储数据点</span></span><br><span class="line">PC = np.dstack((Xn, Yn, Z))</span><br><span class="line">PCs = PC.reshape((shape0*shape1,<span class="number">-1</span>))</span><br><span class="line">np.savetxt(<span class="string">"E:/CylinderPC.txt"</span>, PCs, delimiter=<span class="string">','</span>, fmt=<span class="string">"%f"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 画图</span></span><br><span class="line">fig = plt.figure()                          </span><br><span class="line">ax = Axes3D(fig)</span><br><span class="line"><span class="comment"># 具体函数方法可用 help(function) 查看，如：help(ax.plot_surface)</span></span><br><span class="line">ax.plot_surface(Xn, Yn, Z, rstride=<span class="number">1</span>, cstride=<span class="number">1</span>, cmap=<span class="string">'rainbow'</span>)</span><br><span class="line">ax.set_zlabel(<span class="string">'Z'</span>)           <span class="comment"># 坐标轴</span></span><br><span class="line">ax.set_ylabel(<span class="string">'Y'</span>)</span><br><span class="line">ax.set_xlabel(<span class="string">'X'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/18wang/media/python_pointcloud/3.svg" alt=""></p>
+<p>注意到圆柱面有一个豁口, 因为最后一个点和起始点没有首尾相连, 但用于<code>Polyworks</code>并无进一步处理的需要, 示意即可</p>
+<p>保存的点云数据如下图所示</p>
+<p><img src="https://cdn.jsdelivr.net/gh/18wang/media/python_pointcloud/4.jpg" alt=""></p>
 
           
             <br>
@@ -500,10 +481,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-06-21T10:35:43+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-08-24T17:58:45+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Jun 21, 2020</p>
+    <p>更新于：Aug 24, 2020</p>
   </a>
 </div>
 
@@ -527,7 +508,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://github.com/18wang/2020/06/21/pdf%E6%B7%BB%E5%8A%A0%E9%A1%B5%E7%A0%81/&title=pdf添加页码 - 18wang&summary="
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://github.com/18wang/2020/08/24/Python%E6%A8%A1%E6%8B%9F%E7%82%B9%E4%BA%91%E7%94%9F%E6%88%90/&title=Python模拟点云生成 - 18wang&summary="
           
           >
           
@@ -539,7 +520,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://github.com/18wang/2020/06/21/pdf%E6%B7%BB%E5%8A%A0%E9%A1%B5%E7%A0%81/&title=pdf添加页码 - 18wang&summary="
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://github.com/18wang/2020/08/24/Python%E6%A8%A1%E6%8B%9F%E7%82%B9%E4%BA%91%E7%94%9F%E6%88%90/&title=Python模拟点云生成 - 18wang&summary="
           
           >
           
@@ -551,7 +532,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=https://github.com/18wang/2020/06/21/pdf%E6%B7%BB%E5%8A%A0%E9%A1%B5%E7%A0%81/&title=pdf添加页码 - 18wang&summary="
+          href="http://service.weibo.com/share/share.php?url=https://github.com/18wang/2020/08/24/Python%E6%A8%A1%E6%8B%9F%E7%82%B9%E4%BA%91%E7%94%9F%E6%88%90/&title=Python模拟点云生成 - 18wang&summary="
           
           >
           
@@ -575,23 +556,17 @@
         
           <div class="prev-next">
             
-              <a class='prev' href='/2020/08/16/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8%EF%BC%9A%E5%9F%BA%E4%BA%8EPython%E7%9A%84%E7%90%86%E8%AE%BA%E4%B8%8E%E5%AE%9E%E7%8E%B0-%E6%96%8B%E8%97%A4%E5%BA%B7%E6%AF%85/'>
-                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>深度学习入门：基于Python的理论与实现-斋藤康毅</p>
-                <p class='content'>深度学习入门：基于Python的理论与实现
-一本蛮简单的深度学习入门, 希望自己快快地过一遍!
-随便记一些东西, 但愿可以.
-资料:
-https://github.com/MemorialChe...</p>
-              </a>
             
-            
-              <a class='next' href='/2020/05/10/%E8%92%B2%E5%AE%87%E7%90%A6%E8%80%83%E7%A0%94%E6%88%90%E7%BB%A9%E6%8E%92%E5%90%8D%E4%BC%B0%E7%AE%97/'>
-                <p class='title'>蒲宇琦考研成绩排名估算<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-                <p class='content'>研究蒲宇琦成绩排名_结合研究生考试的成绩分布情况
-尝试应用一两个具体的例子
+              <a class='next' href='/2020/08/19/kalman_filter/'>
+                <p class='title'>kalman_filter<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+                <p class='content'>卡尔曼滤波 应用
+激光雷达测距的数值经常发生跳变, 显示在软件里的值波动有点大.
+用 matlab 对其进行滤波, 实现更好的显示效果, 提高测量精度.
 
-中南财经政法大学的例子表明, 样本太少异常难受
-江苏2018年高考的例子表明, 十分接近正态分布(因为缺乏完整数据,...</p>
+前情提要
+
+
+激光雷达的采样率是 1k...</p>
               </a>
             
           </div>
@@ -619,7 +594,7 @@ https://github.com/MemorialChe...</p>
 
   <script>
     window.subData = {
-      title: 'pdf添加页码',
+      title: 'Python模拟点云生成',
       tools: true
     }
   </script>
