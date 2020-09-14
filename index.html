@@ -437,9 +437,246 @@
         
           
         
+          
+        
       
     
     
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/2020/09/14/%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3/">
+      算法图解
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+<div class='new-meta-item author'>
+  <a href="https://github.com/18wang" rel="nofollow">
+    <img src="https://avatars0.githubusercontent.com/u/25820978">
+    <p></p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Sep 14, 2020</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="算法图解"><a class="header-anchor" href="#算法图解"></a>算法图解</h1>
+<p>最近在学习工作中发现算法的重要性, 以及自己这方面知识的匮乏. 我虽然不是科班出身, 也不打算进行完全深入的研究, 但仍然决定了解一些相关知识, 最好能有所运用. 毫无疑问, 算法只是一类方法的统称, 就像编程这个叫法一样.</p>
+<p>相关资料存放在<a href="https://cdn.jsdelivr.net/gh/18wang/media/%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3/" target="_blank" rel="noopener">这里</a></p>
+<h2 id="1-算法简介"><a class="header-anchor" href="#1-算法简介"></a>1. 算法简介</h2>
+<h3 id="1-1-二分查找"><a class="header-anchor" href="#1-1-二分查找"></a>1.1 二分查找</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">binary_search</span><span class="params">(L, item)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    二分查找</span></span><br><span class="line"><span class="string">    L 升序排列的list</span></span><br><span class="line"><span class="string">    item 需要查找的元素</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    low = <span class="number">0</span></span><br><span class="line">    high = len(L) - <span class="number">1</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> low &lt;= high:</span><br><span class="line">        mid = (low + high) // <span class="number">2</span></span><br><span class="line">        <span class="keyword">if</span> L[mid] &gt; item:</span><br><span class="line">            high = mid - <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> L[mid] &lt; item:</span><br><span class="line">            low = mid + <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> mid</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">List = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">8</span>, <span class="number">23</span>]</span><br><span class="line">print(binary_search(List, <span class="number">8</span>))</span><br></pre></td></tr></table></figure>
+<pre><code>2
+</code></pre>
+<h3 id="1-2-算法的-O-表示法"><a class="header-anchor" href="#1-2-算法的-O-表示法"></a>1.2 算法的 O 表示法</h3>
+<p>$O(logn)$<br>
+$ O(n) $<br>
+$ O(n*logn) $<br>
+$O(n^2)$<br>
+$O(n!)$</p>
+<h2 id="2-选择排序"><a class="header-anchor" href="#2-选择排序"></a>2. 选择排序</h2>
+<p>数组和链表优劣得所</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findSmallest</span><span class="params">(L)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    查找最小的元素, 返回第一次出现的下标</span></span><br><span class="line"><span class="string">    L 数组</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    smallest = L[<span class="number">0</span>]</span><br><span class="line">    smallestIndex = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(L)):</span><br><span class="line">        <span class="keyword">if</span> L[i] &lt; smallest:</span><br><span class="line">            smallestIndex = i</span><br><span class="line">            smallest = L[i]</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> smallestIndex </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">selectionSort</span><span class="params">(L)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    选择排序, 升序排列</span></span><br><span class="line"><span class="string">    L 数组</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    newL = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(L)):</span><br><span class="line">        smallest = findSmallest(L)</span><br><span class="line">        newL.append(L[smallest])</span><br><span class="line">        L.pop(smallest)     <span class="comment"># del L[smallest]</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> newL</span><br><span class="line"></span><br><span class="line">print(selectionSort([<span class="number">33</span>, <span class="number">2</span>, <span class="number">-1</span>, <span class="number">5</span>, <span class="number">58</span>]))</span><br></pre></td></tr></table></figure>
+<pre><code>[-1, 2, 5, 33, 58]
+</code></pre>
+<h2 id="3-递归"><a class="header-anchor" href="#3-递归"></a>3. 递归</h2>
+<p>如果使用循环，程序的性能可能更高；如果使用递归，程序可能更容易理解。如何选择要看什么对你来说更重要。</p>
+<h3 id="3-1-基线条件和递归条件"><a class="header-anchor" href="#3-1-基线条件和递归条件"></a>3.1 基线条件和递归条件</h3>
+<p>基线条件: 什么时候终止<br>
+递归条件: 什么时候递归</p>
+<p>调用栈可能花费很多内存, 有必要采用尾递归的方法加以改进. 不过python对尾递归非常不支持.</p>
+<h2 id="4-快速排序"><a class="header-anchor" href="#4-快速排序"></a>4. 快速排序</h2>
+<h3 id="4-1-分而治之-divide-and-conquer"><a class="header-anchor" href="#4-1-分而治之-divide-and-conquer"></a>4.1 分而治之 divide and conquer</h3>
+<p>每次都将问题转化成为一个最容易解决的问题和一个复杂的问题, 再对复杂问题进行拆解, 直到所有问题都非常容易解决.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sumList</span><span class="params">(L)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    用分而治之的递归思想 求数组元素的和</span></span><br><span class="line"><span class="string">    L 数组</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="keyword">if</span> L == []:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span> </span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> L[<span class="number">0</span>] + sumList(L[<span class="number">1</span>:])</span><br><span class="line"></span><br><span class="line">print(sumList([<span class="number">2</span>, <span class="number">20</span>, <span class="number">-12</span>]))</span><br></pre></td></tr></table></figure>
+<pre><code>10
+</code></pre>
+<h3 id="4-2-快速排序"><a class="header-anchor" href="#4-2-快速排序"></a>4.2 快速排序</h3>
+<p>基本思路:</p>
+<ol>
+<li>选择基准值。</li>
+<li>将数组分成两个子数组：小于基准值的元素和大于基准值的元素。</li>
+<li>对这两个子数组进行快速排序。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quickSort</span><span class="params">(L)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    快速排序 </span></span><br><span class="line"><span class="string">    L 数组</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="keyword">if</span> len(L) &lt; <span class="number">2</span>:</span><br><span class="line">        <span class="keyword">return</span> L</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        pivot = L[<span class="number">0</span>]</span><br><span class="line">        smaller, bigger = [], []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> L[<span class="number">1</span>:]:</span><br><span class="line">            <span class="keyword">if</span> i &lt; pivot:</span><br><span class="line">                smaller.append(i)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                bigger.append(i)</span><br><span class="line">    <span class="keyword">return</span> quickSort(smaller) + [pivot] + quickSort(bigger)</span><br><span class="line"></span><br><span class="line">print(quickSort([<span class="number">3</span>, <span class="number">56</span>, <span class="number">-2</span>, <span class="number">33</span>, <span class="number">56</span>]))</span><br></pre></td></tr></table></figure>
+<pre><code>[-2, 3, 33, 56, 56]
+</code></pre>
+<h2 id="5-哈希表-字典"><a class="header-anchor" href="#5-哈希表-字典"></a>5. 哈希表(字典)</h2>
+<p>DNS域名服务器解析, 缓存<br>
+防止重复等等</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">voted = &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">checkVoted</span><span class="params">(name)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> voted.get(name):</span><br><span class="line">        print(name+<span class="string">' has voted!'</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        voted[name] = <span class="literal">True</span></span><br><span class="line">        print(<span class="string">'Let '</span>+name+<span class="string">' vote.'</span>)</span><br><span class="line"></span><br><span class="line">checkVoted(<span class="string">'Cris'</span>)</span><br><span class="line">checkVoted(<span class="string">'Leonard'</span>)</span><br><span class="line">checkVoted(<span class="string">'Cris'</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>Let Cris vote.
+Let Leonard vote.
+Cris has voted!
+</code></pre>
+<p>哈希表和链表共同作用, 在哈希表上连接长度不等的链表, 减少空间, 减少性能的衰减.</p>
+<p><strong>哈希函数很重要, 使得装填因子不会太长, 性能不会下降太多.</strong></p>
+<p>$$装填因子 = \frac{整个表元素个数}{位置总数}$$<br>
+一般 $装填因子&lt;0.7$, 否则就要扩充位置总数, 重新设计哈希函数</p>
+<h2 id="广度优先搜索"><a class="header-anchor" href="#广度优先搜索"></a>广度优先搜索</h2>
+<p>用于解决最短路径问题, 通常用图建立问题模型.</p>
+<p><strong>队列先进先出, 栈后进先出</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">person_is_seller</span><span class="params">(name)</span>:</span> </span><br><span class="line">    <span class="keyword">return</span> name[<span class="number">-1</span>] == <span class="string">'m'</span> </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">search</span><span class="params">(graph, name)</span>:</span> </span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    寻找图中的芒果销售商</span></span><br><span class="line"><span class="string">    graph 朋友关系网</span></span><br><span class="line"><span class="string">    name 起始姓名</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    search_queue = deque() </span><br><span class="line">    search_queue += graph[name] </span><br><span class="line">    searched = [] </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> search_queue: </span><br><span class="line">        person = search_queue.popleft() </span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> person <span class="keyword">in</span> searched:</span><br><span class="line">            <span class="keyword">if</span> person_is_seller(person): </span><br><span class="line">                print(person + <span class="string">" is a mango seller!"</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">True</span> </span><br><span class="line">            <span class="keyword">else</span>: </span><br><span class="line">                search_queue += graph[person] </span><br><span class="line">                searched.append(person)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">False</span> </span><br><span class="line"></span><br><span class="line">graph = &#123;&#125; </span><br><span class="line">graph[<span class="string">"you"</span>] = [<span class="string">"alice"</span>, <span class="string">"bob"</span>, <span class="string">"claire"</span>] </span><br><span class="line">graph[<span class="string">"bob"</span>] = [<span class="string">"anuj"</span>, <span class="string">"peggy"</span>] </span><br><span class="line">graph[<span class="string">"alice"</span>] = [<span class="string">"peggy"</span>] </span><br><span class="line">graph[<span class="string">"claire"</span>] = [<span class="string">"thom"</span>, <span class="string">"jonny"</span>] </span><br><span class="line">graph[<span class="string">"anuj"</span>] = [] </span><br><span class="line">graph[<span class="string">"peggy"</span>] = [] </span><br><span class="line">graph[<span class="string">"thom"</span>] = [] </span><br><span class="line">graph[<span class="string">"jonny"</span>] = [] </span><br><span class="line"></span><br><span class="line">search(graph, <span class="string">"you"</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>thom is a mango seller!
+
+
+
+
+
+True
+</code></pre>
+<h2 id="7-迪杰斯特拉算法-Dijkstra’s-algorithm"><a class="header-anchor" href="#7-迪杰斯特拉算法-Dijkstra’s-algorithm"></a>7. 迪杰斯特拉算法 Dijkstra’s algorithm</h2>
+<p>计算加权图(weighted graph), 寻早用时最短路径, 只适用于<u>有向正权无环图</u></p>
+<p><u><strong>方法:</strong> </u></p>
+<ol>
+<li>找出最便宜的节点，即可在最短时间内前往的节点。</li>
+<li>对于该节点的邻居，检查是否有前往它们的更短路径，如果有，就更新其开销。</li>
+<li>重复这个过程，直到对图中的每个节点都这样做了。</li>
+<li>计算最终路径。</li>
+</ol>
+<blockquote>
+<p>对于存在负边权的图, 可以用贝尔曼-福德算法</p>
+</blockquote>
+<p>使用<code>嵌套字典</code>和<code>迪杰斯特拉算法</code>, 实现对最短路径的求解</p>
+<img src="https://cdn.jsdelivr.net/gh/18wang/media/算法图解/1.jpg" style="transform:rotate(0deg);" width =600>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 寻找开销最小的节点</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">find_lowest_cost_node</span><span class="params">(costs)</span>:</span> </span><br><span class="line">    lowest_cost = float(<span class="string">"inf"</span>) </span><br><span class="line">    lowest_cost_node = <span class="literal">None</span> </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> node <span class="keyword">in</span> costs:</span><br><span class="line">        cost = costs[node] </span><br><span class="line">        <span class="keyword">if</span> cost &lt; lowest_cost <span class="keyword">and</span> node <span class="keyword">not</span> <span class="keyword">in</span> processed:</span><br><span class="line">            lowest_cost = cost</span><br><span class="line">            lowest_cost_node = node </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> lowest_cost_node </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 构建整个图</span></span><br><span class="line">graph = &#123;&#125;</span><br><span class="line">graph[<span class="string">'start'</span>] = &#123;&#125;</span><br><span class="line">graph[<span class="string">'start'</span>][<span class="string">'a'</span>] = <span class="number">6</span></span><br><span class="line">graph[<span class="string">'start'</span>][<span class="string">'b'</span>] = <span class="number">2</span></span><br><span class="line">graph[<span class="string">'a'</span>] = &#123;&#125;</span><br><span class="line">graph[<span class="string">'a'</span>][<span class="string">'fin'</span>] = <span class="number">1</span></span><br><span class="line">graph[<span class="string">'b'</span>] = &#123;&#125;</span><br><span class="line">graph[<span class="string">'b'</span>][<span class="string">'a'</span>] = <span class="number">3</span></span><br><span class="line">graph[<span class="string">'b'</span>][<span class="string">'fin'</span>] = <span class="number">5</span></span><br><span class="line">graph[<span class="string">'fin'</span>] = &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 存储到每个点的开销 </span></span><br><span class="line">infinity = float(<span class="string">'inf'</span>)</span><br><span class="line">costs = &#123;&#125;</span><br><span class="line">costs[<span class="string">'a'</span>] = <span class="number">6</span></span><br><span class="line">costs[<span class="string">'b'</span>] = <span class="number">2</span></span><br><span class="line">costs[<span class="string">'fin'</span>] = infinity     <span class="comment"># 不知到终点距离, 设为无穷</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 存储上一步的父节点</span></span><br><span class="line">parents = &#123;&#125;</span><br><span class="line">parents[<span class="string">'a'</span>] = <span class="string">'start'</span></span><br><span class="line">parents[<span class="string">'b'</span>] = <span class="string">'start'</span></span><br><span class="line">parents[<span class="string">'fin'</span>] = <span class="literal">None</span>   <span class="comment"># 未知设为 None</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 记录已经处理过的节点</span></span><br><span class="line">processed = []</span><br><span class="line"></span><br><span class="line"><span class="comment"># 开始寻找</span></span><br><span class="line">node = find_lowest_cost_node(costs)</span><br><span class="line"><span class="keyword">while</span> node <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">    cost = costs[node] </span><br><span class="line">    neighbors = graph[node] </span><br><span class="line"> </span><br><span class="line">    <span class="keyword">for</span> n <span class="keyword">in</span> neighbors.keys(): </span><br><span class="line">        new_cost = cost + neighbors[n] </span><br><span class="line">        <span class="keyword">if</span> costs[n] &gt; new_cost:</span><br><span class="line">            costs[n] = new_cost</span><br><span class="line">            parents[n] = node</span><br><span class="line">    processed.append(node)</span><br><span class="line">    node = find_lowest_cost_node(costs)</span><br><span class="line"></span><br><span class="line">print(<span class="string">'路径长度:'</span>, costs[<span class="string">'fin'</span>])</span><br><span class="line">node = <span class="string">'fin'</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_node</span><span class="params">(Parents, node)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    递归输出路径</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    next_node = Parents.get(node)</span><br><span class="line">    <span class="keyword">if</span> next_node == <span class="literal">None</span>:</span><br><span class="line">        print(node + <span class="string">" --&gt; "</span>, end = <span class="string">''</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print_node(Parents, next_node)</span><br><span class="line">        print(node + <span class="string">" --&gt; "</span>, end = <span class="string">''</span>)</span><br><span class="line"></span><br><span class="line">print_node(parents, node)</span><br></pre></td></tr></table></figure>
+<pre><code>路径长度: 6
+start --&gt; b --&gt; a --&gt; fin --&gt;
+</code></pre>
+<p>小结:</p>
+<ul>
+<li>广度优先搜索用于在非加权图中查找最短路径。</li>
+<li>狄克斯特拉算法用于在加权图中查找最短路径。</li>
+<li>仅当权重为正时狄克斯特拉算法才管用。</li>
+<li>如果图中包含负权边，请使用贝尔曼-福德算法。</li>
+</ul>
+<h2 id="8-贪婪算法"><a class="header-anchor" href="#8-贪婪算法"></a>8. 贪婪算法</h2>
+<h3 id="8-1-贪婪算法"><a class="header-anchor" href="#8-1-贪婪算法"></a>8.1 贪婪算法</h3>
+<p>通常作为一种最优解的近似解的 方法存在.</p>
+<img src="https://cdn.jsdelivr.net/gh/18wang/media/算法图解/2.jpg" style="transform:rotate(0deg);" width =600>    
+寻找能够覆盖所有地区的最小集合
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">stations = &#123;&#125; </span><br><span class="line">stations[<span class="string">"kone"</span>] = set([<span class="string">"id"</span>, <span class="string">"nv"</span>, <span class="string">"ut"</span>]) </span><br><span class="line">stations[<span class="string">"ktwo"</span>] = set([<span class="string">"wa"</span>, <span class="string">"id"</span>, <span class="string">"mt"</span>]) </span><br><span class="line">stations[<span class="string">"kthree"</span>] = set([<span class="string">"or"</span>, <span class="string">"nv"</span>, <span class="string">"ca"</span>]) </span><br><span class="line">stations[<span class="string">"kfour"</span>] = set([<span class="string">"nv"</span>, <span class="string">"ut"</span>]) </span><br><span class="line">stations[<span class="string">"kfive"</span>] = set([<span class="string">"ca"</span>, <span class="string">"az"</span>]) </span><br><span class="line"></span><br><span class="line">states_needed = set([<span class="string">"mt"</span>, <span class="string">"wa"</span>, <span class="string">"or"</span>, <span class="string">"id"</span>, <span class="string">"nv"</span>, <span class="string">"ut"</span>, </span><br><span class="line"><span class="string">"ca"</span>, <span class="string">"az"</span>])</span><br><span class="line"></span><br><span class="line">final_stations = set()</span><br><span class="line"><span class="keyword">while</span> states_needed: </span><br><span class="line">    best_station = <span class="literal">None</span>         <span class="comment"># 剩余电台中覆盖最广的电台</span></span><br><span class="line">    states_covered = set() </span><br><span class="line">    <span class="keyword">for</span> station, states_for_station <span class="keyword">in</span> stations.items():</span><br><span class="line">        covered = states_needed &amp; states_for_station    <span class="comment"># 计算交集</span></span><br><span class="line">        <span class="keyword">if</span> len(covered) &gt; len(states_covered):</span><br><span class="line">            best_station = station </span><br><span class="line">            states_covered = covered </span><br><span class="line">    final_stations.add(best_station)    <span class="comment"># 添加电台</span></span><br><span class="line">    states_needed -= states_covered     <span class="comment"># 未覆盖的地区更新</span></span><br><span class="line"></span><br><span class="line">print(final_stations)</span><br></pre></td></tr></table></figure>
+<pre><code>{'kfive', 'kthree', 'ktwo', 'kone'}
+</code></pre>
+<h3 id="8-2-NP-complete-np完全问题"><a class="header-anchor" href="#8-2-NP-complete-np完全问题"></a>8.2 NP-complete np完全问题</h3>
+<p>需要计算所有解, 并选出最优结果. 现今并不存在优化算法, 要想提高效率只能采用近似解.<br>
+判断一个问题是不是NP-complete问题很难, 同时也很重要.<br>
+一些重要判断依据:</p>
+<ul>
+<li>元素较少时算法的运行速度非常快，但随着元素数量的增加，速度会变得非常慢。</li>
+<li>涉及“所有组合”的问题通常是NP完全问题。</li>
+<li>不能将问题分成小问题，必须考虑各种可能的情况。这可能是NP完全问题。</li>
+<li>如果问题涉及序列（如旅行商问题中的城市序列）且难以解决，它可能就是NP完全问题。</li>
+<li>如果问题涉及集合（如广播台集合）且难以解决，它可能就是NP完全问题。</li>
+<li>如果问题可转换为集合覆盖问题或旅行商问题，那它肯定是NP完全问题。</li>
+</ul>
+<h2 id="9-动态规划"><a class="header-anchor" href="#9-动态规划"></a>9. 动态规划</h2>
+<p>$$<br>
+CELL[i][j] = Max \left{\begin{matrix}<br>
+CELL[i-1][j] \<br>
+CELL[i][j-1] + CELL[i-1][余量]<br>
+\end{matrix}\right.<br>
+$$</p>
+<blockquote>
+<ul>
+<li>行 i 的排序无关紧要, 逐行填充即可, 但动态规划只能处理整件商品.<br>
+仅当</li>
+</ul>
+</blockquote>
+<ul>
+<li>每个子问题都是离散的，即不依赖于其他子问题时，动态规划才管用。</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/18wang/media/算法图解/3.jpg" style="transform:rotate(0deg);" width =600>
+<p>步骤:</p>
+<ol>
+<li>建立网格</li>
+<li>设定坐标轴</li>
+<li>值的划分</li>
+<li>填充网络, 得到结果</li>
+</ol>
+<p>应用:</p>
+<ol>
+<li>最长公共子序列的寻找</li>
+<li>断词断句</li>
+<li>DNA链相似性</li>
+</ol>
+<h2 id="10-K邻近算法-KNN"><a class="header-anchor" href="#10-K邻近算法-KNN"></a>10. K邻近算法 KNN</h2>
+<p><code>距离公式</code> &amp; <code>余弦相似度</code><br>
+<img src="https://cdn.jsdelivr.net/gh/18wang/media/算法图解/4.jpg" style="transform:rotate(0deg);" width =600></p>
+<h2 id="11-接下来如何做"><a class="header-anchor" href="#11-接下来如何做"></a>11. 接下来如何做</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 映射函数 map</span></span><br><span class="line">arr1 = [<span class="number">7</span>, <span class="number">5</span>, <span class="number">10</span>]</span><br><span class="line">arr2 = map(<span class="keyword">lambda</span> x: x*<span class="number">2</span>, arr1)</span><br><span class="line">print(arr2)</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;map object at 0x000001CB1997A088&gt;
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 归并函数 reduce </span></span><br><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> reduce</span><br><span class="line">arr3 = reduce(<span class="keyword">lambda</span> x, y: x+y, arr1)</span><br><span class="line">print(arr3)</span><br></pre></td></tr></table></figure>
+<pre><code>22
+</code></pre>
+<p><code>布隆过滤器</code>是卓越的数据结构, 用于告诉我们某样东西一定不错在或者很可能存在.<br>
+占用很少的空间, 更高效地得到近似结果. 如果存在, 则很有可能存在. 如果不存在, 则一定不存在.</p>
+
+      
+      
+        
+      
+    </div>
+  </section>
+</article>
+
+          </div>
+        
       
         
           <div class='post-wrapper'>
@@ -515,11 +752,9 @@
         <h2 id="对称信号求差法寻找最值"><a class="header-anchor" href="#对称信号求差法寻找最值"></a>对称信号求差法寻找最值</h2>
 <p>兴哥给了我几组数据, 里面包括了(方位角/俯仰角), 光强值, 距离. 需要寻找最大光强值, 得到对应的角度; 寻找最小的距离值, 得到对应的角度.<br>
 尤其是 光强-角度 图像, 存在非常大的噪声, 我设计了一个独特的算法, 得到了比较好的结果.</p>
-<p>核心公式就是:<br>
-$<br>
-Res(k) = \sum_{i=1}<sup>{N}{(f(k-i)-f(k+i-1))}</sup>2 / N<br>
-$<br>
-$k$ 是对应下标, $N$ 是门限宽度.</p>
+<p>核心公式就是:</p>
+<p>$Res(k) = \sum_{i=1}<sup>{N}{(f(k-i)-f(k+i-1))}</sup>2 / N$</p>
+<p>$k$ 是对应下标, $N$ 是门限宽度.</p>
 <p>理想的对称波形, 没有噪声, 应该是标准的 M 型. 如下图所示</p>
 <p><img src="https://cdn.jsdelivr.net/gh/18wang/media/%E5%AF%B9%E7%A7%B0%E4%BF%A1%E5%8F%B7%E6%B1%82%E5%B7%AE%E6%B3%95%E5%AF%BB%E6%89%BE%E6%9C%80%E5%80%BC/1.svg" alt="svg"></p>
 <p>对于含有噪声的波形, 我们同样可以认为, 最低点是信号的最高点, 因为基底的信号对 M 形状的下凹贡献良多. 可能需要进一步的数学证明, 不过目前来看效果还行.</p>
@@ -1070,120 +1305,6 @@ b2:1.398749418138334e-07
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/2020/06/21/pdf%E6%B7%BB%E5%8A%A0%E9%A1%B5%E7%A0%81/">
-      pdf添加页码
-    </a>
-  </h2>
-
-
-      
-      <div class='new-meta-box'>
-        
-          
-        
-          
-            
-<div class='new-meta-item author'>
-  <a href="https://github.com/18wang" rel="nofollow">
-    <img src="https://avatars0.githubusercontent.com/u/25820978">
-    <p></p>
-  </a>
-</div>
-
-          
-        
-          
-            
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Jun 21, 2020</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="给PDF文件添加页码"><a class="header-anchor" href="#给PDF文件添加页码"></a>给PDF文件添加页码</h1>
-<p>有些扫描的, 或者本身没有添加页码的pdf文件, 很长, 也没有书签目录可以跳转, 尽管很多pdf编辑器可以手动添加目录, 但仍然不符合效率的原则.</p>
-<p>当然, 我们可以写程序实现, 在需要编辑的pdf样本比较少的情况下, 小工具也可以很有用.</p>
-<p><strong><a href="https://www.jianshu.com/p/9683e7094871" target="_blank" rel="noopener">这篇博客</a>给我提供了很大的帮助.</strong></p>
-<ol>
-<li>
-<p>下载&quot;老马&quot;自己写的<strong>PdgCntEditor</strong></p>
-<p>博客地址:<br>
-<a href="https://www.cnblogs.com/stronghorse/" target="_blank" rel="noopener">https://www.cnblogs.com/stronghorse/</a></p>
-<p>最新软件下载地址：</p>
-<p>链接：<a href="https://pan.baidu.com/s/1BC0JTOACnfePv8LokD5GCg" target="_blank" rel="noopener">https://pan.baidu.com/s/1BC0JTOACnfePv8LokD5GCg</a><br>
-提取码：tyor</p>
-<p>English version:</p>
-<p><a href="http://www.mediafire.com/folder/f0z2hexqdnr9a/Software" target="_blank" rel="noopener">http://www.mediafire.com/folder/f0z2hexqdnr9a/Software</a></p>
-</li>
-<li>
-<p>从京东, 亚马逊, 图书内容等等渠道, 获得文件目录.<br>
-最好复制到excel里面, 分两栏, 序号标题一栏, 页码一栏(两栏之间天然用制表符Tab分开)</p>
-</li>
-</ol>
-<p><img src="https://cdn.jsdelivr.net/gh/18wang/media/pdf%E6%B7%BB%E5%8A%A0%E9%A1%B5%E7%A0%81/1.png" alt=""></p>
-<ol start="3">
-<li>运行PdgCntEditor.exe, 打开 ***.pdf, 将目录粘贴到空白处, 选中目录.
-<ul>
-<li>自动缩进</li>
-<li>设定基准页, 即目录中P1对应的实际PDF页数.</li>
-<li>保存文件</li>
-</ul>
-</li>
-</ol>
-<p><img src="https://cdn.jsdelivr.net/gh/18wang/media/pdf%E6%B7%BB%E5%8A%A0%E9%A1%B5%E7%A0%81/2.png" alt=""></p>
-
-      
-      
-        
-      
-    </div>
-  </section>
-</article>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1197,7 +1318,7 @@ b2:1.398749418138334e-07
         
           <a class="next" rel="next" href="/page/2/">
             <section class="post next white-box shadow">
-              &nbsp;下一頁&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
+              &nbsp;Next&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
             </section>
           </a>
         
@@ -1362,19 +1483,19 @@ b2:1.398749418138334e-07
       
     
       
-        <div><p>博客內容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh_TW" target="_blank" rel="noopener">姓名標示-非商業性-相同方式分享 4.0 國際 (CC BY-NC-SA 4.0) 協議</a></p>
+        <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
 </div>
       
     
       
-        本站使用
+        Use
         <a href="https://volantis.js.org/" target="_blank" class="codename">Volantis</a>
-        作為主題
+        as theme
         
-          ，
-          總訪問量為
+          , 
+          total visits
           <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
-          次
+          times
         
       
     

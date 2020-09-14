@@ -434,11 +434,9 @@
           <h2 id="对称信号求差法寻找最值"><a class="header-anchor" href="#对称信号求差法寻找最值"></a>对称信号求差法寻找最值</h2>
 <p>兴哥给了我几组数据, 里面包括了(方位角/俯仰角), 光强值, 距离. 需要寻找最大光强值, 得到对应的角度; 寻找最小的距离值, 得到对应的角度.<br>
 尤其是 光强-角度 图像, 存在非常大的噪声, 我设计了一个独特的算法, 得到了比较好的结果.</p>
-<p>核心公式就是:<br>
-$<br>
-Res(k) = \sum_{i=1}<sup>{N}{(f(k-i)-f(k+i-1))}</sup>2 / N<br>
-$<br>
-$k$ 是对应下标, $N$ 是门限宽度.</p>
+<p>核心公式就是:</p>
+<p>$Res(k) = \sum_{i=1}<sup>{N}{(f(k-i)-f(k+i-1))}</sup>2 / N$</p>
+<p>$k$ 是对应下标, $N$ 是门限宽度.</p>
 <p>理想的对称波形, 没有噪声, 应该是标准的 M 型. 如下图所示</p>
 <p><img src="https://cdn.jsdelivr.net/gh/18wang/media/%E5%AF%B9%E7%A7%B0%E4%BF%A1%E5%8F%B7%E6%B1%82%E5%B7%AE%E6%B3%95%E5%AF%BB%E6%89%BE%E6%9C%80%E5%80%BC/1.svg" alt="svg"></p>
 <p>对于含有噪声的波形, 我们同样可以认为, 最低点是信号的最高点, 因为基底的信号对 M 形状的下凹贡献良多. 可能需要进一步的数学证明, 不过目前来看效果还行.</p>
@@ -488,10 +486,10 @@ $k$ 是对应下标, $N$ 是门限宽度.</p>
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-12T20:47:42+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-13T07:21:45+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Sep 12, 2020</p>
+    <p>更新于：Sep 13, 2020</p>
   </a>
 </div>
 
@@ -562,6 +560,12 @@ $k$ 是对应下标, $N$ 是门限宽度.</p>
         
         
           <div class="prev-next">
+            
+              <a class='prev' href='/2020/09/14/%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3/'>
+                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>算法图解</p>
+                <p class='content'>算法图解
+最近在学习工作中发现算法的重要性, 以及自己这方面知识的匮乏. 我虽然不是科班出身, 也不打算进行完全深入的研究, 但仍然决定了解一些相关知识, 最好能有所运用. 毫无疑问, 算法只是...</p>
+              </a>
             
             
               <a class='next' href='/2020/09/03/pyinstaller%E7%94%A8%E6%B3%95/'>
@@ -699,19 +703,19 @@ $k$ 是对应下标, $N$ 是门限宽度.</p>
       
     
       
-        <div><p>博客內容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh_TW" target="_blank" rel="noopener">姓名標示-非商業性-相同方式分享 4.0 國際 (CC BY-NC-SA 4.0) 協議</a></p>
+        <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
 </div>
       
     
       
-        本站使用
+        Use
         <a href="https://volantis.js.org/" target="_blank" class="codename">Volantis</a>
-        作為主題
+        as theme
         
-          ，
-          總訪問量為
+          , 
+          total visits
           <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
-          次
+          times
         
       
     
