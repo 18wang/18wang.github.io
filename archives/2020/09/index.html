@@ -421,9 +421,140 @@
         
           
         
+          
+        
       
     
     
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/2020/09/15/AutoHotKey%E5%85%A5%E9%97%A8/">
+      AutoHotKey入门
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+<div class='new-meta-item author'>
+  <a href="https://github.com/18wang" rel="nofollow">
+    <img src="https://avatars0.githubusercontent.com/u/25820978">
+    <p></p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Sep 15, 2020</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="AutoHotKey-使用"><a class="header-anchor" href="#AutoHotKey-使用"></a>AutoHotKey 使用</h1>
+<p>在整理电子书的时候, 看到从一些网站下载的电子书中含有水印, 文字插入等难以通过PDF编辑器批量选中删除的内容, 于是考虑采用脚本, 批量操作的方法实现这一目标.</p>
+<p><code>AutoHotKey</code>就是这样一款卓越的脚本语言. 虽然充分理解和运用这一工具需要很多时间和精力, 但是在处理简单任务的时候, AHK上手也十分容易.</p>
+<p>安装完AHK之后, 打开 Help 可以看到全部的帮助文件.</p>
+<h2 id="1-目标–删除位于文档固定位置的字符"><a class="header-anchor" href="#1-目标–删除位于文档固定位置的字符"></a>1. 目标–删除位于文档固定位置的字符</h2>
+ <img src="https://cdn.jsdelivr.net/gh/18wang/media/AutoHotKey入门/1.jpg" style="transform:rotate(0deg);" width =600>         
+<ul>
+<li>需要删除的文本位于文档的固定位置</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/18wang/media/AutoHotKey入门/2.jpg" style="transform:rotate(0deg);" width =600>
+<ul>
+<li>可以通过<code>调整到编辑模式</code>, <code>右键文本</code>, <code>Delete键*</code>, <code>去往下一页相同位置</code> 的循环进行手动删除.</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/18wang/media/AutoHotKey入门/4.jpg" style="transform:rotate(0deg);" width =600>
+<blockquote>
+<p>* 非常值得注意的一点是, 当该页不存在文本或者文本已经被删除时, Delete键不起作用, 页面卡住, 须按 <code>Esc</code> 键退出.<br>
+<img src="https://cdn.jsdelivr.net/gh/18wang/media/AutoHotKey入门/3.jpg" style="transform:rotate(0deg);" width =600></p>
+</blockquote>
+<h2 id="2-方案–AHK循环操作"><a class="header-anchor" href="#2-方案–AHK循环操作"></a>2. 方案–AHK循环操作</h2>
+<h3 id="1-触发"><a class="header-anchor" href="#1-触发"></a>1. 触发</h3>
+<ul>
+<li>
+<p>运行 AHK 脚本, 任务栏出现 H 图标, 等待执行</p>
+</li>
+<li>
+<p>AHK 包含了一系列的 <code>热键(HotKey)</code>, 热键位于 <code>::</code> 的左侧, 在进行热键点击后, 会触发下面的语句</p>
+<figure class="highlight ahk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">^j::</span></span><br><span class="line"><span class="built_in">Send,</span> My First Script  <span class="comment">; sth</span></span><br><span class="line"><span class="keyword">return</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>1. ^j</code>表示点击<code>Control+j</code>, <code>Send</code> 可以发送文本和各种命令, <code>;</code> 右侧是不被执行的注释, 可以是中文<br>
+2. AHK 中, 命令和命令或参数之间, 用 “,” &quot; &quot; 分隔, 空格和逗号可以一起使用</p>
+</blockquote>
+</li>
+<li>
+<p>当然一个脚本也可以没有热键/热字串, 直接执行命令, 但那往往会难以控制, 比较糟糕</p>
+</li>
+</ul>
+<h3 id="2-循环"><a class="header-anchor" href="#2-循环"></a>2. 循环</h3>
+<ul>
+<li>AHK 提供了循环命令, 一个命令有多个参数时, 用 <code>{}</code> 把它们括起来<figure class="highlight ahk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Loop %</span>RepeatCount% &#123;    <span class="comment">; 重复次数</span></span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Loop,</span> <span class="number">3</span>       <span class="comment">; 一个例子</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">  MsgBox,</span> Iteration number is <span class="variable">%A_Index%</span>.  <span class="comment">; A_Index will be 1, 2, then 3</span></span><br><span class="line"><span class="built_in">  Sleep,</span> <span class="number">100</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="3-退出"><a class="header-anchor" href="#3-退出"></a>3. 退出</h3>
+<ul>
+<li>AHK 中可以随处添加 <code>return</code>, 帮助你修改错误和规避运行风险</li>
+</ul>
+<h2 id="3-程序-ahk"><a class="header-anchor" href="#3-程序-ahk"></a>3. 程序-- **.ahk</h2>
+<figure class="highlight ahk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">+s::</span>            <span class="comment">; PDF 编辑模式, 单页显示模式</span></span><br><span class="line"><span class="built_in">Loop,</span> <span class="number">1</span>         <span class="comment">; 循环次数 = 页数</span></span><br><span class="line">&#123;</span><br><span class="line">    Send &#123;Click, right&#125;     <span class="comment">; 右击</span></span><br><span class="line">    Send &#123;Delete&#125;           <span class="comment">; 删除</span></span><br><span class="line">    Send &#123;Esc&#125;              <span class="comment">; 退出(如需要)</span></span><br><span class="line">    Send &#123;Down&#125;             <span class="comment">; 下一页</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span></span><br></pre></td></tr></table></figure>
+      
+      
+        
+      
+    </div>
+  </section>
+</article>
+
+          </div>
+        
       
         
           <div class='post-wrapper'>
@@ -549,7 +680,7 @@ Cris has voted!
 <p><strong>哈希函数很重要, 使得装填因子不会太长, 性能不会下降太多.</strong></p>
 <p>$$装填因子 = \frac{整个表元素个数}{位置总数}$$<br>
 一般 $装填因子&lt;0.7$, 否则就要扩充位置总数, 重新设计哈希函数</p>
-<h2 id="广度优先搜索"><a class="header-anchor" href="#广度优先搜索"></a>广度优先搜索</h2>
+<h2 id="6-广度优先搜索"><a class="header-anchor" href="#6-广度优先搜索"></a>6. 广度优先搜索</h2>
 <p>用于解决最短路径问题, 通常用图建立问题模型.</p>
 <p><strong>队列先进先出, 栈后进先出</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">person_is_seller</span><span class="params">(name)</span>:</span> </span><br><span class="line">    <span class="keyword">return</span> name[<span class="number">-1</span>] == <span class="string">'m'</span> </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">search</span><span class="params">(graph, name)</span>:</span> </span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    寻找图中的芒果销售商</span></span><br><span class="line"><span class="string">    graph 朋友关系网</span></span><br><span class="line"><span class="string">    name 起始姓名</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    search_queue = deque() </span><br><span class="line">    search_queue += graph[name] </span><br><span class="line">    searched = [] </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> search_queue: </span><br><span class="line">        person = search_queue.popleft() </span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> person <span class="keyword">in</span> searched:</span><br><span class="line">            <span class="keyword">if</span> person_is_seller(person): </span><br><span class="line">                print(person + <span class="string">" is a mango seller!"</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">True</span> </span><br><span class="line">            <span class="keyword">else</span>: </span><br><span class="line">                search_queue += graph[person] </span><br><span class="line">                searched.append(person)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">False</span> </span><br><span class="line"></span><br><span class="line">graph = &#123;&#125; </span><br><span class="line">graph[<span class="string">"you"</span>] = [<span class="string">"alice"</span>, <span class="string">"bob"</span>, <span class="string">"claire"</span>] </span><br><span class="line">graph[<span class="string">"bob"</span>] = [<span class="string">"anuj"</span>, <span class="string">"peggy"</span>] </span><br><span class="line">graph[<span class="string">"alice"</span>] = [<span class="string">"peggy"</span>] </span><br><span class="line">graph[<span class="string">"claire"</span>] = [<span class="string">"thom"</span>, <span class="string">"jonny"</span>] </span><br><span class="line">graph[<span class="string">"anuj"</span>] = [] </span><br><span class="line">graph[<span class="string">"peggy"</span>] = [] </span><br><span class="line">graph[<span class="string">"thom"</span>] = [] </span><br><span class="line">graph[<span class="string">"jonny"</span>] = [] </span><br><span class="line"></span><br><span class="line">search(graph, <span class="string">"you"</span>)</span><br></pre></td></tr></table></figure>

@@ -439,9 +439,140 @@
         
           
         
+          
+        
       
     
     
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/2020/09/15/AutoHotKey%E5%85%A5%E9%97%A8/">
+      AutoHotKey入门
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+<div class='new-meta-item author'>
+  <a href="https://github.com/18wang" rel="nofollow">
+    <img src="https://avatars0.githubusercontent.com/u/25820978">
+    <p></p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Sep 15, 2020</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="AutoHotKey-使用"><a class="header-anchor" href="#AutoHotKey-使用"></a>AutoHotKey 使用</h1>
+<p>在整理电子书的时候, 看到从一些网站下载的电子书中含有水印, 文字插入等难以通过PDF编辑器批量选中删除的内容, 于是考虑采用脚本, 批量操作的方法实现这一目标.</p>
+<p><code>AutoHotKey</code>就是这样一款卓越的脚本语言. 虽然充分理解和运用这一工具需要很多时间和精力, 但是在处理简单任务的时候, AHK上手也十分容易.</p>
+<p>安装完AHK之后, 打开 Help 可以看到全部的帮助文件.</p>
+<h2 id="1-目标–删除位于文档固定位置的字符"><a class="header-anchor" href="#1-目标–删除位于文档固定位置的字符"></a>1. 目标–删除位于文档固定位置的字符</h2>
+ <img src="https://cdn.jsdelivr.net/gh/18wang/media/AutoHotKey入门/1.jpg" style="transform:rotate(0deg);" width =600>         
+<ul>
+<li>需要删除的文本位于文档的固定位置</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/18wang/media/AutoHotKey入门/2.jpg" style="transform:rotate(0deg);" width =600>
+<ul>
+<li>可以通过<code>调整到编辑模式</code>, <code>右键文本</code>, <code>Delete键*</code>, <code>去往下一页相同位置</code> 的循环进行手动删除.</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/18wang/media/AutoHotKey入门/4.jpg" style="transform:rotate(0deg);" width =600>
+<blockquote>
+<p>* 非常值得注意的一点是, 当该页不存在文本或者文本已经被删除时, Delete键不起作用, 页面卡住, 须按 <code>Esc</code> 键退出.<br>
+<img src="https://cdn.jsdelivr.net/gh/18wang/media/AutoHotKey入门/3.jpg" style="transform:rotate(0deg);" width =600></p>
+</blockquote>
+<h2 id="2-方案–AHK循环操作"><a class="header-anchor" href="#2-方案–AHK循环操作"></a>2. 方案–AHK循环操作</h2>
+<h3 id="1-触发"><a class="header-anchor" href="#1-触发"></a>1. 触发</h3>
+<ul>
+<li>
+<p>运行 AHK 脚本, 任务栏出现 H 图标, 等待执行</p>
+</li>
+<li>
+<p>AHK 包含了一系列的 <code>热键(HotKey)</code>, 热键位于 <code>::</code> 的左侧, 在进行热键点击后, 会触发下面的语句</p>
+<figure class="highlight ahk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">^j::</span></span><br><span class="line"><span class="built_in">Send,</span> My First Script  <span class="comment">; sth</span></span><br><span class="line"><span class="keyword">return</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>1. ^j</code>表示点击<code>Control+j</code>, <code>Send</code> 可以发送文本和各种命令, <code>;</code> 右侧是不被执行的注释, 可以是中文<br>
+2. AHK 中, 命令和命令或参数之间, 用 “,” &quot; &quot; 分隔, 空格和逗号可以一起使用</p>
+</blockquote>
+</li>
+<li>
+<p>当然一个脚本也可以没有热键/热字串, 直接执行命令, 但那往往会难以控制, 比较糟糕</p>
+</li>
+</ul>
+<h3 id="2-循环"><a class="header-anchor" href="#2-循环"></a>2. 循环</h3>
+<ul>
+<li>AHK 提供了循环命令, 一个命令有多个参数时, 用 <code>{}</code> 把它们括起来<figure class="highlight ahk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Loop %</span>RepeatCount% &#123;    <span class="comment">; 重复次数</span></span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Loop,</span> <span class="number">3</span>       <span class="comment">; 一个例子</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">  MsgBox,</span> Iteration number is <span class="variable">%A_Index%</span>.  <span class="comment">; A_Index will be 1, 2, then 3</span></span><br><span class="line"><span class="built_in">  Sleep,</span> <span class="number">100</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="3-退出"><a class="header-anchor" href="#3-退出"></a>3. 退出</h3>
+<ul>
+<li>AHK 中可以随处添加 <code>return</code>, 帮助你修改错误和规避运行风险</li>
+</ul>
+<h2 id="3-程序-ahk"><a class="header-anchor" href="#3-程序-ahk"></a>3. 程序-- **.ahk</h2>
+<figure class="highlight ahk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">+s::</span>            <span class="comment">; PDF 编辑模式, 单页显示模式</span></span><br><span class="line"><span class="built_in">Loop,</span> <span class="number">1</span>         <span class="comment">; 循环次数 = 页数</span></span><br><span class="line">&#123;</span><br><span class="line">    Send &#123;Click, right&#125;     <span class="comment">; 右击</span></span><br><span class="line">    Send &#123;Delete&#125;           <span class="comment">; 删除</span></span><br><span class="line">    Send &#123;Esc&#125;              <span class="comment">; 退出(如需要)</span></span><br><span class="line">    Send &#123;Down&#125;             <span class="comment">; 下一页</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span></span><br></pre></td></tr></table></figure>
+      
+      
+        
+      
+    </div>
+  </section>
+</article>
+
+          </div>
+        
       
         
           <div class='post-wrapper'>
@@ -567,7 +698,7 @@ Cris has voted!
 <p><strong>哈希函数很重要, 使得装填因子不会太长, 性能不会下降太多.</strong></p>
 <p>$$装填因子 = \frac{整个表元素个数}{位置总数}$$<br>
 一般 $装填因子&lt;0.7$, 否则就要扩充位置总数, 重新设计哈希函数</p>
-<h2 id="广度优先搜索"><a class="header-anchor" href="#广度优先搜索"></a>广度优先搜索</h2>
+<h2 id="6-广度优先搜索"><a class="header-anchor" href="#6-广度优先搜索"></a>6. 广度优先搜索</h2>
 <p>用于解决最短路径问题, 通常用图建立问题模型.</p>
 <p><strong>队列先进先出, 栈后进先出</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">person_is_seller</span><span class="params">(name)</span>:</span> </span><br><span class="line">    <span class="keyword">return</span> name[<span class="number">-1</span>] == <span class="string">'m'</span> </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">search</span><span class="params">(graph, name)</span>:</span> </span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    寻找图中的芒果销售商</span></span><br><span class="line"><span class="string">    graph 朋友关系网</span></span><br><span class="line"><span class="string">    name 起始姓名</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    search_queue = deque() </span><br><span class="line">    search_queue += graph[name] </span><br><span class="line">    searched = [] </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> search_queue: </span><br><span class="line">        person = search_queue.popleft() </span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> person <span class="keyword">in</span> searched:</span><br><span class="line">            <span class="keyword">if</span> person_is_seller(person): </span><br><span class="line">                print(person + <span class="string">" is a mango seller!"</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">True</span> </span><br><span class="line">            <span class="keyword">else</span>: </span><br><span class="line">                search_queue += graph[person] </span><br><span class="line">                searched.append(person)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">False</span> </span><br><span class="line"></span><br><span class="line">graph = &#123;&#125; </span><br><span class="line">graph[<span class="string">"you"</span>] = [<span class="string">"alice"</span>, <span class="string">"bob"</span>, <span class="string">"claire"</span>] </span><br><span class="line">graph[<span class="string">"bob"</span>] = [<span class="string">"anuj"</span>, <span class="string">"peggy"</span>] </span><br><span class="line">graph[<span class="string">"alice"</span>] = [<span class="string">"peggy"</span>] </span><br><span class="line">graph[<span class="string">"claire"</span>] = [<span class="string">"thom"</span>, <span class="string">"jonny"</span>] </span><br><span class="line">graph[<span class="string">"anuj"</span>] = [] </span><br><span class="line">graph[<span class="string">"peggy"</span>] = [] </span><br><span class="line">graph[<span class="string">"thom"</span>] = [] </span><br><span class="line">graph[<span class="string">"jonny"</span>] = [] </span><br><span class="line"></span><br><span class="line">search(graph, <span class="string">"you"</span>)</span><br></pre></td></tr></table></figure>
@@ -1058,241 +1189,6 @@ Matlab实现 <a href="https://blog.csdn.net/zengxiantao1994/article/details/7117
 <p><img src="https://cdn.jsdelivr.net/gh/18wang/media/kalman_filter/3.svg" alt="svg"></p>
 <p><em>程序和数据文件被放在了<a href="https://github.com/18wang/media/tree/master/kalman_filter">这里</a></em></p>
 <p><em>还有媛姐改成的<a href="https://github.com/18wang/media/tree/master/kalman_filter/Kalman">C#文件</a></em></p>
-
-      
-      
-        
-      
-    </div>
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/2020/08/16/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8%EF%BC%9A%E5%9F%BA%E4%BA%8EPython%E7%9A%84%E7%90%86%E8%AE%BA%E4%B8%8E%E5%AE%9E%E7%8E%B0-%E6%96%8B%E8%97%A4%E5%BA%B7%E6%AF%85/">
-      深度学习入门：基于Python的理论与实现-斋藤康毅
-    </a>
-  </h2>
-
-
-      
-      <div class='new-meta-box'>
-        
-          
-        
-          
-            
-<div class='new-meta-item author'>
-  <a href="https://github.com/18wang" rel="nofollow">
-    <img src="https://avatars0.githubusercontent.com/u/25820978">
-    <p></p>
-  </a>
-</div>
-
-          
-        
-          
-            
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Aug 16, 2020</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="深度学习入门：基于Python的理论与实现"><a class="header-anchor" href="#深度学习入门：基于Python的理论与实现"></a>深度学习入门：基于Python的理论与实现</h1>
-<p>一本蛮简单的深度学习入门, 希望自己快快地过一遍!<br>
-随便记一些东西, 但愿可以.</p>
-<p>资料:<br>
-<a href="https://github.com/MemorialCheng/deep-learning-from-scratch" target="_blank" rel="noopener">https://github.com/MemorialCheng/deep-learning-from-scratch</a>  中文版<br>
-<a href="https://github.com/oreilly-japan/deep-learning-from-scratch" target="_blank" rel="noopener">https://github.com/oreilly-japan/deep-learning-from-scratch</a>  日文原版</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np </span><br><span class="line"></span><br><span class="line">a = np.array([[<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>],[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]])</span><br><span class="line">b = np.array([<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">print(a.shape, b.shape)</span><br><span class="line"></span><br><span class="line">print(np.dot(a, b))     <span class="comment"># 点积</span></span><br></pre></td></tr></table></figure>
-<pre><code>(2, 3) (3,)
-[16 10]
-</code></pre>
-<h2 id="第三章-神经网络"><a class="header-anchor" href="#第三章-神经网络"></a>第三章 神经网络</h2>
-<p>神经网络的任一权重:</p>
-<p>$$\displaystyle W^{( 1)}_{12}$$</p>
-<p>上标表明作用在第几层, 下标表示连接前层中的2到当前层中的1.</p>
-<p>总体上可以写作:</p>
-<p>$$ A^{(1)} = XW^{(1)} + B^{(1)}$$</p>
-<p>B为偏置, X为前层输入, A为该层结果, W为权重</p>
-<h3 id="实现一个3层神经网络"><a class="header-anchor" href="#实现一个3层神经网络"></a>实现一个3层神经网络</h3>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">X = np.array([<span class="number">1.0</span>, <span class="number">0.5</span>])</span><br><span class="line">W1 = np.array([[<span class="number">0.1</span>, <span class="number">0.3</span>, <span class="number">0.5</span>], [<span class="number">0.2</span>, <span class="number">0.4</span>, <span class="number">0.6</span>]])</span><br><span class="line">B1 = np.array([<span class="number">0.1</span>, <span class="number">0.2</span>, <span class="number">0.3</span>])</span><br><span class="line"></span><br><span class="line">print(W1.shape) <span class="comment"># (2, 3)</span></span><br><span class="line">print(X.shape) <span class="comment"># (2,)</span></span><br><span class="line">print(B1.shape) <span class="comment"># (3,)</span></span><br><span class="line"></span><br><span class="line">A1 = np.dot(X, W1) + B1</span><br><span class="line"></span><br><span class="line">print(A1)</span><br></pre></td></tr></table></figure>
-<pre><code>(2, 3)
-(2,)
-(3,)
-[0.3 0.7 1.1]
-</code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sigmoid</span><span class="params">(a)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>/(<span class="number">1</span>+np.exp(<span class="number">-1</span>*a))</span><br><span class="line"></span><br><span class="line">Z1 = sigmoid(A1)        <span class="comment"># Z1 第一层激活函数作用后的结果</span></span><br><span class="line">print(A1) <span class="comment"># [0.3, 0.7, 1.1]</span></span><br><span class="line">print(Z1) <span class="comment"># [0.57444252, 0.66818777, 0.75026011]</span></span><br></pre></td></tr></table></figure>
-<pre><code>[0.3 0.7 1.1]
-[0.57444252 0.66818777 0.75026011]
-</code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">W2 = np.array([[<span class="number">0.1</span>, <span class="number">0.4</span>], [<span class="number">0.2</span>, <span class="number">0.5</span>], [<span class="number">0.3</span>, <span class="number">0.6</span>]])</span><br><span class="line">B2 = np.array([<span class="number">0.1</span>, <span class="number">0.2</span>])</span><br><span class="line"></span><br><span class="line">A2 = np.dot(Z1, W2) + B2</span><br><span class="line">Z2 = sigmoid(A2)</span><br><span class="line">print(Z2)           <span class="comment"># 从第一层到第二层</span></span><br></pre></td></tr></table></figure>
-<pre><code>[0.62624937 0.7710107 ]
-</code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">identity_function</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> x</span><br><span class="line">W3 = np.array([[<span class="number">0.1</span>, <span class="number">0.3</span>], [<span class="number">0.2</span>, <span class="number">0.4</span>]])</span><br><span class="line">B3 = np.array([<span class="number">0.1</span>, <span class="number">0.2</span>])</span><br><span class="line">A3 = np.dot(Z2, W3) + B3</span><br><span class="line">Y = identity_function(A3)       <span class="comment"># 这里我们的输出层的激活函数是一个恒等函数</span></span><br><span class="line"><span class="comment"># 或者Y = A3</span></span><br><span class="line">print(Y)</span><br></pre></td></tr></table></figure>
-<pre><code>[0.31682708 0.69627909]
-</code></pre>
-<p>输出层的激活函数选取问题:<br>
-回归问题可以使用恒等函数，二元分类问题可以使用 sigmoid 函数，多元分类问题可以使用 softmax 函数</p>
-<p>softmax 函数表达式: $$y_k = \frac{exp(a_k)}{\sum_{i=1}^{n}exp(a_i)}$$</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">softmax</span><span class="params">(a)</span>:</span></span><br><span class="line">    c = np.max(a)</span><br><span class="line">    exp_a = np.exp(a - c) <span class="comment"># 溢出对策, a太大很容易溢出</span></span><br><span class="line">    <span class="keyword">return</span> exp_a/sum(exp_a)</span><br><span class="line"></span><br><span class="line">a = np.array([<span class="number">0.3</span>, <span class="number">2.9</span>, <span class="number">4.0</span>])</span><br><span class="line">y = softmax(a)</span><br><span class="line">print(y)</span><br><span class="line"></span><br><span class="line">print(sum(y))   <span class="comment"># 和永远是1, 可以认为 Yk 是一个输出概率</span></span><br></pre></td></tr></table></figure>
-<pre><code>[0.01821127 0.24519181 0.73659691]
-1.0
-</code></pre>
-<h3 id="MNIST-手写字"><a class="header-anchor" href="#MNIST-手写字"></a>MNIST 手写字</h3>
-<p>经典的手写字识别例子, 可能是不允许爬虫了, 只能手动下载文件到对应目录, 但是问题不大.<br>
-让我们照着它的代码开始吧!</p>
-<ul>
-<li>我们做了一个数据的加载工作, load_mnist: flatten 展开数据 normalize 归一化每个像素</li>
-<li>使用 <code>pickle</code> 保存实时的运行对象, 简化运算过程. 方便存取网络的权重</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入数据</span></span><br><span class="line"><span class="keyword">import</span> sys, os</span><br><span class="line">os.chdir(<span class="string">"E:/Temp/deep-learning-from-scratch-master/ch03"</span>)</span><br><span class="line">sys.path.append(os.pardir)  <span class="comment"># pardir 当前目录的父目录</span></span><br><span class="line"><span class="keyword">from</span> dataset.mnist <span class="keyword">import</span> load_mnist</span><br><span class="line"><span class="comment"># 第⼀次调⽤会花费⼏分钟……</span></span><br><span class="line">(x_train, t_train), (x_test, t_test) =load_mnist(flatten=<span class="literal">True</span>,normalize=<span class="literal">False</span>)</span><br><span class="line"><span class="comment"># 输出各个数据的形状</span></span><br><span class="line">print(x_train.shape) <span class="comment"># (60000, 784)</span></span><br><span class="line">print(t_train.shape) <span class="comment"># (60000,)</span></span><br><span class="line">print(x_test.shape) <span class="comment"># (10000, 784)</span></span><br><span class="line">print(t_test.shape) <span class="comment"># (10000,)</span></span><br></pre></td></tr></table></figure>
-<pre><code>(60000, 784)
-(60000,)
-(10000, 784)
-(10000,)
-</code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 显示MNIST图像</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sys, os</span><br><span class="line">sys.path.append(os.pardir)</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> dataset.mnist <span class="keyword">import</span> load_mnist</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image       <span class="comment"># 熟悉的PIL模块</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">img_show</span><span class="params">(img)</span>:</span></span><br><span class="line">    pil_img = Image.fromarray(np.uint8(img))</span><br><span class="line">    pil_img.show()</span><br><span class="line"></span><br><span class="line">(x_train, t_train), (x_test, t_test) = load_mnist(flatten=<span class="literal">True</span>, normalize=<span class="literal">False</span>)</span><br><span class="line">img = x_train[<span class="number">0</span>]</span><br><span class="line">label = t_train[<span class="number">0</span>]</span><br><span class="line">print(label) <span class="comment"># 5</span></span><br><span class="line"></span><br><span class="line">print(img.shape) <span class="comment"># (784,)   已经 flatten 过了</span></span><br><span class="line">img = img.reshape(<span class="number">28</span>, <span class="number">28</span>) <span class="comment"># 把图像的形状变成原来的尺⼨</span></span><br><span class="line">print(img.shape) <span class="comment"># (28, 28)</span></span><br><span class="line">img_show(img)</span><br></pre></td></tr></table></figure>
-<pre><code>5
-(784,)
-(28, 28)
-</code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 构建神经网络</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_data</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    获取数据</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    (x_train, t_train), (x_test, t_test) = load_mnist(normalize=<span class="literal">True</span>, flatten=<span class="literal">True</span>, one_hot_label=<span class="literal">False</span>)</span><br><span class="line">    <span class="keyword">return</span> x_test, t_test</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">init_network</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    初始化神经网络</span></span><br><span class="line"><span class="string">    已经学习好的权重数据在sample_weight.pkl中</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">"sample_weight.pkl"</span>, <span class="string">'rb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        network = pickle.load(f)</span><br><span class="line">    <span class="keyword">return</span> network</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">predict</span><span class="params">(network, x)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    三层神经网络</span></span><br><span class="line"><span class="string">    输出采用softmax函数</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    W1, W2, W3 = network[<span class="string">'W1'</span>], network[<span class="string">'W2'</span>], network[<span class="string">'W3'</span>]</span><br><span class="line">    b1, b2, b3 = network[<span class="string">'b1'</span>], network[<span class="string">'b2'</span>], network[<span class="string">'b3'</span>]</span><br><span class="line">    a1 = np.dot(x, W1) + b1</span><br><span class="line">    z1 = sigmoid(a1)</span><br><span class="line">    a2 = np.dot(z1, W2) + b2</span><br><span class="line">    z2 = sigmoid(a2)</span><br><span class="line">    a3 = np.dot(z2, W3) + b3</span><br><span class="line">    y = softmax(a3)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> y</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 开始学习</span></span><br><span class="line"></span><br><span class="line">x, t = get_data()</span><br><span class="line">network = init_network()</span><br><span class="line">accuracy_cnt = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(x)):</span><br><span class="line">    y = predict(network, x[i])</span><br><span class="line">    <span class="comment"># np.argmax(x) 将获取被赋给参数 x 的数组中的最大值元素的索引</span></span><br><span class="line">    p = np.argmax(y) <span class="comment"># 获取概率最⾼的元素的索引</span></span><br><span class="line">    <span class="keyword">if</span> p == t[i]:</span><br><span class="line">        accuracy_cnt += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"Accuracy:"</span> + str(float(accuracy_cnt) / len(x)))</span><br></pre></td></tr></table></figure>
-<pre><code>Accuracy:0.9352
-</code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 批处理 提高运算速度</span></span><br><span class="line"></span><br><span class="line">x, t = get_data()</span><br><span class="line">network = init_network()</span><br><span class="line"></span><br><span class="line">batch_size = <span class="number">100</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 批数量</span></span><br><span class="line">accuracy_cnt = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, len(x), batch_size):</span><br><span class="line">    x_batch = x[i:i+batch_size]</span><br><span class="line">    y_batch = predict(network, x_batch)</span><br><span class="line">    p = np.argmax(y_batch, axis=<span class="number">1</span>)</span><br><span class="line">    accuracy_cnt += np.sum(p == t[i:i+batch_size])</span><br></pre></td></tr></table></figure>
-<h2 id="第四章-神经网络的学习"><a class="header-anchor" href="#第四章-神经网络的学习"></a>第四章 神经网络的学习</h2>
-<p>最终目的, 提高泛化能力</p>
-<p>损失函数:<br>
-对于单个样本</p>
-<ol>
-<li>均方误差 $ E=\frac{1}{2}\sum_{k}(y_k-t_k)^2$</li>
-<li>交叉熵误差 $ E=-\sum_{k}t_k log(y_k) $</li>
-</ol>
-<p>实际的学习中, 常用小批量(mini batch)学习, 将样本顺序打乱, 固定个数的样本为一组, 提高效率, 防止过拟合.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 交叉熵误差</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cross_entropy_error</span><span class="params">(y, t)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> y.ndim == <span class="number">1</span>:</span><br><span class="line">        t = t.reshape(<span class="number">1</span>, t.size)</span><br><span class="line">        y = y.reshape(<span class="number">1</span>, y.size)</span><br><span class="line">    </span><br><span class="line">    batch_size = y.shape[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">return</span> -np.sum(t * np.log(y + <span class="number">1e-7</span>)) / batch_size</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">numerical_gradient</span><span class="params">(f, x)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    f(x) 在 x 处的 数值 梯度</span></span><br><span class="line"><span class="string">    f 为函数对象</span></span><br><span class="line"><span class="string">    x 为偏导所在位置, 可以是数组 </span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    h = <span class="number">1e-4</span> <span class="comment"># 0.0001</span></span><br><span class="line">    grad = np.zeros_like(x) <span class="comment"># ⽣成和x形状相同的数组</span></span><br><span class="line">    <span class="keyword">for</span> idx <span class="keyword">in</span> range(x.size):</span><br><span class="line">        tmp_val = x[idx]</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># f(x+h)的计算</span></span><br><span class="line">        x[idx] = tmp_val + h</span><br><span class="line">        fxh1 = f(x)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># f(x-h)的计算</span></span><br><span class="line">        x[idx] = tmp_val - h</span><br><span class="line">        fxh2 = f(x)</span><br><span class="line"></span><br><span class="line">        grad[idx] = (fxh1 - fxh2) / (<span class="number">2</span>*h)</span><br><span class="line">        x[idx] = tmp_val <span class="comment"># 还原值</span></span><br><span class="line">    <span class="keyword">return</span> grad</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">function_2</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> x[<span class="number">0</span>]**<span class="number">2</span> + x[<span class="number">1</span>]**<span class="number">2</span></span><br><span class="line"><span class="comment"># 或者return np.sum(x**2)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 都是 int 就悲剧了, float 没事, 可能是数值精度问题.</span></span><br><span class="line">print(numerical_gradient(function_2, np.array([<span class="number">3.0</span>, <span class="number">4.0</span>])))</span><br></pre></td></tr></table></figure>
-<pre><code>[6. 8.]
-</code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 两层神经网络</span></span><br><span class="line"><span class="comment"># coding: utf-8 </span></span><br><span class="line"><span class="keyword">import</span> sys, os</span><br><span class="line">os.chdir(<span class="string">"E:/Temp/deep-learning-from-scratch-master/ch04"</span>)</span><br><span class="line">sys.path.append(os.pardir)  <span class="comment"># 为了导入父目录的文件而进行的设定</span></span><br><span class="line"><span class="keyword">from</span> common.functions <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> common.gradient <span class="keyword">import</span> numerical_gradient</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TwoLayerNet</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, input_size, hidden_size, output_size, weight_init_std=<span class="number">0.01</span>)</span>:</span></span><br><span class="line">        <span class="comment"># 初始化权重</span></span><br><span class="line">        self.params = &#123;&#125;</span><br><span class="line">        self.params[<span class="string">'W1'</span>] = weight_init_std * np.random.randn(input_size, hidden_size)</span><br><span class="line">        self.params[<span class="string">'b1'</span>] = np.zeros(hidden_size)</span><br><span class="line">        self.params[<span class="string">'W2'</span>] = weight_init_std * np.random.randn(hidden_size, output_size)</span><br><span class="line">        self.params[<span class="string">'b2'</span>] = np.zeros(output_size)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">predict</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        W1, W2 = self.params[<span class="string">'W1'</span>], self.params[<span class="string">'W2'</span>]</span><br><span class="line">        b1, b2 = self.params[<span class="string">'b1'</span>], self.params[<span class="string">'b2'</span>]</span><br><span class="line">    </span><br><span class="line">        a1 = np.dot(x, W1) + b1</span><br><span class="line">        z1 = sigmoid(a1)</span><br><span class="line">        a2 = np.dot(z1, W2) + b2</span><br><span class="line">        y = softmax(a2)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> y</span><br><span class="line">        </span><br><span class="line">    <span class="comment"># x:输入数据, t:监督数据</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">loss</span><span class="params">(self, x, t)</span>:</span></span><br><span class="line">        y = self.predict(x)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> cross_entropy_error(y, t)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">accuracy</span><span class="params">(self, x, t)</span>:</span></span><br><span class="line">        y = self.predict(x)</span><br><span class="line">        y = np.argmax(y, axis=<span class="number">1</span>)</span><br><span class="line">        t = np.argmax(t, axis=<span class="number">1</span>)</span><br><span class="line">        </span><br><span class="line">        accuracy = np.sum(y == t) / float(x.shape[<span class="number">0</span>])</span><br><span class="line">        <span class="keyword">return</span> accuracy</span><br><span class="line">        </span><br><span class="line">    <span class="comment"># x:输入数据, t:监督数据</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">numerical_gradient</span><span class="params">(self, x, t)</span>:</span></span><br><span class="line">        loss_W = <span class="keyword">lambda</span> W: self.loss(x, t)</span><br><span class="line">        </span><br><span class="line">        grads = &#123;&#125;</span><br><span class="line">        grads[<span class="string">'W1'</span>] = numerical_gradient(loss_W, self.params[<span class="string">'W1'</span>])</span><br><span class="line">        grads[<span class="string">'b1'</span>] = numerical_gradient(loss_W, self.params[<span class="string">'b1'</span>])</span><br><span class="line">        grads[<span class="string">'W2'</span>] = numerical_gradient(loss_W, self.params[<span class="string">'W2'</span>])</span><br><span class="line">        grads[<span class="string">'b2'</span>] = numerical_gradient(loss_W, self.params[<span class="string">'b2'</span>])</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> grads</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">gradient</span><span class="params">(self, x, t)</span>:</span></span><br><span class="line">        W1, W2 = self.params[<span class="string">'W1'</span>], self.params[<span class="string">'W2'</span>]</span><br><span class="line">        b1, b2 = self.params[<span class="string">'b1'</span>], self.params[<span class="string">'b2'</span>]</span><br><span class="line">        grads = &#123;&#125;</span><br><span class="line">        </span><br><span class="line">        batch_num = x.shape[<span class="number">0</span>]</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># forward</span></span><br><span class="line">        a1 = np.dot(x, W1) + b1</span><br><span class="line">        z1 = sigmoid(a1)</span><br><span class="line">        a2 = np.dot(z1, W2) + b2</span><br><span class="line">        y = softmax(a2)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># backward</span></span><br><span class="line">        dy = (y - t) / batch_num</span><br><span class="line">        grads[<span class="string">'W2'</span>] = np.dot(z1.T, dy)</span><br><span class="line">        grads[<span class="string">'b2'</span>] = np.sum(dy, axis=<span class="number">0</span>)</span><br><span class="line">        </span><br><span class="line">        da1 = np.dot(dy, W2.T)</span><br><span class="line">        dz1 = sigmoid_grad(a1) * da1</span><br><span class="line">        grads[<span class="string">'W1'</span>] = np.dot(x.T, dz1)</span><br><span class="line">        grads[<span class="string">'b1'</span>] = np.sum(dz1, axis=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> grads</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用 两层神经网络 进行mini-batch训练</span></span><br><span class="line"><span class="comment"># coding: utf-8</span></span><br><span class="line"><span class="keyword">import</span> sys, os</span><br><span class="line">sys.path.append(os.pardir)  <span class="comment"># 为了导入父目录的文件而进行的设定</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> dataset.mnist <span class="keyword">import</span> load_mnist</span><br><span class="line"><span class="keyword">from</span> two_layer_net <span class="keyword">import</span> TwoLayerNet</span><br><span class="line"></span><br><span class="line"><span class="comment"># 读入数据</span></span><br><span class="line">(x_train, t_train), (x_test, t_test) = load_mnist(normalize=<span class="literal">True</span>, one_hot_label=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">network = TwoLayerNet(input_size=<span class="number">784</span>, hidden_size=<span class="number">50</span>, output_size=<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">iters_num = <span class="number">10000</span>  <span class="comment"># 适当设定循环的次数</span></span><br><span class="line">train_size = x_train.shape[<span class="number">0</span>]</span><br><span class="line">batch_size = <span class="number">100</span></span><br><span class="line">learning_rate = <span class="number">0.1</span></span><br><span class="line"></span><br><span class="line">train_loss_list = []</span><br><span class="line">train_acc_list = []</span><br><span class="line">test_acc_list = []</span><br><span class="line"></span><br><span class="line">iter_per_epoch = max(train_size / batch_size, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(iters_num):</span><br><span class="line">    batch_mask = np.random.choice(train_size, batch_size)</span><br><span class="line">    x_batch = x_train[batch_mask]</span><br><span class="line">    t_batch = t_train[batch_mask]</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 计算梯度</span></span><br><span class="line">    <span class="comment">#grad = network.numerical_gradient(x_batch, t_batch)</span></span><br><span class="line">    grad = network.gradient(x_batch, t_batch)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 更新参数</span></span><br><span class="line">    <span class="keyword">for</span> key <span class="keyword">in</span> (<span class="string">'W1'</span>, <span class="string">'b1'</span>, <span class="string">'W2'</span>, <span class="string">'b2'</span>):</span><br><span class="line">        network.params[key] -= learning_rate * grad[key]</span><br><span class="line">    </span><br><span class="line">    loss = network.loss(x_batch, t_batch)</span><br><span class="line">    train_loss_list.append(loss)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 每个 mini batch 之后判断准确率</span></span><br><span class="line">    <span class="keyword">if</span> i % iter_per_epoch == <span class="number">0</span>:</span><br><span class="line">        train_acc = network.accuracy(x_train, t_train)</span><br><span class="line">        test_acc = network.accuracy(x_test, t_test)</span><br><span class="line">        train_acc_list.append(train_acc)</span><br><span class="line">        test_acc_list.append(test_acc)</span><br><span class="line">        print(<span class="string">"train acc, test acc | "</span> + str(train_acc) + <span class="string">", "</span> + str(test_acc))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 绘制图形</span></span><br><span class="line">markers = &#123;<span class="string">'train'</span>: <span class="string">'o'</span>, <span class="string">'test'</span>: <span class="string">'s'</span>&#125;</span><br><span class="line">x = np.arange(len(train_acc_list))</span><br><span class="line">plt.plot(x, train_acc_list, label=<span class="string">'train acc'</span>)</span><br><span class="line">plt.plot(x, test_acc_list, label=<span class="string">'test acc'</span>, linestyle=<span class="string">'--'</span>)</span><br><span class="line">plt.xlabel(<span class="string">"epochs"</span>)</span><br><span class="line">plt.ylabel(<span class="string">"accuracy"</span>)</span><br><span class="line">plt.ylim(<span class="number">0</span>, <span class="number">1.0</span>)</span><br><span class="line">plt.legend(loc=<span class="string">'lower right'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<pre><code>train acc, test acc | 0.10218333333333333, 0.101
-train acc, test acc | 0.7860666666666667, 0.7923
-train acc, test acc | 0.8741666666666666, 0.8779
-train acc, test acc | 0.8971333333333333, 0.9007
-train acc, test acc | 0.9080833333333334, 0.9108
-train acc, test acc | 0.91445, 0.9182
-train acc, test acc | 0.9196833333333333, 0.9227
-train acc, test acc | 0.9234166666666667, 0.9271
-train acc, test acc | 0.9276, 0.9308
-train acc, test acc | 0.9304166666666667, 0.9339
-train acc, test acc | 0.9337166666666666, 0.935
-train acc, test acc | 0.9369666666666666, 0.937
-train acc, test acc | 0.9384833333333333, 0.9397
-train acc, test acc | 0.9418, 0.9421
-train acc, test acc | 0.9435333333333333, 0.9436
-train acc, test acc | 0.9456, 0.9459
-train acc, test acc | 0.9472833333333334, 0.9471
-</code></pre>
-<p><img src="https://cdn.jsdelivr.net/gh/18wang/media/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8%EF%BC%9A%E5%9F%BA%E4%BA%8EPython%E7%9A%84%E7%90%86%E8%AE%BA%E4%B8%8E%E5%AE%9E%E7%8E%B0-%E6%96%8B%E8%97%A4%E5%BA%B7%E6%AF%85/output_19_1.svg" alt=""></p>
-<h2 id="第五章-误差反向传播法"><a class="header-anchor" href="#第五章-误差反向传播法"></a>第五章 误差反向传播法</h2>
-<p>使用计算图的知识, 利用图的求导(backward)方便的特点; 图也可以存储计算过程中的一些数据(class)</p>
-<p>每个节点都有 正向传输(forward) 和 反向传输(backward)</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 乘法层</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MulLayer</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.x = <span class="literal">None</span></span><br><span class="line">        self.y = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x, y)</span>:</span></span><br><span class="line">        self.x = x</span><br><span class="line">        self.y = y</span><br><span class="line">        out = x * y</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> out</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">backward</span><span class="params">(self, dout)</span>:</span></span><br><span class="line">        dx = dout * self.y <span class="comment"># 翻转x和y</span></span><br><span class="line">        dy = dout * self.x  <span class="comment"># 导数是 对方乘数</span></span><br><span class="line">    </span><br><span class="line">        <span class="keyword">return</span> dx, dy</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 加法层</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AddLayer</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x, y)</span>:</span></span><br><span class="line">        out = x + y</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> out</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">backward</span><span class="params">(self, dout)</span>:</span></span><br><span class="line">        dx = dout * <span class="number">1</span>       <span class="comment"># 导数是 1</span></span><br><span class="line">        dy = dout * <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> dx, dy</span><br></pre></td></tr></table></figure>
-<ul>
-<li>我们将 Y = X * W + B 称作仿射变换, 对应步骤称为仿射变换层.(Affine)</li>
-<li>仿射层中参与运算的都是矩阵</li>
-</ul>
-<p>误差反向传播法求梯度 比数值法效率更高.  但我们常用 数值法 计算梯度, 对结果进行比较. 从而实现梯度确认.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 计算 数值微分求出的梯度和误差反向传播法求出的梯度的误差</span></span><br><span class="line"><span class="comment"># coding: utf-8</span></span><br><span class="line"><span class="keyword">import</span> sys, os</span><br><span class="line">os.chdir(<span class="string">"E:\\Temp\\deep-learning-from-scratch-master\\ch05"</span>)</span><br><span class="line">sys.path.append(os.pardir)  <span class="comment"># 为了导入父目录的文件而进行的设定</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> dataset.mnist <span class="keyword">import</span> load_mnist</span><br><span class="line"><span class="keyword">from</span> two_layer_net <span class="keyword">import</span> TwoLayerNet</span><br><span class="line"></span><br><span class="line"><span class="comment"># 读入数据</span></span><br><span class="line">(x_train, t_train), (x_test, t_test) = load_mnist(normalize=<span class="literal">True</span>, one_hot_label=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">network = TwoLayerNet(input_size=<span class="number">784</span>, hidden_size=<span class="number">50</span>, output_size=<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">x_batch = x_train[:<span class="number">3</span>]</span><br><span class="line">t_batch = t_train[:<span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">grad_numerical = network.numerical_gradient(x_batch, t_batch)</span><br><span class="line">grad_backprop = network.gradient(x_batch, t_batch)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> key <span class="keyword">in</span> grad_numerical.keys():</span><br><span class="line">    diff = np.average( np.abs(grad_backprop[key] - grad_numerical[key]) )</span><br><span class="line">    print(key + <span class="string">":"</span> + str(diff))</span><br></pre></td></tr></table></figure>
-<pre><code>W1:4.5174184319697615e-10
-b1:2.397918682756723e-09
-W2:4.725159762929652e-09
-b2:1.398749418138334e-07
-</code></pre>
-<p><strong>第五章所学</strong></p>
-<ul>
-<li>通过使用计算图，可以直观地把握计算过程。</li>
-<li>计算图的节点是由局部计算构成的。局部计算构成全局计算。</li>
-<li>计算图的正向传播进行一般的计算。通过计算图的反向传播，可以计算各个节点的导数。</li>
-<li>通过将神经网络的组成元素实现为层，可以高效地计算梯度（反向传播法）。</li>
-<li>通过比较数值微分和误差反向传播法的结果，可以确认误差反向传播法的实现是否正确（梯度确认）。</li>
-</ul>
-<h2 id="第6章"><a class="header-anchor" href="#第6章"></a>第6章</h2>
-<p>本章所学的内容</p>
-<ul>
-<li>参数的更新方法，除了 SGD 之外，还有Momentum、AdaGrad、Adam等方法。</li>
-<li>权重初始值的赋值方法对进行正确的学习非常重要。</li>
-<li>作为权重初始值，Xavier 初始值、He初始值等比较有效。<br>
--通过使用 Batch Normalization，可以加速学习，并且对初始值变得健壮。</li>
-<li>抑制过拟合的正则化技术有权值衰减、Dropout等。</li>
-<li>逐渐缩小“好值”存在的范围是搜索超参数的一个有效方法。</li>
-</ul>
-<h2 id="第7章"><a class="header-anchor" href="#第7章"></a>第7章</h2>
-<p>本章所学的内容</p>
-<ul>
-<li>CNN在此前的全连接层的网络中新增了卷积层和池化层。</li>
-<li>使用im2col 函数可以简单、高效地实现卷积层和池化层。</li>
-<li>通过CNN的可视化，可知随着层次变深，提取的信息愈加高级。</li>
-<li>LeNet和AlexNet是CNN的代表性网络。</li>
-<li>在深度学习的发展中，大数据和GPU做出了很大的贡献。</li>
-</ul>
-<h2 id="第8章"><a class="header-anchor" href="#第8章"></a>第8章</h2>
-<p>本章所学的内容</p>
-<ul>
-<li>对于大多数的问题，都可以期待通过加深网络来提高性能。</li>
-<li>在最近的图像识别大赛ILSVRC中，基于深度学习的方法独占鳌头，使用的网络也在深化。</li>
-<li>VGG、GoogLeNet、ResNet等是几个著名的网络。</li>
-<li>基于GPU、分布式学习、位数精度的缩减，可以实现深度学习的高速化。</li>
-<li>深度学习（神经网络）不仅可以用于物体识别，还可以用于物体检测、图像分割。</li>
-<li>深度学习的应用包括图像标题的生成、图像的生成、强化学习等。最近，深度学习在自动驾驶上的应用也备受期待。</li>
-</ul>
-<p><em><strong>我都学完了, 后面的草率一点, 2016年的书, 很棒的入门</strong></em></p>
 
       
       
