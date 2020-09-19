@@ -441,9 +441,273 @@
         
           
         
+          
+        
       
     
     
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/2020/09/16/%E7%A9%BA%E9%97%B4%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2/">
+      空间坐标变换
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+<div class='new-meta-item author'>
+  <a href="https://github.com/18wang" rel="nofollow">
+    <img src="https://avatars0.githubusercontent.com/u/25820978">
+    <p></p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Sep 16, 2020</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="空间坐标变换"><a class="header-anchor" href="#空间坐标变换"></a>空间坐标变换</h1>
+<h2 id="1-以当前坐标为中心的变换矩阵"><a class="header-anchor" href="#1-以当前坐标为中心的变换矩阵"></a>1. 以当前坐标为中心的变换矩阵</h2>
+<p>平移矩阵:<br>
+$$<br>
+Mm=\left[\begin{array}{llll}<br>
+1 &amp; 0 &amp; 0 &amp; d x \<br>
+0 &amp; 1 &amp; 0 &amp; d y \<br>
+0 &amp; 0 &amp; 1 &amp; d z \<br>
+0 &amp; 0 &amp; 0 &amp; 1<br>
+\end{array}\right]<br>
+$$</p>
+<p>绕x轴旋转矩阵:<br>
+$$<br>
+Mx=\left[\begin{array}{cccc}<br>
+1 &amp; 0 &amp; 0 &amp; 0 \<br>
+0 &amp; \cos Rx &amp; \sin Rx &amp; 0 \<br>
+0 &amp; -\sin Rx &amp; \cos Rx &amp; 0 \<br>
+0 &amp; 0 &amp; 0 &amp; 1<br>
+\end{array}\right]<br>
+$$</p>
+<p>绕y轴旋转矩阵:<br>
+$$<br>
+My=\left[\begin{array}{cccc}<br>
+\cos Ry &amp; 0 &amp; -\sin Ry &amp; 0 \<br>
+0 &amp; 1 &amp; 0 &amp; 0 \<br>
+\sin Ry &amp; 0 &amp; \cos Ry &amp; 0 \<br>
+0 &amp; 0 &amp; 0 &amp; 1<br>
+\end{array}\right]<br>
+$$</p>
+<p>绕z轴旋转矩阵:<br>
+$$<br>
+Mz=\left[\begin{array}{cccc}<br>
+\cos Rz &amp; \sin Rz &amp; 0 &amp; 0 \<br>
+-\sin Rz &amp; \cos Rz &amp; 0 &amp; 0 \<br>
+0 &amp; 0 &amp; 1 &amp; 0 \<br>
+0 &amp; 0 &amp; 0 &amp; 1<br>
+\end{array}\right]<br>
+$$</p>
+<p>变换结果:<br>
+$$<br>
+\left[\begin{array}{c}<br>
+X^{\prime} \<br>
+Y^{\prime} \<br>
+Z^{\prime} \<br>
+1<br>
+\end{array}\right]=Mz \cdot My \cdot Mx \cdot Mm \cdot<br>
+\left[\begin{array}{c}<br>
+X \<br>
+Y \<br>
+Z \<br>
+1<br>
+\end{array}\right]<br>
+$$</p>
+<blockquote>
+<ul>
+<li>平移的单位是 单位距离. 平移矩阵在变换公式右边的位置是任意的. 变换矩阵是可逆矩阵.</li>
+<li>旋转的单位是 角度°</li>
+<li>每次的变换都围绕当前坐标系进行的, 而非世界坐标.</li>
+</ul>
+</blockquote>
+<h2 id="计算变换矩阵"><a class="header-anchor" href="#计算变换矩阵"></a>计算变换矩阵</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 变换矩阵</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">creat_Mm</span><span class="params">(dx=<span class="number">0</span>, dy=<span class="number">0</span>, dz=<span class="number">0</span>)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    创建平移矩阵, 单位 mm</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    Mm = np.mat([ </span><br><span class="line">        [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, dx], </span><br><span class="line">        [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, dy],</span><br><span class="line">        [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, dz],</span><br><span class="line">        [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>] ]) </span><br><span class="line">    <span class="keyword">return</span> Mm </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">creat_Mx</span><span class="params">(Rx = <span class="number">0</span>)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    创建绕x轴矩阵, 单位 角度°</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    Rx = Rx * pi / <span class="number">180</span></span><br><span class="line">    Mx = np.mat([ </span><br><span class="line">        [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>], </span><br><span class="line">        [<span class="number">0</span>, cos(Rx),    sin(Rx), <span class="number">0</span>],</span><br><span class="line">        [<span class="number">0</span>, <span class="number">-1</span>*sin(Rx), cos(Rx), <span class="number">0</span>],</span><br><span class="line">        [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>] ]) </span><br><span class="line">    <span class="keyword">return</span> Mx</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">creat_My</span><span class="params">(Ry = <span class="number">0</span>)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    创建绕y轴矩阵, 单位 角度°</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    Ry = Ry * pi / <span class="number">180</span></span><br><span class="line">    My = np.mat([ </span><br><span class="line">        [cos(Ry), <span class="number">0</span>, <span class="number">-1</span>*sin(Ry), <span class="number">0</span>], </span><br><span class="line">        [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">        [sin(Ry), <span class="number">0</span>, cos(Ry),   <span class="number">0</span>],</span><br><span class="line">        [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>] ]) </span><br><span class="line">    <span class="keyword">return</span> My</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">creat_Mz</span><span class="params">(Rz = <span class="number">0</span>)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    创建绕z轴矩阵, 单位 角度°</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    Rz = Rz * pi / <span class="number">180</span></span><br><span class="line">    Mz = np.mat([ </span><br><span class="line">        [cos(Rz), sin(Rz), <span class="number">0</span>, <span class="number">0</span>], </span><br><span class="line">        [<span class="number">-1</span>*sin(Rz), cos(Rz), <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">        [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">        [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>] ]) </span><br><span class="line">    <span class="keyword">return</span> Mz</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">creat_I0</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># 原始坐标轴变换矩阵</span></span><br><span class="line">    I0 = np.mat([</span><br><span class="line">        [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">        [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">        [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">        [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>] ])</span><br><span class="line">    <span class="keyword">return</span> I0</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">creat_M</span><span class="params">(dx=<span class="number">0</span>, dy=<span class="number">0</span>, dz=<span class="number">0</span>, Rx=<span class="number">0</span>, Ry=<span class="number">0</span>, Rz=<span class="number">0</span>, reverse=False)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    变换矩阵</span></span><br><span class="line"><span class="string">    dx, dy, dz 向原始坐标 x, y, z轴方向平移距离</span></span><br><span class="line"><span class="string">    Rx, Ry, Rz 以各坐标轴为中心的旋转角度</span></span><br><span class="line"><span class="string">    reverse 是否是逆变换, 不处理参数, 但是改变运算顺序</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="keyword">if</span> reverse:</span><br><span class="line">        M = creat_Mm(dx, dy, dz) * creat_Mx(Rx) * creat_My(Ry) * creat_Mz(Rz) </span><br><span class="line">        <span class="keyword">return</span> M        </span><br><span class="line">    M = creat_Mz(Rz) * creat_My(Ry) * creat_Mx(Rx) * creat_Mm(dx, dy, dz)</span><br><span class="line">    <span class="keyword">return</span> M</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#　依次绕x, y, z轴 旋转</span></span><br><span class="line">M = creat_M(dx=<span class="number">100</span>, Rx=<span class="number">45</span>)</span><br><span class="line">print(<span class="string">'变换矩阵示例:\n'</span>,M)</span><br></pre></td></tr></table></figure>
+<pre><code>变换矩阵示例:
+ [[  1.           0.           0.         100.        ]
+ [  0.           0.70710678   0.70710678   0.        ]
+ [  0.          -0.70710678   0.70710678   0.        ]
+ [  0.           0.           0.           1.        ]]
+</code></pre>
+<h3 id="验证"><a class="header-anchor" href="#验证"></a>验证</h3>
+<p>尝试验证该变换的正确性, 结合之前创建的模拟点云程序.</p>
+<ol>
+<li>创建点云点, 画图</li>
+<li>创建变换矩阵, 应用变换矩阵, 画图</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 椭圆柱侧面点云  (封装成函数)</span></span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> mpl_toolkits.mplot3d <span class="keyword">import</span> Axes3D</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cylinderPC</span><span class="params">(stepz=<span class="number">0.2</span>, stepA=<span class="number">0.1</span>, zlim=[<span class="number">0</span>, <span class="number">1</span>], a=<span class="number">1</span>, b=<span class="number">1</span>, noise=<span class="number">0</span>)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    椭圆柱侧面点云生成, z轴为轴心, 向正负方向延长</span></span><br><span class="line"><span class="string">    返回值: Xn, Yn, Z</span></span><br><span class="line"><span class="string">    参数:</span></span><br><span class="line"><span class="string">    stepz   z轴方向步距  </span></span><br><span class="line"><span class="string">    stepA   xoy平面弧度步距</span></span><br><span class="line"><span class="string">    zlim    z坐标范围[z1, z2]</span></span><br><span class="line"><span class="string">    a, b    长轴短轴</span></span><br><span class="line"><span class="string">    noise   噪声系数</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    X = a * np.cos(np.arange(<span class="number">0</span>,<span class="number">2</span>*np.pi,stepA))          <span class="comment"># 生成坐标</span></span><br><span class="line">    Y = b * np.sin(np.arange(<span class="number">0</span>,<span class="number">2</span>*np.pi,stepA))</span><br><span class="line">    Z = np.arange(zlim[<span class="number">0</span>], zlim[<span class="number">1</span>], stepz)</span><br><span class="line">    X, _ = np.meshgrid(X, Z)  </span><br><span class="line">    Y, Z = np.meshgrid(Y, Z)  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    noiseX = (np.random.rand(*X.shape)<span class="number">-0.5</span>) * <span class="number">2</span> * noise   <span class="comment"># 加噪 [-0.25, 0.25) 噪声</span></span><br><span class="line">    noiseY = (np.random.rand(*Y.shape)<span class="number">-0.5</span>) * <span class="number">2</span> * noise   <span class="comment"># X Y 均加噪</span></span><br><span class="line">    Xn = X + noiseX</span><br><span class="line">    Yn = Y + noiseY</span><br><span class="line">    <span class="keyword">return</span> Xn, Yn, Z</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_3D</span><span class="params">(X, Y, Z)</span>:</span></span><br><span class="line">    <span class="comment"># 画图</span></span><br><span class="line">    fig = plt.figure()                          </span><br><span class="line">    ax = Axes3D(fig)</span><br><span class="line">    <span class="comment"># 具体函数方法可用 help(function) 查看，如：help(ax.plot_surface)</span></span><br><span class="line">    ax.plot_surface(X, Y, Z, rstride=<span class="number">1</span>, cstride=<span class="number">1</span>, cmap=<span class="string">'rainbow'</span>)</span><br><span class="line">    ax.set_zlabel(<span class="string">'Z'</span>)           <span class="comment"># 坐标轴</span></span><br><span class="line">    ax.set_ylabel(<span class="string">'Y'</span>)</span><br><span class="line">    ax.set_xlabel(<span class="string">'X'</span>)</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 创建点云点, 画图</span></span><br><span class="line">Xn, Yn, Z = cylinderPC(stepz=<span class="number">0.2</span>, stepA=<span class="number">0.2</span>, zlim=[<span class="number">0</span>, <span class="number">1</span>], a=<span class="number">1</span>, b=<span class="number">0.3</span>, noise=<span class="number">0</span>)</span><br><span class="line">plot_3D(Xn, Yn, Z)</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/18wang/media/%E7%A9%BA%E9%97%B4%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2/output_5_0.svg" alt="svg"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 坐标系变换函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">convert</span><span class="params">(M, X, Y, Z)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    变换函数</span></span><br><span class="line"><span class="string">    M 变换矩阵</span></span><br><span class="line"><span class="string">    X 所有点x坐标</span></span><br><span class="line"><span class="string">    Y 所有点y坐标</span></span><br><span class="line"><span class="string">    Z 所有点z坐标</span></span><br><span class="line"><span class="string">    返回 变换后的 X Y Z 坐标</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    E = np.ones(Z.shape)</span><br><span class="line">    A0 = np.array([X, Y, Z, E])   <span class="comment"># 原始矩阵</span></span><br><span class="line">    a0 = np.stack(A0, axis=<span class="number">2</span>)       <span class="comment"># 转换为3维</span></span><br><span class="line">    a0t = a0.reshape((<span class="number">-1</span>,<span class="number">4</span>))        <span class="comment"># reshape</span></span><br><span class="line"></span><br><span class="line">    b0t = np.dot(M, a0t.T)          <span class="comment"># 矩阵点乘, np.mat只能是二维, 所以A0需要reshape</span></span><br><span class="line">    b0t = np.array(b0t).T</span><br><span class="line">    b0 =b0t.reshape(a0.shape)       <span class="comment"># 变回原始矩阵形状</span></span><br><span class="line">    Bx = b0[:, :, <span class="number">0</span>]</span><br><span class="line">    By = b0[:, :, <span class="number">1</span>]</span><br><span class="line">    Bz = b0[:, :, <span class="number">2</span>]</span><br><span class="line">    <span class="keyword">return</span> Bx, By, Bz</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 2. 创建变换矩阵, 应用变换矩阵, 画图</span></span><br><span class="line">Bx, By, Bz = convert(M, Xn, Yn, Z)</span><br><span class="line"></span><br><span class="line">plot_3D(Bx, By, Bz)             <span class="comment"># 画图</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/18wang/media/%E7%A9%BA%E9%97%B4%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2/output_7_0.svg" alt="svg"></p>
+<h3 id="逆变换"><a class="header-anchor" href="#逆变换"></a>逆变换</h3>
+<p>很明显, 变换矩阵 <code>M</code> 是可逆矩阵, 根据变换公式, 容易得到:<br>
+$$<br>
+M^{-1} \cdot B = A<br>
+$$<br>
+即<br>
+$$<br>
+{(Mz \cdot My \cdot Mx \cdot Mm)}^{-1} \cdot<br>
+\left[\begin{array}{c}<br>
+X^{\prime} \<br>
+Y^{\prime} \<br>
+Z^{\prime} \<br>
+1<br>
+\end{array}\right]=<br>
+\left[\begin{array}{c}<br>
+X \<br>
+Y \<br>
+Z \<br>
+1<br>
+\end{array}\right]<br>
+$$</p>
+<p>通过对变换后的图形逆变换, 实现对变换可靠性的印证.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 对变换后的图形进行逆变换</span></span><br><span class="line">Minv = np.linalg.inv(M)         <span class="comment"># 变换矩阵的逆</span></span><br><span class="line">iAx, iAy, iAz = convert(Minv, Bx, By, Bz)</span><br><span class="line"></span><br><span class="line">plot_3D(iAx, iAy, iAz)              <span class="comment"># 画图</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/18wang/media/%E7%A9%BA%E9%97%B4%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2/output_9_0.svg" alt="svg"></p>
+<h2 id="2-任意两个坐标系之间的变换"><a class="header-anchor" href="#2-任意两个坐标系之间的变换"></a>2. 任意两个坐标系之间的变换</h2>
+<p><strong>问题: 已知两组变换相对世界坐标的参数, 如何之间进行两组变换之间的转换, 求取变换矩阵?</strong></p>
+<p>分析:</p>
+<ol>
+<li>平移矩阵 $Mm$ 相互构成可交换矩阵, 所以在只有平移的情况下, 直接拿两组变换的平移值相减即可.<br>
+变换的坐标差值为: $ (Px1, Py1, Pz1) - (Px0, Py0, Pz0) = (dx, dy, dz) $<br>
+则有: $ P1 = M\Delta m \cdot P0 $</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">param0 = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>])       <span class="comment"># (Px0, Py0, Pz0)</span></span><br><span class="line">paramDelta = np.array([<span class="number">1</span>, <span class="number">3</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>])   <span class="comment"># (dx,dy,dz)</span></span><br><span class="line">param1 = param0 + paramDelta                <span class="comment"># (Px1, Py1, Pz1)</span></span><br><span class="line"></span><br><span class="line">M0 = creat_M(*param0)</span><br><span class="line">M1 = creat_M(*param1)</span><br><span class="line">Md = creat_M(*paramDelta)</span><br><span class="line"></span><br><span class="line">print(<span class="string">'只有平移变换'</span>)</span><br><span class="line">print(<span class="string">"O-&gt;P1 变换矩阵:\n"</span>, M1)</span><br><span class="line">print(<span class="string">"O-&gt;P0 变换矩阵:\n"</span>, M0)</span><br><span class="line">print(<span class="string">"O-&gt;P0-&gt;P1 变换矩阵:\n"</span>, np.dot(Md, M0))</span><br></pre></td></tr></table></figure>
+<pre><code>只有平移变换
+O-&gt;P1 变换矩阵:
+ [[1. 0. 0. 2.]
+ [0. 1. 0. 5.]
+ [0. 0. 1. 0.]
+ [0. 0. 0. 1.]]
+O-&gt;P0 变换矩阵:
+ [[1. 0. 0. 1.]
+ [0. 1. 0. 2.]
+ [0. 0. 1. 0.]
+ [0. 0. 0. 1.]]
+O-&gt;P0-&gt;P1 变换矩阵:
+ [[1. 0. 0. 2.]
+ [0. 1. 0. 5.]
+ [0. 0. 1. 0.]
+ [0. 0. 0. 1.]]
+</code></pre>
+<ol start="2">
+<li>当包含绕坐标轴旋转的变换时, 不满足平移变换的规律. 但是根据 <code>坐标变换的公式</code> 可以得到:<br>
+$$<br>
+P_0 = M_0 \cdot O \Leftrightarrow {M_0}^{-1} \cdot P_0 = O<br>
+$$<br>
+$$<br>
+P_1 = M_1 \cdot O = M_1 \cdot {M_0}^{-1} \cdot P_0<br>
+$$<br>
+令<br>
+$$<br>
+M^{’} = M_1 \cdot {M_0}^{-1} = Mz1 \cdot My1 \cdot Mx1 \cdot Mm1 \cdot M(-m0) \cdot M(-x0) \cdot M(-y0) \cdot M(-z0)<br>
+$$<br>
+则有<br>
+$$<br>
+P_1 = M^{’} \cdot P_0<br>
+$$</li>
+</ol>
+<p>此时, $ M^{’} $ 为任意两个坐标系之间的变换矩阵</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">param0 = np.array([<span class="number">0</span>, <span class="number">15</span>, <span class="number">50</span>, <span class="number">40</span>, <span class="number">10</span>, <span class="number">45</span>])           <span class="comment"># (Px0, Py0, Pz0)</span></span><br><span class="line">paramDelta = np.array([<span class="number">1000</span>, <span class="number">0</span>, <span class="number">30</span>, <span class="number">55</span>, <span class="number">-244</span>, <span class="number">60</span>])     <span class="comment"># (dx,dy,dz)</span></span><br><span class="line">param1 = param0 + paramDelta                        <span class="comment"># (Px1, Py1, Pz1)</span></span><br><span class="line"></span><br><span class="line">M0 = creat_M(*param0)                   </span><br><span class="line">M1 = creat_M(*param1)</span><br><span class="line">M_ = np.dot(M1, np.linalg.inv(M0))      <span class="comment"># M'</span></span><br><span class="line"><span class="comment"># 用 后一个公式求 M', 更精确</span></span><br><span class="line">M_byM = np.dot( creat_M(*param1, reverse=<span class="literal">False</span>), creat_M(*(<span class="number">-1</span>*param0), reverse=<span class="literal">True</span>)) </span><br><span class="line"></span><br><span class="line">print(<span class="string">'平移和角度旋转共同作用'</span>)</span><br><span class="line">print(<span class="string">"O-&gt;P1 M1\n"</span>, M1)</span><br><span class="line">print(<span class="string">"O-&gt;P0 M0\n"</span>, M0)</span><br><span class="line">print(<span class="string">"P0-&gt;O-&gt;P1 M'\n"</span>, M_, <span class="string">'\n\n'</span>, M_byM)</span><br></pre></td></tr></table></figure>
+<pre><code>平移和角度旋转共同作用
+O-&gt;P1 M1
+ [[ 1.52130018e-01 -2.92778200e-01  9.44000733e-01  2.23258403e+02]
+ [ 5.67756956e-01 -7.55919188e-01 -3.25942051e-01  5.30342804e+02]
+ [ 8.09016994e-01  5.85548552e-01  5.12288602e-02  8.21898531e+02]
+ [ 0.00000000e+00  0.00000000e+00  0.00000000e+00  1.00000000e+00]]
+O-&gt;P0 M0
+ [[ 0.69636424  0.6206017   0.36045856 27.33195363]
+ [-0.69636424  0.46274874  0.54858039 34.37025075]
+ [ 0.17364818 -0.63302222  0.75440651 28.22499201]
+ [ 0.          0.          0.          1.        ]]
+P0-&gt;O-&gt;P1 M'
+ [[ 2.64512403e-01  2.76439645e-01  9.23912502e-01  1.80450040e+02]
+ [-1.91247695e-01 -9.23971712e-01  3.31210800e-01  5.57978694e+02]
+ [ 9.45228812e-01 -2.64305501e-01 -1.91533533e-01  8.10553860e+02]
+ [ 0.00000000e+00  0.00000000e+00  0.00000000e+00  1.00000000e+00]] 
+
+ [[ 2.64512403e-01  2.76439645e-01  9.23912502e-01  1.80450040e+02]
+ [-1.91247695e-01 -9.23971712e-01  3.31210800e-01  5.57978694e+02]
+ [ 9.45228812e-01 -2.64305501e-01 -1.91533533e-01  8.10553860e+02]
+ [ 0.00000000e+00  0.00000000e+00  0.00000000e+00  1.00000000e+00]]
+</code></pre>
+<p>画图直观展示</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># P0 </span></span><br><span class="line">Xp0, Yp0, Zp0= convert(M0, Xn, Yn, Z)</span><br><span class="line">plot_3D(Xp0, Yp0, Zp0)</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/18wang/media/%E7%A9%BA%E9%97%B4%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2/output_15_0.svg" alt="svg"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># P1</span></span><br><span class="line">Xp1, Yp1, Zp1= convert(M1, Xn, Yn, Z)</span><br><span class="line">plot_3D(Xp1, Yp1, Zp1)</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/18wang/media/%E7%A9%BA%E9%97%B4%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2/output_16_0.svg" alt="svg"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># P0-&gt;P1 </span></span><br><span class="line">Xp01, Yp01, Zp01= convert(M_byM, Xp0, Yp0, Zp0)</span><br><span class="line">plot_3D(Xp01, Yp01, Zp01)</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/18wang/media/%E7%A9%BA%E9%97%B4%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2/output_17_0.svg" alt="svg"></p>
+
+      
+      
+        
+      
+    </div>
+  </section>
+</article>
+
+          </div>
+        
       
         
           <div class='post-wrapper'>
@@ -518,10 +782,11 @@
       
         <h1 id="AutoHotKey-使用"><a class="header-anchor" href="#AutoHotKey-使用"></a>AutoHotKey 使用</h1>
 <p>在整理电子书的时候, 看到从一些网站下载的电子书中含有水印, 文字插入等难以通过PDF编辑器批量选中删除的内容, 于是考虑采用脚本, 批量操作的方法实现这一目标.</p>
-<p><code>AutoHotKey</code>就是这样一款卓越的脚本语言. 虽然充分理解和运用这一工具需要很多时间和精力, 但是在处理简单任务的时候, AHK上手也十分容易.</p>
+<p><code>AutoHotKey</code>就是这样一款卓越的脚本语言. 虽然充分理解和运用这一工具需要很多时间和精力, 但是在处理简单任务的时候, AHK上手也十分容易.<br>
+本文的一点资料在<a href="https://cdn.jsdelivr.net/gh/18wang/media@20.9.15/AutoHotKey%E5%85%A5%E9%97%A8/" target="_blank" rel="noopener">这里</a></p>
 <p>安装完AHK之后, 打开 Help 可以看到全部的帮助文件.</p>
 <h2 id="1-目标–删除位于文档固定位置的字符"><a class="header-anchor" href="#1-目标–删除位于文档固定位置的字符"></a>1. 目标–删除位于文档固定位置的字符</h2>
- <img src="https://cdn.jsdelivr.net/gh/18wang/media/AutoHotKey入门/1.jpg" style="transform:rotate(0deg);" width =600>         
+ <img src="https://cdn.jsdelivr.net/gh/18wang/media/AutoHotKey入门/1.jpg" style="transform:rotate(0deg);" width =100%>         
 <ul>
 <li>需要删除的文本位于文档的固定位置</li>
 </ul>
@@ -544,8 +809,10 @@
 <p>AHK 包含了一系列的 <code>热键(HotKey)</code>, 热键位于 <code>::</code> 的左侧, 在进行热键点击后, 会触发下面的语句</p>
 <figure class="highlight ahk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">^j::</span></span><br><span class="line"><span class="built_in">Send,</span> My First Script  <span class="comment">; sth</span></span><br><span class="line"><span class="keyword">return</span></span><br></pre></td></tr></table></figure>
 <blockquote>
-<p><code>1. ^j</code>表示点击<code>Control+j</code>, <code>Send</code> 可以发送文本和各种命令, <code>;</code> 右侧是不被执行的注释, 可以是中文<br>
-2. AHK 中, 命令和命令或参数之间, 用 “,” &quot; &quot; 分隔, 空格和逗号可以一起使用</p>
+<ol>
+<li><code>^j</code> 表示点击<code>Control+j</code>, <code>Send</code> 可以发送文本和各种命令, <code>;</code> 右侧是不被执行的注释, 可以是中文</li>
+<li>AHK 中, 命令和命令或参数之间, 用 “,” &quot; &quot; 分隔, 空格和逗号可以一起使用</li>
+</ol>
 </blockquote>
 </li>
 <li>
@@ -1087,120 +1354,6 @@ $$</p>
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/2020/08/19/kalman_filter/">
-      kalman_filter
-    </a>
-  </h2>
-
-
-      
-      <div class='new-meta-box'>
-        
-          
-        
-          
-            
-<div class='new-meta-item author'>
-  <a href="https://github.com/18wang" rel="nofollow">
-    <img src="https://avatars0.githubusercontent.com/u/25820978">
-    <p></p>
-  </a>
-</div>
-
-          
-        
-          
-            
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Aug 19, 2020</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="卡尔曼滤波-应用"><a class="header-anchor" href="#卡尔曼滤波-应用"></a>卡尔曼滤波 应用</h1>
-<p>激光雷达测距的数值经常发生跳变, 显示在软件里的值波动有点大.<br>
-用 matlab 对其进行滤波, 实现更好的显示效果, 提高测量精度.</p>
-<blockquote>
-<p>前情提要</p>
-</blockquote>
-<ul>
-<li>激光雷达的采样率是 1kHz, 1s 采 1000 个数据点</li>
-<li>目前的方法是, 对每1000个点排序, 去掉最大最小各100个点, 取均值, 效果不够好</li>
-<li>拟采用一种滤波的方法, 或者其他任何简单方便的算法, 得到稳定的测距值</li>
-<li>当前只要处理实测距离不变, 测量值的跳变的问题; 若遇实际距离变化, 可能需要其他算法</li>
-</ul>
-<h2 id="数据文件"><a class="header-anchor" href="#数据文件"></a>数据文件</h2>
-<p>存储读数的csv文件结构如 图1 所示</p>
-<p><img src="https://cdn.jsdelivr.net/gh/18wang/media/kalman_filter/1.jpg" alt=""></p>
-<h2 id="卡尔曼滤波器"><a class="header-anchor" href="#卡尔曼滤波器"></a>卡尔曼滤波器</h2>
-<p>实用参考: 卡尔曼滤波 <a href="https://zhuanlan.zhihu.com/p/39912633" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/39912633</a><br>
-Matlab实现 <a href="https://blog.csdn.net/zengxiantao1994/article/details/71170728" target="_blank" rel="noopener">https://blog.csdn.net/zengxiantao1994/article/details/71170728</a></p>
-<p>这里面就不再赘述了, 知识点忘记了就回顾一下<br>
-总之, 卡尔曼滤波在输出预测, 信号滤波方面有着广泛的应用, 而且简单性能不错.</p>
-<p><strong>还可以深入学习的地方就是, 对参数的物理意义进一步深入理解, 便于调解应用</strong></p>
-<h2 id="程序实现"><a class="header-anchor" href="#程序实现"></a>程序实现</h2>
-<p>Matlab 实现</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%% 卡尔曼滤波</span></span><br><span class="line"><span class="comment">% 实用参考: 卡尔曼滤波 https://zhuanlan.zhihu.com/p/39912633</span></span><br><span class="line"><span class="comment">% Matlab实现 https://blog.csdn.net/zengxiantao1994/article/details/71170728</span></span><br><span class="line"></span><br><span class="line">filename = [<span class="string">"2020-4-18-1320.csv"</span>, <span class="string">"2020-4-18-1324.csv"</span> , <span class="string">"2020-4-18-1339.csv"</span>]; </span><br><span class="line">address = <span class="string">'E:\Temp\testdata\';          % 地址</span></span><br><span class="line"><span class="string">pL = 1000;      % 1khz采样 </span></span><br><span class="line"><span class="string">sz = [2, 1];    % 保存 k-1估计值 和 k时刻估计值 即可</span></span><br><span class="line"><span class="string">Q = 1e-10;      % 过程方差，反映连续两个采样点值的方差  Q↑ 稳定性↓ 示数变化速率↑</span></span><br><span class="line"><span class="string">R = 1e0;        % 测量方差，反映激光器的测量精度    R↑ 稳定性↑ 示数变化速率↓  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">% 卡尔曼滤波器 我这里写的是针对线性系统的, 所以对于距离变化这种非线性的情况比较糟糕, 要么反应慢, 要么效果差</span></span><br><span class="line"><span class="string">% 我们可以设定一个阈值判断, 譬如说前后两秒的均值差距超过 T  , 停用滤波, 差距小于 T (距离不变) 启用卡尔曼滤波</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">for i = 1  % length(filename)       % 文件名循环    </span></span><br><span class="line"><span class="string">    data = csvread(strcat(address, filename(i)));</span></span><br><span class="line"><span class="string">    [row, col] = size(data);                    % 每个csv行列大小</span></span><br><span class="line"><span class="string">    mean1s = zeros([fix(row/pL), 1]);           % 均值 每 1s 数据</span></span><br><span class="line"><span class="string">    mean1skal = zeros([fix(row/pL), 1]);        % kalman滤波后均值</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    %% kalman数据初始化</span></span><br><span class="line"><span class="string">    dhat = zeros(sz);       % 对距离的后验估计, 即在k时刻，结合当前采样值与k-1时刻先验估计，得到结果</span></span><br><span class="line"><span class="string">    dhatresult = zeros([pL,1]);     % 存储 dhat 结果</span></span><br><span class="line"><span class="string">    P = zeros(sz);          % 后验估计方差</span></span><br><span class="line"><span class="string">    dhatminus = zeros(sz);  % 先验估计值</span></span><br><span class="line"><span class="string">    Pminus = zeros(sz);     % 先验估计方差 </span></span><br><span class="line"><span class="string">    K = zeros(sz);          % 卡尔曼增益</span></span><br><span class="line"><span class="string">    dhat(1) = data(1,1)+0.; % 最初的估计, 这里用均值</span></span><br><span class="line"><span class="string">    P(1) = 0.1;             % 方差初值</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    for j = 1 :  fix(row/pL)  </span></span><br><span class="line"><span class="string">        % 1s 数据点获取</span></span><br><span class="line"><span class="string">        d1000 = data((j-1)*pL+1:j*pL, 1);        </span></span><br><span class="line"><span class="string">        avg = mean(d1000);      % 均值</span></span><br><span class="line"><span class="string">        mean1s(j) = avg;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        %% 卡尔曼滤波</span></span><br><span class="line"><span class="string">        for k = 2 : pL</span></span><br><span class="line"><span class="string">            dhatminus(2) = dhat(1);       % 时间更新, 沿用之前的估计值</span></span><br><span class="line"><span class="string">            Pminus(2) = P(1) + Q;         % 预测方差=前时刻方差+过程方差</span></span><br><span class="line"><span class="string">            K(2) = Pminus(2) / (Pminus(2) + R); % 计算卡尔曼增益</span></span><br><span class="line"><span class="string">            dhat(2) = dhatminus(2) + K(2) * (d1000(k) - dhatminus(2));  % 校正后最优估计结果</span></span><br><span class="line"><span class="string">            P(2) = (1 - K(2)) * Pminus(2);      % 计算最优估计方差</span></span><br><span class="line"><span class="string">            </span></span><br><span class="line"><span class="string">            if k == 2</span></span><br><span class="line"><span class="string">                dhatresult(k-1) = dhat(k-1);    % 存储 dhat(1)</span></span><br><span class="line"><span class="string">            end</span></span><br><span class="line"><span class="string">            dhatresult(k) = dhat(2);</span></span><br><span class="line"><span class="string">            P(1) = P(2);                       % 更新后验估计方差 </span></span><br><span class="line"><span class="string">            dhat(1) = dhat(2);                 % 更新下 1s 最初的估计, 这里用上一秒最后一个采样点</span></span><br><span class="line"><span class="string">        end</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        mean1skal(j) = mean(dhatresult(1:end));   % 取 某 点以后的</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        % %% 画图 滤波前后 对比结果</span></span><br><span class="line"><span class="string">        % figure(1);</span></span><br><span class="line"><span class="string">        % plot((j-1)*pL+1:j*pL, dhat);</span></span><br><span class="line"><span class="string">        % hold on;</span></span><br><span class="line"><span class="string">        % % plot([lmax+(j-1)*pL, lmin+(j-1)*pL], [dmax,dmin], '</span>ro');</span><br><span class="line">        <span class="comment">% % hold on;</span></span><br><span class="line">        <span class="comment">% plot((j-1)*pL+1:j*pL, d1000);</span></span><br><span class="line">        <span class="comment">% hold on;</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">% plot([(j-1)*pL+1, j*pL], [avg, avg], 'g');</span></span><br><span class="line">        <span class="comment">% % legend(&#123;'datacurve',strcat('extreme point \delta:', num2str(delta), ' avg:', num2str(avg)) &#125;, 'Location', 'best');</span></span><br><span class="line">        <span class="comment">% hold off;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">% % 保存图片</span></span><br><span class="line">        <span class="comment">% saveas(1, strcat(address, 'figure\kalman',  filename(i), '-',num2str(j), '.jpg'));           </span></span><br><span class="line">        <span class="comment">% close;</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="built_in">figure</span>(<span class="built_in">i</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">plot</span>(mean1skal(<span class="number">1</span>:<span class="keyword">end</span>), <span class="string">'-o'</span>);</span><br><span class="line">    <span class="built_in">hold</span> on;</span><br><span class="line">    </span><br><span class="line">    title(<span class="string">'kalman vs ordinary data mean'</span>);</span><br><span class="line">    xlabel(<span class="string">'s'</span>);</span><br><span class="line">    ylabel(<span class="string">'value'</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">plot</span>(mean1s(<span class="number">1</span>:<span class="keyword">end</span>), <span class="string">'--^'</span>);</span><br><span class="line">    <span class="built_in">hold</span> off;   </span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<h2 id="结果展示"><a class="header-anchor" href="#结果展示"></a>结果展示</h2>
-<p>取了前10s的信号, 红色是原始信号, 绿色是原始信号均值, 蓝色是滤波后信号, 效果很不错.</p>
-<p><img src="https://cdn.jsdelivr.net/gh/18wang/media/kalman_filter/2.svg" alt="svg"></p>
-<p>把每秒的1000个信号取均值, 画出来的结果, 也显示, 平稳了很多.</p>
-<p><img src="https://cdn.jsdelivr.net/gh/18wang/media/kalman_filter/3.svg" alt="svg"></p>
-<p><em>程序和数据文件被放在了<a href="https://github.com/18wang/media/tree/master/kalman_filter">这里</a></em></p>
-<p><em>还有媛姐改成的<a href="https://github.com/18wang/media/tree/master/kalman_filter/Kalman">C#文件</a></em></p>
-
-      
-      
-        
-      
-    </div>
-  </section>
-</article>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1209,12 +1362,12 @@ Matlab实现 <a href="https://blog.csdn.net/zengxiantao1994/article/details/7117
       <div class="prev-next">
         
         <p class="current">
-          1 / 2
+          1 / 3
         </p>
         
           <a class="next" rel="next" href="/page/2/">
             <section class="post next white-box shadow">
-              &nbsp;Next&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
+              &nbsp;下一頁&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
             </section>
           </a>
         
@@ -1379,19 +1532,19 @@ Matlab实现 <a href="https://blog.csdn.net/zengxiantao1994/article/details/7117
       
     
       
-        <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
+        <div><p>博客內容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh_TW" target="_blank" rel="noopener">姓名標示-非商業性-相同方式分享 4.0 國際 (CC BY-NC-SA 4.0) 協議</a></p>
 </div>
       
     
       
-        Use
+        本站使用
         <a href="https://volantis.js.org/" target="_blank" class="codename">Volantis</a>
-        as theme
+        作為主題
         
-          , 
-          total visits
+          ，
+          總訪問量為
           <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
-          times
+          次
         
       
     

@@ -433,10 +433,11 @@
           
           <h1 id="AutoHotKey-使用"><a class="header-anchor" href="#AutoHotKey-使用"></a>AutoHotKey 使用</h1>
 <p>在整理电子书的时候, 看到从一些网站下载的电子书中含有水印, 文字插入等难以通过PDF编辑器批量选中删除的内容, 于是考虑采用脚本, 批量操作的方法实现这一目标.</p>
-<p><code>AutoHotKey</code>就是这样一款卓越的脚本语言. 虽然充分理解和运用这一工具需要很多时间和精力, 但是在处理简单任务的时候, AHK上手也十分容易.</p>
+<p><code>AutoHotKey</code>就是这样一款卓越的脚本语言. 虽然充分理解和运用这一工具需要很多时间和精力, 但是在处理简单任务的时候, AHK上手也十分容易.<br>
+本文的一点资料在<a href="https://cdn.jsdelivr.net/gh/18wang/media@20.9.15/AutoHotKey%E5%85%A5%E9%97%A8/" target="_blank" rel="noopener">这里</a></p>
 <p>安装完AHK之后, 打开 Help 可以看到全部的帮助文件.</p>
 <h2 id="1-目标–删除位于文档固定位置的字符"><a class="header-anchor" href="#1-目标–删除位于文档固定位置的字符"></a>1. 目标–删除位于文档固定位置的字符</h2>
- <img src="https://cdn.jsdelivr.net/gh/18wang/media/AutoHotKey入门/1.jpg" style="transform:rotate(0deg);" width =600>         
+ <img src="https://cdn.jsdelivr.net/gh/18wang/media/AutoHotKey入门/1.jpg" style="transform:rotate(0deg);" width =100%>         
 <ul>
 <li>需要删除的文本位于文档的固定位置</li>
 </ul>
@@ -459,8 +460,10 @@
 <p>AHK 包含了一系列的 <code>热键(HotKey)</code>, 热键位于 <code>::</code> 的左侧, 在进行热键点击后, 会触发下面的语句</p>
 <figure class="highlight ahk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">^j::</span></span><br><span class="line"><span class="built_in">Send,</span> My First Script  <span class="comment">; sth</span></span><br><span class="line"><span class="keyword">return</span></span><br></pre></td></tr></table></figure>
 <blockquote>
-<p><code>1. ^j</code>表示点击<code>Control+j</code>, <code>Send</code> 可以发送文本和各种命令, <code>;</code> 右侧是不被执行的注释, 可以是中文<br>
-2. AHK 中, 命令和命令或参数之间, 用 “,” &quot; &quot; 分隔, 空格和逗号可以一起使用</p>
+<ol>
+<li><code>^j</code> 表示点击<code>Control+j</code>, <code>Send</code> 可以发送文本和各种命令, <code>;</code> 右侧是不被执行的注释, 可以是中文</li>
+<li>AHK 中, 命令和命令或参数之间, 用 “,” &quot; &quot; 分隔, 空格和逗号可以一起使用</li>
+</ol>
 </blockquote>
 </li>
 <li>
@@ -515,10 +518,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-15T15:39:45+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-16T12:34:01+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Sep 15, 2020</p>
+    <p>更新于：Sep 16, 2020</p>
   </a>
 </div>
 
@@ -589,6 +592,17 @@
         
         
           <div class="prev-next">
+            
+              <a class='prev' href='/2020/09/16/%E7%A9%BA%E9%97%B4%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2/'>
+                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>空间坐标变换</p>
+                <p class='content'>空间坐标变换
+1. 以当前坐标为中心的变换矩阵
+平移矩阵:
+$$
+Mm=\left[\begin{array}{llll}
+1 &amp; 0 &amp; 0 &amp; d x \
+0 &am...</p>
+              </a>
             
             
               <a class='next' href='/2020/09/14/%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3/'>
@@ -727,19 +741,19 @@
       
     
       
-        <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
+        <div><p>博客內容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh_TW" target="_blank" rel="noopener">姓名標示-非商業性-相同方式分享 4.0 國際 (CC BY-NC-SA 4.0) 協議</a></p>
 </div>
       
     
       
-        Use
+        本站使用
         <a href="https://volantis.js.org/" target="_blank" class="codename">Volantis</a>
-        as theme
+        作為主題
         
-          , 
-          total visits
+          ，
+          總訪問量為
           <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
-          times
+          次
         
       
     
