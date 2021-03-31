@@ -18,7 +18,7 @@
 
   <!-- 页面元数据 -->
   
-    <title>Archive: 2020 - 18wang</title>
+    <title>归档：2020 - 18wang</title>
   
   
 
@@ -510,25 +510,38 @@
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="小波变换"><a href="#小波变换" class="headerlink" title="小波变换"></a>小波变换</h2><h3 id="重要参数"><a href="#重要参数" class="headerlink" title="重要参数"></a>重要参数</h3><ul>
-<li>scaling 尺度系数 $s$<br>可以表示为 <script type="math/tex; mode=display">\Psi\left(\frac{\mathrm{t}}{\mathrm{s}}\right) \mathrm{s}>0</script><blockquote>
+        <h2 id="小波变换"><a class="header-anchor" href="#小波变换"></a>小波变换</h2>
+<h3 id="重要参数"><a class="header-anchor" href="#重要参数"></a>重要参数</h3>
+<ul>
+<li>scaling 尺度系数 $s$<br>
+可以表示为<br>
+$$\Psi\left(\frac{\mathrm{t}}{\mathrm{s}}\right) \mathrm{s}&gt;0$$
+<blockquote>
 <p>信号在时间尺度上的拉伸&amp;压缩, s越大, 拉伸越大. 即 和等效频率成反比关系.</p>
 </blockquote>
 </li>
-<li>shifting 平移<blockquote>
+<li>shifting 平移
+<blockquote>
 <p>用于对齐小波对应的信号位置</p>
 </blockquote>
 </li>
-<li>center frequency 中心频率 $C_f$<br>和傅里叶变换的<code>等效频率</code>为<script type="math/tex; mode=display">F_{e q}=\frac{C_{f}}{s \delta t}</script>$\delta t$为采样间隔</li>
+<li>center frequency 中心频率 $C_f$<br>
+和傅里叶变换的<code>等效频率</code>为<br>
+$$F_{e q}=\frac{C_{f}}{s \delta t}$$<br>
+$\delta t$为采样间隔</li>
 </ul>
-<h3 id="连续小波变换-Continuous-wavelet-transform-CWT"><a href="#连续小波变换-Continuous-wavelet-transform-CWT" class="headerlink" title="连续小波变换 Continuous wavelet transform CWT"></a>连续小波变换 Continuous wavelet transform CWT</h3><h3 id="离散小波变换-Discrete-wavelet-transform"><a href="#离散小波变换-Discrete-wavelet-transform" class="headerlink" title="离散小波变换 Discrete wavelet transform"></a>离散小波变换 Discrete wavelet transform</h3><h3 id="第2讲课后练习：证明Fourier变换的性质"><a href="#第2讲课后练习：证明Fourier变换的性质" class="headerlink" title="第2讲课后练习：证明Fourier变换的性质"></a>第2讲课后练习：证明Fourier变换的性质</h3><p> 姓名: <strong>汪星宇</strong><br> 学号: <strong>XS20073058</strong></p>
+<h3 id="连续小波变换-Continuous-wavelet-transform-CWT"><a class="header-anchor" href="#连续小波变换-Continuous-wavelet-transform-CWT"></a>连续小波变换 Continuous wavelet transform CWT</h3>
+<h3 id="离散小波变换-Discrete-wavelet-transform"><a class="header-anchor" href="#离散小波变换-Discrete-wavelet-transform"></a>离散小波变换 Discrete wavelet transform</h3>
+<h3 id="第2讲课后练习：证明Fourier变换的性质"><a class="header-anchor" href="#第2讲课后练习：证明Fourier变换的性质"></a>第2讲课后练习：证明Fourier变换的性质</h3>
+<p>姓名: <strong>汪星宇</strong><br>
+学号: <strong>XS20073058</strong></p>
 <p>(4) $F[f * g]=\hat{f} \cdot \hat{g}$</p>
 <p>证明:</p>
 <p>$F[f * g] = \int_{-\infty}^{+\infty} \left[ \int_{-\infty}^{+\infty} f(\tau)g(t-\tau) d \tau \right] e^{-j\omega t}dt$</p>
 <p>$ = \int_{-\infty}^{+\infty} f(\tau) \left[ \int_{-\infty}^{+\infty} g(t-\tau)  e^{-j\omega (t-\tau)} dt \right] e^{-j\omega \tau} d\tau $</p>
 <p>$ = \int_{-\infty}^{+\infty} f(\tau)e^{-j\omega \tau} d\tau  \int_{-\infty}^{+\infty} g(t-\tau)  e^{-j\omega (t-\tau)} d(t-\tau)  $</p>
 <p>$ = \hat{f} \cdot \hat{g} $</p>
-<p><br></p>
+<br>
 <p>(5) $\langle f, g\rangle_{L^{2}}=\frac{1}{2 \pi}\langle\hat{f}, \hat{g}\rangle_{L^{2}}$</p>
 <p>证明:</p>
 <p>对于 $f \in \mathbf{L}^{2}(\mathbb{R})$ 和 $g \in \mathbf{L}^{2}(\mathbb{R})$ , 有 $\langle f, g\rangle=\int_{-\infty}^{+\infty} f(t) g^{*}(t) d t$</p>
@@ -541,91 +554,105 @@
 <blockquote>
 <p>参考 mallat3 P39</p>
 </blockquote>
-<h3 id="第3讲课后练习：证明序列采样率变化后的性质"><a href="#第3讲课后练习：证明序列采样率变化后的性质" class="headerlink" title="第3讲课后练习：证明序列采样率变化后的性质"></a>第3讲课后练习：证明序列采样率变化后的性质</h3><p> 姓名: <strong>汪星宇</strong><br> 学号: <strong>XS20073058</strong></p>
-<p>(1) $Y_{D}\left(\mathrm{e}^{i \omega}\right)=\frac{1}{M} \sum_{k=0}^{M-1} X\left(e^{i(\omega-2 \pi k) / M}\right)$ </p>
+<h3 id="第3讲课后练习：证明序列采样率变化后的性质"><a class="header-anchor" href="#第3讲课后练习：证明序列采样率变化后的性质"></a>第3讲课后练习：证明序列采样率变化后的性质</h3>
+<p>姓名: <strong>汪星宇</strong><br>
+学号: <strong>XS20073058</strong></p>
+<p>(1) $Y_{D}\left(\mathrm{e}^{i \omega}\right)=\frac{1}{M} \sum_{k=0}^{M-1} X\left(e^{i(\omega-2 \pi k) / M}\right)$</p>
 <p>证明:</p>
-<p>设$x^{‘}(n)=\left\{\begin{array}{lc} x(n), &amp;\text{n为M倍数} \ 0,&amp; \text{其他.}<br>\end{array}\right.$</p>
-<p>则 $y_{D}(n)=x(M n)=x^{‘}(Mn)$</p>
-<p>因此 $Y_{D}(e^{i\omega})=\sum_{n=-\infty}^{\infty}x^{‘}(Mn)e^{-i\omega n}$</p>
-<p>令 $k=Mn$. 则 $Y_{D}(e^{i\omega})=\sum_{k=-\infty}^{\infty}x^{‘}(k)e^{-i\omega k/M} =X^{‘}(e^{i\omega /M})$ </p>
-<p>令 $x^{‘}(n)=c_{M}(n)x(n)$, 其中 $c_{M}(n)=\left\{\begin{array}{lc}1, &amp; \text {n为M倍数} \ 0, &amp; \text { 其他. }\end{array}\right.$</p>
+<p>设$x^{’}(n)=\left{\begin{array}{lc} x(n), &amp;\text{n为M倍数} \ 0,&amp; \text{其他.}<br>
+\end{array}\right.$</p>
+<p>则 $y_{D}(n)=x(M n)=x^{’}(Mn)$</p>
+<p>因此 $Y_{D}(e<sup>{i\omega})=\sum_{n=-\infty}</sup>{\infty}x<sup>{’}(Mn)e</sup>{-i\omega n}$</p>
+<p>令 $k=Mn$. 则 $Y_{D}(e<sup>{i\omega})=\sum_{k=-\infty}</sup>{\infty}x<sup>{’}(k)e</sup>{-i\omega k/M} =X<sup>{’}(e</sup>{i\omega /M})$</p>
+<p>令 $x^{’}(n)=c_{M}(n)x(n)$, 其中 $c_{M}(n)=\left{\begin{array}{lc}1, &amp; \text {n为M倍数} \ 0, &amp; \text { 其他. }\end{array}\right.$</p>
 <p>对 $c_{M}(n)$ 进行傅里叶展开得到 $c_{M}(n)=\frac{1}{M} \sum_{k=0}^{M-1} \exp \left(\frac{i 2 \pi k n}{M}\right)$</p>
-<p>因此 $x^{‘}(n)$ 的傅里叶变换为 </p>
-<p>$X^{‘}(e^{i\omega})=\sum_{n=-\infty}^{\infty} x(n) c_{M}(n) e^{-i\omega n}$</p>
+<p>因此 $x^{’}(n)$ 的傅里叶变换为</p>
+<p>$X<sup>{’}(e</sup>{i\omega})=\sum_{n=-\infty}^{\infty} x(n) c_{M}(n) e^{-i\omega n}$</p>
 <p>$=\frac{1}{M} \sum_{k=0}^{M-1} \sum_{n=-\infty}^{\infty} x(n)e^{-in(\omega-2\pi k/M)}=\frac{1}{M} \sum_{k=0}^{M-1} X(e^{i(\omega-2\pi k/M)})$</p>
 <p>对应 $y_{D}(n)$ 的变换为 $Y_{D}\left(\mathrm{e}^{i \omega}\right) = \frac{1}{M} \sum_{k=0}^{M-1} X(e^{i(\omega/M-2\pi k/M)})$</p>
-<p>即 $Y_{D}\left(\mathrm{e}^{i \omega}\right)=\frac{1}{M} \sum_{k=0}^{M-1} X\left(e^{i(\omega-2 \pi k) / M}\right)$ </p>
+<p>即 $Y_{D}\left(\mathrm{e}^{i \omega}\right)=\frac{1}{M} \sum_{k=0}^{M-1} X\left(e^{i(\omega-2 \pi k) / M}\right)$</p>
 <p><a href="https://www.sciencedirect.com/topics/engineering/decimator" target="_blank" rel="noopener">证明参考</a></p>
-<p><br></p>
+<br>
 <p>(2) $Y_{E}\left(\mathrm{e}^{i \omega}\right)=X\left(\mathrm{e}^{i \omega L}\right)$</p>
-<p>证明:<br>$y_{E}(n)=\left\{\begin{array}{l}x(n / L), n=0,\plusmn L,\plusmn 2L,…  \ 0, otherwise \end{array}\right.$</p>
+<p>证明:<br>
+$y_{E}(n)=\left{\begin{array}{l}x(n / L), n=0,\plusmn L,\plusmn 2L,…  \ 0, otherwise \end{array}\right.$</p>
 <p>有 $Y_{E}\left(\mathrm{e}^{i \omega}\right) = \sum_{n=-\infty }^{+\infty} y_{E}(n)e^{-i\omega n}$</p>
 <p>令 $n=kL, k\in \mathbb{Z}$</p>
 <p>$Y_{E}\left(\mathrm{e}^{i \omega}\right) = \sum_{k=-\infty }^{+\infty} x(kL/L)e^{-i\omega kL} = \sum_{k=-\infty }^{+\infty} x(k)e^{-i(\omega L) k} = X\left(\mathrm{e}^{i \omega L}\right)$</p>
-<h3 id="第4讲课后练习：证明Haar小波滤波器组的性质"><a href="#第4讲课后练习：证明Haar小波滤波器组的性质" class="headerlink" title="第4讲课后练习：证明Haar小波滤波器组的性质"></a>第4讲课后练习：证明Haar小波滤波器组的性质</h3><p> 姓名: <strong>汪星宇</strong><br> 学号: <strong>XS20073058</strong></p>
+<h3 id="第4讲课后练习：证明Haar小波滤波器组的性质"><a class="header-anchor" href="#第4讲课后练习：证明Haar小波滤波器组的性质"></a>第4讲课后练习：证明Haar小波滤波器组的性质</h3>
+<p>姓名: <strong>汪星宇</strong><br>
+学号: <strong>XS20073058</strong></p>
 <ol>
 <li>证明下式对应的变换可以用图1所示的重构滤波结构实现，其中$\widetilde{H}$和$\widetilde{G}$如题2所示：</li>
 </ol>
-<p><img src="4.png" style="transform:rotate(0deg);" width =80%></p>
-<p>证明:<br>$c_j$ 上采样之后的信号为 $\left\{\begin{array}{l} c^{‘}_{j,2k} = c_{j,k}   \ c^{‘}_{j,2k+1} =0 \end{array}\right.$</p>
-<p>$d_j$ 上采样之后的信号为 $\left\{\begin{array}{l} d^{‘}_{j,2k} = d_{j,k}   \ d^{‘}_{j,2k+1} =0 \end{array}\right.$</p>
-<p>则 $\left\{\begin{array}{l} c_{j-1,2k}=\sum_{n}{} \left[ \widetilde{h}(n) c^{‘}_{j,2k-n} + \widetilde{g}(n) d^{‘}_{j,2k-n} \right] \ c_{j-1,2k+1}=\sum_{n}{} \left[ \widetilde{h}(n) c^{‘}_{j,2k+1-n} + \widetilde{g}(n) d^{‘}_{j,2k+1-n} \right] \end{array}\right.$</p>
-<p>根据 $\left\{\begin{array}{l}c_{j-1,2 k}=\frac{1}{\sqrt{2}}\left(c_{j, k}+d_{j, k}\right) \ c_{j-1,2 k+1}=\frac{1}{\sqrt{2}}\left(c_{j, k}-d_{j, k}\right)\end{array}\right.$</p>
+<img src="4.png" style="transform:rotate(0deg);" width =80%>
+<p>证明:<br>
+$c_j$ 上采样之后的信号为 $\left{\begin{array}{l} c^{’}<em>{j,2k} = c</em>{j,k}   \ c^{’}_{j,2k+1} =0 \end{array}\right.$</p>
+<p>$d_j$ 上采样之后的信号为 $\left{\begin{array}{l} d^{’}<em>{j,2k} = d</em>{j,k}   \ d^{’}_{j,2k+1} =0 \end{array}\right.$</p>
+<p>则 $\left{\begin{array}{l} c_{j-1,2k}=\sum_{n}{} \left[ \widetilde{h}(n) c^{’}<em>{j,2k-n} + \widetilde{g}(n) d^{’}</em>{j,2k-n} \right] \ c_{j-1,2k+1}=\sum_{n}{} \left[ \widetilde{h}(n) c^{’}<em>{j,2k+1-n} + \widetilde{g}(n) d^{’}</em>{j,2k+1-n} \right] \end{array}\right.$</p>
+<p>根据 $\left{\begin{array}{l}c_{j-1,2 k}=\frac{1}{\sqrt{2}}\left(c_{j, k}+d_{j, k}\right) \ c_{j-1,2 k+1}=\frac{1}{\sqrt{2}}\left(c_{j, k}-d_{j, k}\right)\end{array}\right.$</p>
 <p>可以解得 $\widetilde{h}(0)=\frac{1}{\sqrt{2}}, \widetilde{g}(0)=\frac{1}{\sqrt{2}}, \widetilde{h}(1)=\frac{1}{\sqrt{2}}, \widetilde{g}(1)=-\frac{1}{\sqrt{2}}$</p>
-<p>即存在 $\widetilde{H}(z), \widetilde{G}(z)$ 使得重构滤波器能够满足对应变换. </p>
-<p><br></p>
-<ol>
-<li>证明下图所示的Haar小波滤波器组是完全重构滤波器组，也即系统的输出与输入相同（至多相差某个延时） </li>
+<p>即存在 $\widetilde{H}(z), \widetilde{G}(z)$ 使得重构滤波器能够满足对应变换.</p>
+<br>
+<ol start="2">
+<li>证明下图所示的Haar小波滤波器组是完全重构滤波器组，也即系统的输出与输入相同（至多相差某个延时）</li>
 </ol>
-<p><img src="4-2.png" style="transform:rotate(0deg);" width =90%></p>
-<p>其中<br><img src="4-3.png" style="transform:rotate(0deg);" width =50%></p>
+<img src="4-2.png" style="transform:rotate(0deg);" width =90%>
+<p>其中<br>
+<img src="4-3.png" style="transform:rotate(0deg);" width =50%></p>
 <p>证明:</p>
 <p>根据多采样率系统的性质, 在<code>Z变换域</code>上给出如下证明.</p>
 <p>对于$M$倍下采样而言, 输出信号 $Y_{D}(z)=\frac{1}{M} \sum_{k=0}^{M-1} X\left(e^{-2 \pi k i / M} z^{\frac{1}{M}}\right)$</p>
 <p>对于$L$倍上采样, 输出信号 $Y_{E}\left(z\right)=X\left(z^{L}\right)$</p>
-<p>上图系统中, $L=M=2$ 连续通过下采样和上采样系统的输出信号 $Y(z)=\frac{1}{2} \sum_{k=0}^{2-1} X\left((e^{-2 \pi k i / 2} z^{\frac{1}{2}})^{2}\right)=\frac{1}{2}X(z)+\frac{1}{2}X(e^{-2\pi }z) = X(z)$ </p>
+<p>上图系统中, $L=M=2$ 连续通过下采样和上采样系统的输出信号 $Y(z)=\frac{1}{2} \sum_{k=0}^{2-1} X\left((e^{-2 \pi k i / 2} z<sup>{\frac{1}{2}})</sup>{2}\right)=\frac{1}{2}X(z)+\frac{1}{2}X(e^{-2\pi }z) = X(z)$</p>
 <p>即 $H_{ML}(z) = 1$</p>
-<p>则整个系统函数为 $\frac{1}{2} H(z)\widetilde{H}(z)+\frac{1}{2} G(z)\widetilde{G}(z) = \frac{1}{2}\cdot \frac{1}{2}(1+1+z+z^{-1}+1+1-z-z^{-1})=1$</p>
+<p>则整个系统函数为 $\frac{1}{2} H(z)\widetilde{H}(z)+\frac{1}{2} G(z)\widetilde{G}(z) = \frac{1}{2}\cdot \frac{1}{2}(1+1+z+z<sup>{-1}+1+1-z-z</sup>{-1})=1$</p>
 <p>所以该滤波器组是完全重构滤波器组.</p>
-<h3 id="第5讲课后练习：证明连续小波变换完全重构定理等"><a href="#第5讲课后练习：证明连续小波变换完全重构定理等" class="headerlink" title="第5讲课后练习：证明连续小波变换完全重构定理等"></a>第5讲课后练习：证明连续小波变换完全重构定理等</h3><p> 姓名: <strong>汪星宇</strong><br> 学号: <strong>XS20073058</strong></p>
+<h3 id="第5讲课后练习：证明连续小波变换完全重构定理等"><a class="header-anchor" href="#第5讲课后练习：证明连续小波变换完全重构定理等"></a>第5讲课后练习：证明连续小波变换完全重构定理等</h3>
+<p>姓名: <strong>汪星宇</strong><br>
+学号: <strong>XS20073058</strong></p>
 <ol>
 <li>证明小波完全重构定理：</li>
 </ol>
-<p><img src="1.bmp" style="transform:rotate(0deg);" width =80%></p>
+<img src="1.bmp" style="transform:rotate(0deg);" width =80%>
 <p>(1) $f(t)=\frac{1}{C_{\psi}} \int_{0}^{+\infty} \int_{-\infty}^{+\infty} W f(s, u) \frac{1}{\sqrt{s}} \psi\left(\frac{t-u}{s}\right) d u \frac{1}{s^{2}} d s$</p>
 <p>证明:</p>
 <p>已知 $\psi_{u, s}(t)=\frac{1}{\sqrt{s}} \psi\left(\frac{t-u}{s}\right)$, $\psi_{s}(t)=\frac{1}{\sqrt{s}} \psi\left(\frac{-t}{s}\right)$</p>
-<p>$W f(s, u) = \left(f\star \psi_{s}^{<em>}\right)(u)=\int_{-\infty}^{+\infty}f(t) \frac{1}{\sqrt{s}} \psi ^ {</em>} \left(\frac{t-u}{s}\right) dt$</p>
-<p>则 $\int_{-\infty}^{+\infty} W f(s, u) \frac{1}{\sqrt{s}} \psi\left(\frac{t-u}{s}\right) du = \left(W f(s,u) \star \psi_{s}^{‘}\right)(t)= \left(f\star\psi^{*}_{s}\star\psi_{s}^{‘}\right)(t)$</p>
-<p>其中 $\psi_{s}^{‘}(t) =\psi_{s}(-t) = \frac{1}{\sqrt{s}} \psi\left(\frac{t}{s}\right)$</p>
+<p>$W f(s, u) = \left(f\star \psi_{s}<sup>{*}\right)(u)=\int_{-\infty}</sup>{+\infty}f(t) \frac{1}{\sqrt{s}} \psi ^ {*} \left(\frac{t-u}{s}\right) dt$</p>
+<p>则 $\int_{-\infty}^{+\infty} W f(s, u) \frac{1}{\sqrt{s}} \psi\left(\frac{t-u}{s}\right) du = \left(W f(s,u) \star \psi_{s}^{’}\right)(t)= \left(f\star\psi<sup>{*}_{s}\star\psi_{s}</sup>{’}\right)(t)$</p>
+<p>其中 $\psi_{s}^{’}(t) =\psi_{s}(-t) = \frac{1}{\sqrt{s}} \psi\left(\frac{t}{s}\right)$</p>
 <p>因此, 右式 $=\frac{1}{C_{\psi}} \int_{0}^{+\infty} \int_{-\infty}^{+\infty} W f(s, u) \frac{1}{\sqrt{s}} \psi\left(\frac{t-u}{s}\right) d u \frac{1}{s^{2}} d s$</p>
-<p>$= \frac{1}{C_{\psi}} \int_{0}^{+\infty} \left(f\star\psi^{*}_{s}\star\psi_{s}^{‘}\right)(t) \frac{1}{s^{2}} ds$</p>
-<p>且有 $\hat{\psi}^{<em>}_{s}(\omega) = \sqrt{s}\hat{\psi}^{</em>}(\omega s)$, $\hat{\psi}^{‘}_{s}(\omega) = \sqrt{s}\hat{\psi}(\omega s)$</p>
+<p>$= \frac{1}{C_{\psi}} \int_{0}^{+\infty} \left(f\star\psi<sup>{*}_{s}\star\psi_{s}</sup>{’}\right)(t) \frac{1}{s^{2}} ds$</p>
+<p>且有 $\hat{\psi}^{<em>}_{s}(\omega) = \sqrt{s}\hat{\psi}^{</em>}(\omega s)$, $\hat{\psi}^{’}_{s}(\omega) = \sqrt{s}\hat{\psi}(\omega s)$</p>
 <p>对右式做傅里叶变换可得</p>
-<p>右侧 $= \frac{1}{C_{\psi}} \int_{-\infty}^{+\infty} \int_{0}^{+\infty} \left(f\star\psi^{*}_{s}\star\psi_{s}^{‘}\right)(t) \frac{1}{s^{2}}ds \cdot e^{-j\omega t}dt$</p>
-<p>$=\frac{1}{C_{\psi}}  \int_{0}^{+\infty} \int_{-\infty}^{+\infty}\left(f\star\psi^{*}_{s}\star\psi_{s}^{‘}\right)(t) e^{-j\omega t}dt\cdot\frac{1}{s^{2}}ds$</p>
-<script type="math/tex; mode=display">=\frac{1}{C_{\psi}} \hat{f}(\omega) \int_{0}^{+\infty} |\hat{\psi}(\omega s)|^{2}\frac{1}{s}ds \tag{1.1}</script><p>令 $\omega s=k$ </p>
+<p>右侧 $= \frac{1}{C_{\psi}} \int_{-\infty}^{+\infty} \int_{0}^{+\infty} \left(f\star\psi<sup>{*}_{s}\star\psi_{s}</sup>{’}\right)(t) \frac{1}{s^{2}}ds \cdot e^{-j\omega t}dt$</p>
+<p>$=\frac{1}{C_{\psi}}  \int_{0}^{+\infty} \int_{-\infty}<sup>{+\infty}\left(f\star\psi</sup>{*}<em>{s}\star\psi</em>{s}^{’}\right)(t) e^{-j\omega t}dt\cdot\frac{1}{s^{2}}ds$</p>
+<p>$$=\frac{1}{C_{\psi}} \hat{f}(\omega) \int_{0}^{+\infty} |\hat{\psi}(\omega s)|^{2}\frac{1}{s}ds \tag{1.1}$$</p>
+<p>令 $\omega s=k$</p>
 <p>上式 $=\frac{1}{C_{\psi}} \hat{f}(\omega) \int_{0}^{+\infty} |\hat{\psi}(k)|^{2}\frac{\omega}{k}dk\frac{1}{\omega}$</p>
 <p>$= \hat{f}(\omega) \left[\int_{0}^{+\infty} |\hat{\psi}(k)|^{2}\frac{1}{k}dk \right] / \left[\int_{0}^{+\infty} \frac{|\hat{\psi}(\omega)|^{2}}{\omega} d \omega \right] = \hat{f}(\omega)$</p>
-<p>由此得证.<br><br></p>
-<p>(2) $\int_{-\infty}^{+\infty}|f(t)|^{2} d t=\frac{1}{C_{y}} \int_{0}^{+\infty} \int_{-\infty}^{+\infty}|W f(s, u)|^{2} d u \frac{1}{s^{2}} d s$<br>证明:</p>
-<p>根据<a href="https://www.zhihu.com/question/22891656" target="_blank" rel="noopener">帕塞瓦尔定理</a>可知, 对连续信号 $f(t)$, 有 $\int_{-\infty}^{+\infty}|f(t)|^{2} dt = \frac{1}{2\pi}\int_{-\infty}^{+\infty}|\hat{f}(\omega)|^{2} d\omega$</p>
-<p>由(1)中 公式(1.1) 可得 </p>
-<p>左式 $\frac{1}{2\pi}\int_{-\infty}^{+\infty}|\hat{f}(\omega)|^{2} d\omega =\frac{1}{2\pi}\int_{-\infty}^{+\infty} \left[ \frac{1}{C_{\psi}} \hat{f}(\omega) \int_{0}^{+\infty} |\hat{\psi}(\omega s)|^{2}\frac{1}{s}ds \right] \cdot \hat{f}^{*}(\omega) d\omega$</p>
+<p>由此得证.<br>
+<br></p>
+<p>(2) $\int_{-\infty}<sup>{+\infty}|f(t)|</sup>{2} d t=\frac{1}{C_{y}} \int_{0}^{+\infty} \int_{-\infty}^{+\infty}|W f(s, u)|^{2} d u \frac{1}{s^{2}} d s$<br>
+证明:</p>
+<p>根据<a href="https://www.zhihu.com/question/22891656" target="_blank" rel="noopener">帕塞瓦尔定理</a>可知, 对连续信号 $f(t)$, 有 $\int_{-\infty}<sup>{+\infty}|f(t)|</sup>{2} dt = \frac{1}{2\pi}\int_{-\infty}<sup>{+\infty}|\hat{f}(\omega)|</sup>{2} d\omega$</p>
+<p>由(1)中 公式(1.1) 可得</p>
+<p>左式 $\frac{1}{2\pi}\int_{-\infty}<sup>{+\infty}|\hat{f}(\omega)|</sup>{2} d\omega =\frac{1}{2\pi}\int_{-\infty}^{+\infty} \left[ \frac{1}{C_{\psi}} \hat{f}(\omega) \int_{0}^{+\infty} |\hat{\psi}(\omega s)|^{2}\frac{1}{s}ds \right] \cdot \hat{f}^{*}(\omega) d\omega$</p>
 <p>$=\frac{1}{2\pi} \frac{1}{C_{\psi}} \int_{-\infty}^{+\infty} \int_{0}^{+\infty} |\hat{f}(\omega)|^{2}  |\hat{\psi}(\omega s)|^{2}\frac{1}{s}ds  d\omega$</p>
 <p>因为 $W f(s, u) = \left(f\star \psi_{s}^{<em>}\right)(u)$, 所以 $\hat{Wf}(s, \omega) = \hat{f}(\omega) \sqrt{s}\hat{\psi}^{</em>}(\omega s)$</p>
 <p>右式的帕塞瓦尔恒等式为 $\frac{1}{C_{y}} \int_{0}^{+\infty} \int_{-\infty}^{+\infty}|W f(s, u)|^{2} d u \frac{1}{s^{2}} d s =\frac{1}{2\pi} \frac{1}{C_{y}} \int_{0}^{+\infty} \int_{-\infty}^{+\infty}|\hat{W f}(s, \omega)|^{2}d\omega \frac{1}{s^{2}}ds$</p>
 <p>$=\frac{1}{2\pi} \frac{1}{C_{y}} \int_{0}^{+\infty} \int_{-\infty}^{+\infty}|\hat{f}(\omega)\cdot \hat{\psi}(\omega s)|^{2}\frac{1}{s} d\omega ds$</p>
-<p>因此左式=右式, 命题得证.<br><br></p>
-<ol>
+<p>因此左式=右式, 命题得证.<br>
+<br></p>
+<ol start="2">
 <li>证明正交MRA满足如下性质：</li>
 </ol>
-<p><img src="2.bmp" style="transform:rotate(0deg);" width =40%></p>
+<img src="2.bmp" style="transform:rotate(0deg);" width =40%>
 <p>证明:</p>
-<p>对于不同空间 $V_{j}$, 有 $span\{\phi_{j,k}(t)|k\in \mathbb{Z}\} $</p>
+<p>对于不同空间 $V_{j}$, 有 $span{\phi_{j,k}(t)|k\in \mathbb{Z}} $</p>
 <p>$\begin{aligned}\langle\phi(t), \phi(t-k)\rangle &amp;=\int_{-\infty}^{+\infty} \phi(t) \phi^{*}(t-k) d t =\phi \star \bar{\phi}(k) \end{aligned}$</p>
 <p>其中 $\bar{\phi}(t)=\phi^{*}(-t)$</p>
-<p>$\{\phi(t-k)|k\in \mathbb{Z}\}$ 是一组标准正交基时, 需满足 $\phi \star \bar{\phi}(k)=\delta(k)$ </p>
+<p>${\phi(t-k)|k\in \mathbb{Z}}$ 是一组标准正交基时, 需满足 $\phi \star \bar{\phi}(k)=\delta(k)$</p>
 <p>对其做傅里叶变换可得</p>
 <p>$\sum_{k=-\infty}^{+\infty}|\hat{\phi}(\omega+2 k \pi)|^{2}=1$</p>
 
@@ -973,41 +1000,56 @@ P0-&gt;O-&gt;P1 M'
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="AutoHotKey-使用"><a href="#AutoHotKey-使用" class="headerlink" title="AutoHotKey 使用"></a>AutoHotKey 使用</h1><p>在整理电子书的时候, 看到从一些网站下载的电子书中含有水印, 文字插入等难以通过PDF编辑器批量选中删除的内容, 于是考虑采用脚本, 批量操作的方法实现这一目标.   </p>
-<p><code>AutoHotKey</code>就是这样一款卓越的脚本语言. 虽然充分理解和运用这一工具需要很多时间和精力, 但是在处理简单任务的时候, AHK上手也十分容易.<br>本文的一点资料在<a href="https://cdn.jsdelivr.net/gh/18wang/media@20.9.15/AutoHotKey%E5%85%A5%E9%97%A8/" target="_blank" rel="noopener">这里</a></p>
-<p>安装完AHK之后, 打开 Help 可以看到全部的帮助文件. </p>
-<h2 id="1-目标—删除位于文档固定位置的字符"><a href="#1-目标—删除位于文档固定位置的字符" class="headerlink" title="1. 目标—删除位于文档固定位置的字符"></a>1. 目标—删除位于文档固定位置的字符</h2><p> <img src="https://cdn.jsdelivr.net/gh/18wang/media/AutoHotKey入门/1.jpg" style="transform:rotate(0deg);" width =100%>         </p>
+        <h1 id="AutoHotKey-使用"><a class="header-anchor" href="#AutoHotKey-使用"></a>AutoHotKey 使用</h1>
+<p>在整理电子书的时候, 看到从一些网站下载的电子书中含有水印, 文字插入等难以通过PDF编辑器批量选中删除的内容, 于是考虑采用脚本, 批量操作的方法实现这一目标.</p>
+<p><code>AutoHotKey</code>就是这样一款卓越的脚本语言. 虽然充分理解和运用这一工具需要很多时间和精力, 但是在处理简单任务的时候, AHK上手也十分容易.<br>
+本文的一点资料在<a href="https://cdn.jsdelivr.net/gh/18wang/media@20.9.15/AutoHotKey%E5%85%A5%E9%97%A8/" target="_blank" rel="noopener">这里</a></p>
+<p>安装完AHK之后, 打开 Help 可以看到全部的帮助文件.</p>
+<h2 id="1-目标–删除位于文档固定位置的字符"><a class="header-anchor" href="#1-目标–删除位于文档固定位置的字符"></a>1. 目标–删除位于文档固定位置的字符</h2>
+ <img src="https://cdn.jsdelivr.net/gh/18wang/media/AutoHotKey入门/1.jpg" style="transform:rotate(0deg);" width =100%>         
 <ul>
 <li>需要删除的文本位于文档的固定位置</li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/18wang/media/AutoHotKey入门/2.jpg" style="transform:rotate(0deg);" width =600></p>
+<img src="https://cdn.jsdelivr.net/gh/18wang/media/AutoHotKey入门/2.jpg" style="transform:rotate(0deg);" width =600>
 <ul>
-<li>可以通过<code>调整到编辑模式</code>, <code>右键文本</code>, <code>Delete键*</code>, <code>去往下一页相同位置</code> 的循环进行手动删除. </li>
+<li>可以通过<code>调整到编辑模式</code>, <code>右键文本</code>, <code>Delete键*</code>, <code>去往下一页相同位置</code> 的循环进行手动删除.</li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/18wang/media/AutoHotKey入门/4.jpg" style="transform:rotate(0deg);" width =600></p>
+<img src="https://cdn.jsdelivr.net/gh/18wang/media/AutoHotKey入门/4.jpg" style="transform:rotate(0deg);" width =600>
 <blockquote>
-<p>* 非常值得注意的一点是, 当该页不存在文本或者文本已经被删除时, Delete键不起作用, 页面卡住, 须按 <code>Esc</code> 键退出.<br><img src="https://cdn.jsdelivr.net/gh/18wang/media/AutoHotKey入门/3.jpg" style="transform:rotate(0deg);" width =600></p>
+<p>* 非常值得注意的一点是, 当该页不存在文本或者文本已经被删除时, Delete键不起作用, 页面卡住, 须按 <code>Esc</code> 键退出.<br>
+<img src="https://cdn.jsdelivr.net/gh/18wang/media/AutoHotKey入门/3.jpg" style="transform:rotate(0deg);" width =600></p>
 </blockquote>
-<h2 id="2-方案—AHK循环操作"><a href="#2-方案—AHK循环操作" class="headerlink" title="2. 方案—AHK循环操作"></a>2. 方案—AHK循环操作</h2><h3 id="1-触发"><a href="#1-触发" class="headerlink" title="1. 触发"></a>1. 触发</h3><ul>
-<li>运行 AHK 脚本, 任务栏出现 H 图标, 等待执行</li>
-<li><p>AHK 包含了一系列的 <code>热键(HotKey)</code>, 热键位于 <code>::</code> 的左侧, 在进行热键点击后, 会触发下面的语句</p>
+<h2 id="2-方案–AHK循环操作"><a class="header-anchor" href="#2-方案–AHK循环操作"></a>2. 方案–AHK循环操作</h2>
+<h3 id="1-触发"><a class="header-anchor" href="#1-触发"></a>1. 触发</h3>
+<ul>
+<li>
+<p>运行 AHK 脚本, 任务栏出现 H 图标, 等待执行</p>
+</li>
+<li>
+<p>AHK 包含了一系列的 <code>热键(HotKey)</code>, 热键位于 <code>::</code> 的左侧, 在进行热键点击后, 会触发下面的语句</p>
 <figure class="highlight ahk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">^j::</span></span><br><span class="line"><span class="built_in">Send,</span> My First Script  <span class="comment">; sth</span></span><br><span class="line"><span class="keyword">return</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <ol>
 <li><code>^j</code> 表示点击<code>Control+j</code>, <code>Send</code> 可以发送文本和各种命令, <code>;</code> 右侧是不被执行的注释, 可以是中文</li>
-<li>AHK 中, 命令和命令或参数之间, 用 “,” “ “ 分隔, 空格和逗号可以一起使用 </li>
+<li>AHK 中, 命令和命令或参数之间, 用 “,” &quot; &quot; 分隔, 空格和逗号可以一起使用</li>
 </ol>
 </blockquote>
 </li>
-<li><p>当然一个脚本也可以没有热键/热字串, 直接执行命令, 但那往往会难以控制, 比较糟糕</p>
+<li>
+<p>当然一个脚本也可以没有热键/热字串, 直接执行命令, 但那往往会难以控制, 比较糟糕</p>
 </li>
 </ul>
-<h3 id="2-循环"><a href="#2-循环" class="headerlink" title="2. 循环"></a>2. 循环</h3><ul>
+<h3 id="2-循环"><a class="header-anchor" href="#2-循环"></a>2. 循环</h3>
+<ul>
 <li>AHK 提供了循环命令, 一个命令有多个参数时, 用 <code>{}</code> 把它们括起来<figure class="highlight ahk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Loop %</span>RepeatCount% &#123;    <span class="comment">; 重复次数</span></span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Loop,</span> <span class="number">3</span>       <span class="comment">; 一个例子</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">  MsgBox,</span> Iteration number is <span class="variable">%A_Index%</span>.  <span class="comment">; A_Index will be 1, 2, then 3</span></span><br><span class="line"><span class="built_in">  Sleep,</span> <span class="number">100</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="3-退出"><a href="#3-退出" class="headerlink" title="3. 退出"></a>3. 退出</h3></li>
+</li>
+</ul>
+<h3 id="3-退出"><a class="header-anchor" href="#3-退出"></a>3. 退出</h3>
+<ul>
 <li>AHK 中可以随处添加 <code>return</code>, 帮助你修改错误和规避运行风险</li>
 </ul>
-<h2 id="3-程序—-ahk"><a href="#3-程序—-ahk" class="headerlink" title="3. 程序—**.ahk"></a>3. 程序—**.ahk</h2><figure class="highlight ahk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">+s::</span>            <span class="comment">; PDF 编辑模式, 单页显示模式</span></span><br><span class="line"><span class="built_in">Loop,</span> <span class="number">1</span>         <span class="comment">; 循环次数 = 页数</span></span><br><span class="line">&#123;</span><br><span class="line">    Send &#123;Click, right&#125;     <span class="comment">; 右击</span></span><br><span class="line">    Send &#123;Delete&#125;           <span class="comment">; 删除</span></span><br><span class="line">    Send &#123;Esc&#125;              <span class="comment">; 退出(如需要)</span></span><br><span class="line">    Send &#123;Down&#125;             <span class="comment">; 下一页</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-程序–-ahk"><a class="header-anchor" href="#3-程序–-ahk"></a>3. 程序–**.ahk</h2>
+<figure class="highlight ahk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">+s::</span>            <span class="comment">; PDF 编辑模式, 单页显示模式</span></span><br><span class="line"><span class="built_in">Loop,</span> <span class="number">1</span>         <span class="comment">; 循环次数 = 页数</span></span><br><span class="line">&#123;</span><br><span class="line">    Send &#123;Click, right&#125;     <span class="comment">; 右击</span></span><br><span class="line">    Send &#123;Delete&#125;           <span class="comment">; 删除</span></span><br><span class="line">    Send &#123;Esc&#125;              <span class="comment">; 退出(如需要)</span></span><br><span class="line">    Send &#123;Down&#125;             <span class="comment">; 下一页</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span></span><br></pre></td></tr></table></figure>
       
       
         
@@ -1721,8 +1763,8 @@ Matlab实现 <a href="https://blog.csdn.net/zengxiantao1994/article/details/7117
 <p>一本蛮简单的深度学习入门, 希望自己快快地过一遍!<br>
 随便记一些东西, 但愿可以.</p>
 <p>资料:<br>
-<a href="https://github.com/MemorialCheng/deep-learning-from-scratch" target="_blank" rel="noopener">https://github.com/MemorialCheng/deep-learning-from-scratch</a>  中文版<br>
-<a href="https://github.com/oreilly-japan/deep-learning-from-scratch" target="_blank" rel="noopener">https://github.com/oreilly-japan/deep-learning-from-scratch</a>  日文原版</p>
+<a href="https://github.com/MemorialCheng/deep-learning-from-scratch">https://github.com/MemorialCheng/deep-learning-from-scratch</a>  中文版<br>
+<a href="https://github.com/oreilly-japan/deep-learning-from-scratch">https://github.com/oreilly-japan/deep-learning-from-scratch</a>  日文原版</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np </span><br><span class="line"></span><br><span class="line">a = np.array([[<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>],[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]])</span><br><span class="line">b = np.array([<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">print(a.shape, b.shape)</span><br><span class="line"></span><br><span class="line">print(np.dot(a, b))     <span class="comment"># 点积</span></span><br></pre></td></tr></table></figure>
 <pre><code>(2, 3) (3,)
 [16 10]
@@ -2008,7 +2050,7 @@ b2:1.398749418138334e-07
         
           <a class="next" rel="next" href="/archives/2020/page/2/">
             <section class="post next white-box shadow">
-              &nbsp;Next&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
+              &nbsp;下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
             </section>
           </a>
         
@@ -2174,19 +2216,19 @@ b2:1.398749418138334e-07
       
     
       
-        <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
+        <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
 </div>
       
     
       
-        Use
+        本站使用
         <a href="https://volantis.js.org/" target="_blank" class="codename">Volantis</a>
-        as theme
+        作为主题
         
-          , 
-          total visits
+          ，
+          总访问量为
           <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
-          times
+          次
         
       
     
