@@ -18,7 +18,7 @@
 
   <!-- 页面元数据 -->
   
-    <title>歸檔：2020 - 18wang</title>
+    <title>Archive: 2020 - 18wang</title>
   
   
 
@@ -452,6 +452,207 @@
       
         
   <h2 class="title">
+    <a href="/2020/10/11/%E5%B0%8F%E6%B3%A2%E5%88%86%E6%9E%90/">
+      小波分析
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+<div class='new-meta-item author'>
+  <a href="https://github.com/18wang" rel="nofollow">
+    <img src="https://avatars0.githubusercontent.com/u/25820978">
+    <p></p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Oct 11, 2020</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="小波变换"><a href="#小波变换" class="headerlink" title="小波变换"></a>小波变换</h2><h3 id="重要参数"><a href="#重要参数" class="headerlink" title="重要参数"></a>重要参数</h3><ul>
+<li>scaling 尺度系数 $s$<br>可以表示为 <script type="math/tex; mode=display">\Psi\left(\frac{\mathrm{t}}{\mathrm{s}}\right) \mathrm{s}>0</script><blockquote>
+<p>信号在时间尺度上的拉伸&amp;压缩, s越大, 拉伸越大. 即 和等效频率成反比关系.</p>
+</blockquote>
+</li>
+<li>shifting 平移<blockquote>
+<p>用于对齐小波对应的信号位置</p>
+</blockquote>
+</li>
+<li>center frequency 中心频率 $C_f$<br>和傅里叶变换的<code>等效频率</code>为<script type="math/tex; mode=display">F_{e q}=\frac{C_{f}}{s \delta t}</script>$\delta t$为采样间隔</li>
+</ul>
+<h3 id="连续小波变换-Continuous-wavelet-transform-CWT"><a href="#连续小波变换-Continuous-wavelet-transform-CWT" class="headerlink" title="连续小波变换 Continuous wavelet transform CWT"></a>连续小波变换 Continuous wavelet transform CWT</h3><h3 id="离散小波变换-Discrete-wavelet-transform"><a href="#离散小波变换-Discrete-wavelet-transform" class="headerlink" title="离散小波变换 Discrete wavelet transform"></a>离散小波变换 Discrete wavelet transform</h3><h3 id="第2讲课后练习：证明Fourier变换的性质"><a href="#第2讲课后练习：证明Fourier变换的性质" class="headerlink" title="第2讲课后练习：证明Fourier变换的性质"></a>第2讲课后练习：证明Fourier变换的性质</h3><p> 姓名: <strong>汪星宇</strong><br> 学号: <strong>XS20073058</strong></p>
+<p>(4) $F[f * g]=\hat{f} \cdot \hat{g}$</p>
+<p>证明:</p>
+<p>$F[f * g] = \int_{-\infty}^{+\infty} \left[ \int_{-\infty}^{+\infty} f(\tau)g(t-\tau) d \tau \right] e^{-j\omega t}dt$</p>
+<p>$ = \int_{-\infty}^{+\infty} f(\tau) \left[ \int_{-\infty}^{+\infty} g(t-\tau)  e^{-j\omega (t-\tau)} dt \right] e^{-j\omega \tau} d\tau $</p>
+<p>$ = \int_{-\infty}^{+\infty} f(\tau)e^{-j\omega \tau} d\tau  \int_{-\infty}^{+\infty} g(t-\tau)  e^{-j\omega (t-\tau)} d(t-\tau)  $</p>
+<p>$ = \hat{f} \cdot \hat{g} $</p>
+<p><br></p>
+<p>(5) $\langle f, g\rangle_{L^{2}}=\frac{1}{2 \pi}\langle\hat{f}, \hat{g}\rangle_{L^{2}}$</p>
+<p>证明:</p>
+<p>对于 $f \in \mathbf{L}^{2}(\mathbb{R})$ 和 $g \in \mathbf{L}^{2}(\mathbb{R})$ , 有 $\langle f, g\rangle=\int_{-\infty}^{+\infty} f(t) g^{*}(t) d t$</p>
+<p>令 $ h=f \star \bar{g} $, 其中 $\bar{g}(t)=g^{*}(-t)$</p>
+<p>$h(t)=\int_{-\infty}^{+\infty} f(\tau) g^{<em>}(-t+\tau) d\tau$ , 则 $ h(0) = \int_{-\infty}^{+\infty} f(t) g^{</em>}(t) dt $</p>
+<p>依据 $F[f^{<em>}(t)] = \hat{f}^{</em>}(-\omega)$ 和<code>(4)式</code>可知, $\hat{h}(\omega)=\hat{f}(\omega) \hat{g}^{*}(\omega)$</p>
+<p>对$\hat{h}(\omega)$做<code>IFT</code>可得, $ h(0) = \frac{1}{2 \pi} \int_{-\infty}^{+\infty} \hat{h}(\omega) d \omega=\frac{1}{2 \pi} \int_{-\infty}^{+\infty} \hat{f}(\omega) \hat{g}^{*}(\omega) d \omega$</p>
+<p>由上, $\int_{-\infty}^{+\infty} f(t) g^{<em>}(t) dt = h(0) =\frac{1}{2 \pi} \int_{-\infty}^{+\infty} \hat{f}(\omega) \hat{g}^{</em>}(\omega) d \omega$</p>
+<p>即  $ \langle f, g\rangle_{L^{2}}=\frac{1}{2 \pi}\langle\hat{f}, \hat{g}\rangle_{L^{2}} $</p>
+<blockquote>
+<p>参考 mallat3 P39</p>
+</blockquote>
+<h3 id="第3讲课后练习：证明序列采样率变化后的性质"><a href="#第3讲课后练习：证明序列采样率变化后的性质" class="headerlink" title="第3讲课后练习：证明序列采样率变化后的性质"></a>第3讲课后练习：证明序列采样率变化后的性质</h3><p> 姓名: <strong>汪星宇</strong><br> 学号: <strong>XS20073058</strong></p>
+<p>(1) $Y_{D}\left(\mathrm{e}^{i \omega}\right)=\frac{1}{M} \sum_{k=0}^{M-1} X\left(e^{i(\omega-2 \pi k) / M}\right)$ </p>
+<p>证明:</p>
+<p>设$x^{‘}(n)=\left\{\begin{array}{lc} x(n), &amp;\text{n为M倍数} \ 0,&amp; \text{其他.}<br>\end{array}\right.$</p>
+<p>则 $y_{D}(n)=x(M n)=x^{‘}(Mn)$</p>
+<p>因此 $Y_{D}(e^{i\omega})=\sum_{n=-\infty}^{\infty}x^{‘}(Mn)e^{-i\omega n}$</p>
+<p>令 $k=Mn$. 则 $Y_{D}(e^{i\omega})=\sum_{k=-\infty}^{\infty}x^{‘}(k)e^{-i\omega k/M} =X^{‘}(e^{i\omega /M})$ </p>
+<p>令 $x^{‘}(n)=c_{M}(n)x(n)$, 其中 $c_{M}(n)=\left\{\begin{array}{lc}1, &amp; \text {n为M倍数} \ 0, &amp; \text { 其他. }\end{array}\right.$</p>
+<p>对 $c_{M}(n)$ 进行傅里叶展开得到 $c_{M}(n)=\frac{1}{M} \sum_{k=0}^{M-1} \exp \left(\frac{i 2 \pi k n}{M}\right)$</p>
+<p>因此 $x^{‘}(n)$ 的傅里叶变换为 </p>
+<p>$X^{‘}(e^{i\omega})=\sum_{n=-\infty}^{\infty} x(n) c_{M}(n) e^{-i\omega n}$</p>
+<p>$=\frac{1}{M} \sum_{k=0}^{M-1} \sum_{n=-\infty}^{\infty} x(n)e^{-in(\omega-2\pi k/M)}=\frac{1}{M} \sum_{k=0}^{M-1} X(e^{i(\omega-2\pi k/M)})$</p>
+<p>对应 $y_{D}(n)$ 的变换为 $Y_{D}\left(\mathrm{e}^{i \omega}\right) = \frac{1}{M} \sum_{k=0}^{M-1} X(e^{i(\omega/M-2\pi k/M)})$</p>
+<p>即 $Y_{D}\left(\mathrm{e}^{i \omega}\right)=\frac{1}{M} \sum_{k=0}^{M-1} X\left(e^{i(\omega-2 \pi k) / M}\right)$ </p>
+<p><a href="https://www.sciencedirect.com/topics/engineering/decimator" target="_blank" rel="noopener">证明参考</a></p>
+<p><br></p>
+<p>(2) $Y_{E}\left(\mathrm{e}^{i \omega}\right)=X\left(\mathrm{e}^{i \omega L}\right)$</p>
+<p>证明:<br>$y_{E}(n)=\left\{\begin{array}{l}x(n / L), n=0,\plusmn L,\plusmn 2L,…  \ 0, otherwise \end{array}\right.$</p>
+<p>有 $Y_{E}\left(\mathrm{e}^{i \omega}\right) = \sum_{n=-\infty }^{+\infty} y_{E}(n)e^{-i\omega n}$</p>
+<p>令 $n=kL, k\in \mathbb{Z}$</p>
+<p>$Y_{E}\left(\mathrm{e}^{i \omega}\right) = \sum_{k=-\infty }^{+\infty} x(kL/L)e^{-i\omega kL} = \sum_{k=-\infty }^{+\infty} x(k)e^{-i(\omega L) k} = X\left(\mathrm{e}^{i \omega L}\right)$</p>
+<h3 id="第4讲课后练习：证明Haar小波滤波器组的性质"><a href="#第4讲课后练习：证明Haar小波滤波器组的性质" class="headerlink" title="第4讲课后练习：证明Haar小波滤波器组的性质"></a>第4讲课后练习：证明Haar小波滤波器组的性质</h3><p> 姓名: <strong>汪星宇</strong><br> 学号: <strong>XS20073058</strong></p>
+<ol>
+<li>证明下式对应的变换可以用图1所示的重构滤波结构实现，其中$\widetilde{H}$和$\widetilde{G}$如题2所示：</li>
+</ol>
+<p><img src="4.png" style="transform:rotate(0deg);" width =80%></p>
+<p>证明:<br>$c_j$ 上采样之后的信号为 $\left\{\begin{array}{l} c^{‘}_{j,2k} = c_{j,k}   \ c^{‘}_{j,2k+1} =0 \end{array}\right.$</p>
+<p>$d_j$ 上采样之后的信号为 $\left\{\begin{array}{l} d^{‘}_{j,2k} = d_{j,k}   \ d^{‘}_{j,2k+1} =0 \end{array}\right.$</p>
+<p>则 $\left\{\begin{array}{l} c_{j-1,2k}=\sum_{n}{} \left[ \widetilde{h}(n) c^{‘}_{j,2k-n} + \widetilde{g}(n) d^{‘}_{j,2k-n} \right] \ c_{j-1,2k+1}=\sum_{n}{} \left[ \widetilde{h}(n) c^{‘}_{j,2k+1-n} + \widetilde{g}(n) d^{‘}_{j,2k+1-n} \right] \end{array}\right.$</p>
+<p>根据 $\left\{\begin{array}{l}c_{j-1,2 k}=\frac{1}{\sqrt{2}}\left(c_{j, k}+d_{j, k}\right) \ c_{j-1,2 k+1}=\frac{1}{\sqrt{2}}\left(c_{j, k}-d_{j, k}\right)\end{array}\right.$</p>
+<p>可以解得 $\widetilde{h}(0)=\frac{1}{\sqrt{2}}, \widetilde{g}(0)=\frac{1}{\sqrt{2}}, \widetilde{h}(1)=\frac{1}{\sqrt{2}}, \widetilde{g}(1)=-\frac{1}{\sqrt{2}}$</p>
+<p>即存在 $\widetilde{H}(z), \widetilde{G}(z)$ 使得重构滤波器能够满足对应变换. </p>
+<p><br></p>
+<ol>
+<li>证明下图所示的Haar小波滤波器组是完全重构滤波器组，也即系统的输出与输入相同（至多相差某个延时） </li>
+</ol>
+<p><img src="4-2.png" style="transform:rotate(0deg);" width =90%></p>
+<p>其中<br><img src="4-3.png" style="transform:rotate(0deg);" width =50%></p>
+<p>证明:</p>
+<p>根据多采样率系统的性质, 在<code>Z变换域</code>上给出如下证明.</p>
+<p>对于$M$倍下采样而言, 输出信号 $Y_{D}(z)=\frac{1}{M} \sum_{k=0}^{M-1} X\left(e^{-2 \pi k i / M} z^{\frac{1}{M}}\right)$</p>
+<p>对于$L$倍上采样, 输出信号 $Y_{E}\left(z\right)=X\left(z^{L}\right)$</p>
+<p>上图系统中, $L=M=2$ 连续通过下采样和上采样系统的输出信号 $Y(z)=\frac{1}{2} \sum_{k=0}^{2-1} X\left((e^{-2 \pi k i / 2} z^{\frac{1}{2}})^{2}\right)=\frac{1}{2}X(z)+\frac{1}{2}X(e^{-2\pi }z) = X(z)$ </p>
+<p>即 $H_{ML}(z) = 1$</p>
+<p>则整个系统函数为 $\frac{1}{2} H(z)\widetilde{H}(z)+\frac{1}{2} G(z)\widetilde{G}(z) = \frac{1}{2}\cdot \frac{1}{2}(1+1+z+z^{-1}+1+1-z-z^{-1})=1$</p>
+<p>所以该滤波器组是完全重构滤波器组.</p>
+<h3 id="第5讲课后练习：证明连续小波变换完全重构定理等"><a href="#第5讲课后练习：证明连续小波变换完全重构定理等" class="headerlink" title="第5讲课后练习：证明连续小波变换完全重构定理等"></a>第5讲课后练习：证明连续小波变换完全重构定理等</h3><p> 姓名: <strong>汪星宇</strong><br> 学号: <strong>XS20073058</strong></p>
+<ol>
+<li>证明小波完全重构定理：</li>
+</ol>
+<p><img src="1.bmp" style="transform:rotate(0deg);" width =80%></p>
+<p>(1) $f(t)=\frac{1}{C_{\psi}} \int_{0}^{+\infty} \int_{-\infty}^{+\infty} W f(s, u) \frac{1}{\sqrt{s}} \psi\left(\frac{t-u}{s}\right) d u \frac{1}{s^{2}} d s$</p>
+<p>证明:</p>
+<p>已知 $\psi_{u, s}(t)=\frac{1}{\sqrt{s}} \psi\left(\frac{t-u}{s}\right)$, $\psi_{s}(t)=\frac{1}{\sqrt{s}} \psi\left(\frac{-t}{s}\right)$</p>
+<p>$W f(s, u) = \left(f\star \psi_{s}^{<em>}\right)(u)=\int_{-\infty}^{+\infty}f(t) \frac{1}{\sqrt{s}} \psi ^ {</em>} \left(\frac{t-u}{s}\right) dt$</p>
+<p>则 $\int_{-\infty}^{+\infty} W f(s, u) \frac{1}{\sqrt{s}} \psi\left(\frac{t-u}{s}\right) du = \left(W f(s,u) \star \psi_{s}^{‘}\right)(t)= \left(f\star\psi^{*}_{s}\star\psi_{s}^{‘}\right)(t)$</p>
+<p>其中 $\psi_{s}^{‘}(t) =\psi_{s}(-t) = \frac{1}{\sqrt{s}} \psi\left(\frac{t}{s}\right)$</p>
+<p>因此, 右式 $=\frac{1}{C_{\psi}} \int_{0}^{+\infty} \int_{-\infty}^{+\infty} W f(s, u) \frac{1}{\sqrt{s}} \psi\left(\frac{t-u}{s}\right) d u \frac{1}{s^{2}} d s$</p>
+<p>$= \frac{1}{C_{\psi}} \int_{0}^{+\infty} \left(f\star\psi^{*}_{s}\star\psi_{s}^{‘}\right)(t) \frac{1}{s^{2}} ds$</p>
+<p>且有 $\hat{\psi}^{<em>}_{s}(\omega) = \sqrt{s}\hat{\psi}^{</em>}(\omega s)$, $\hat{\psi}^{‘}_{s}(\omega) = \sqrt{s}\hat{\psi}(\omega s)$</p>
+<p>对右式做傅里叶变换可得</p>
+<p>右侧 $= \frac{1}{C_{\psi}} \int_{-\infty}^{+\infty} \int_{0}^{+\infty} \left(f\star\psi^{*}_{s}\star\psi_{s}^{‘}\right)(t) \frac{1}{s^{2}}ds \cdot e^{-j\omega t}dt$</p>
+<p>$=\frac{1}{C_{\psi}}  \int_{0}^{+\infty} \int_{-\infty}^{+\infty}\left(f\star\psi^{*}_{s}\star\psi_{s}^{‘}\right)(t) e^{-j\omega t}dt\cdot\frac{1}{s^{2}}ds$</p>
+<script type="math/tex; mode=display">=\frac{1}{C_{\psi}} \hat{f}(\omega) \int_{0}^{+\infty} |\hat{\psi}(\omega s)|^{2}\frac{1}{s}ds \tag{1.1}</script><p>令 $\omega s=k$ </p>
+<p>上式 $=\frac{1}{C_{\psi}} \hat{f}(\omega) \int_{0}^{+\infty} |\hat{\psi}(k)|^{2}\frac{\omega}{k}dk\frac{1}{\omega}$</p>
+<p>$= \hat{f}(\omega) \left[\int_{0}^{+\infty} |\hat{\psi}(k)|^{2}\frac{1}{k}dk \right] / \left[\int_{0}^{+\infty} \frac{|\hat{\psi}(\omega)|^{2}}{\omega} d \omega \right] = \hat{f}(\omega)$</p>
+<p>由此得证.<br><br></p>
+<p>(2) $\int_{-\infty}^{+\infty}|f(t)|^{2} d t=\frac{1}{C_{y}} \int_{0}^{+\infty} \int_{-\infty}^{+\infty}|W f(s, u)|^{2} d u \frac{1}{s^{2}} d s$<br>证明:</p>
+<p>根据<a href="https://www.zhihu.com/question/22891656" target="_blank" rel="noopener">帕塞瓦尔定理</a>可知, 对连续信号 $f(t)$, 有 $\int_{-\infty}^{+\infty}|f(t)|^{2} dt = \frac{1}{2\pi}\int_{-\infty}^{+\infty}|\hat{f}(\omega)|^{2} d\omega$</p>
+<p>由(1)中 公式(1.1) 可得 </p>
+<p>左式 $\frac{1}{2\pi}\int_{-\infty}^{+\infty}|\hat{f}(\omega)|^{2} d\omega =\frac{1}{2\pi}\int_{-\infty}^{+\infty} \left[ \frac{1}{C_{\psi}} \hat{f}(\omega) \int_{0}^{+\infty} |\hat{\psi}(\omega s)|^{2}\frac{1}{s}ds \right] \cdot \hat{f}^{*}(\omega) d\omega$</p>
+<p>$=\frac{1}{2\pi} \frac{1}{C_{\psi}} \int_{-\infty}^{+\infty} \int_{0}^{+\infty} |\hat{f}(\omega)|^{2}  |\hat{\psi}(\omega s)|^{2}\frac{1}{s}ds  d\omega$</p>
+<p>因为 $W f(s, u) = \left(f\star \psi_{s}^{<em>}\right)(u)$, 所以 $\hat{Wf}(s, \omega) = \hat{f}(\omega) \sqrt{s}\hat{\psi}^{</em>}(\omega s)$</p>
+<p>右式的帕塞瓦尔恒等式为 $\frac{1}{C_{y}} \int_{0}^{+\infty} \int_{-\infty}^{+\infty}|W f(s, u)|^{2} d u \frac{1}{s^{2}} d s =\frac{1}{2\pi} \frac{1}{C_{y}} \int_{0}^{+\infty} \int_{-\infty}^{+\infty}|\hat{W f}(s, \omega)|^{2}d\omega \frac{1}{s^{2}}ds$</p>
+<p>$=\frac{1}{2\pi} \frac{1}{C_{y}} \int_{0}^{+\infty} \int_{-\infty}^{+\infty}|\hat{f}(\omega)\cdot \hat{\psi}(\omega s)|^{2}\frac{1}{s} d\omega ds$</p>
+<p>因此左式=右式, 命题得证.<br><br></p>
+<ol>
+<li>证明正交MRA满足如下性质：</li>
+</ol>
+<p><img src="2.bmp" style="transform:rotate(0deg);" width =40%></p>
+<p>证明:</p>
+<p>对于不同空间 $V_{j}$, 有 $span\{\phi_{j,k}(t)|k\in \mathbb{Z}\} $</p>
+<p>$\begin{aligned}\langle\phi(t), \phi(t-k)\rangle &amp;=\int_{-\infty}^{+\infty} \phi(t) \phi^{*}(t-k) d t =\phi \star \bar{\phi}(k) \end{aligned}$</p>
+<p>其中 $\bar{\phi}(t)=\phi^{*}(-t)$</p>
+<p>$\{\phi(t-k)|k\in \mathbb{Z}\}$ 是一组标准正交基时, 需满足 $\phi \star \bar{\phi}(k)=\delta(k)$ </p>
+<p>对其做傅里叶变换可得</p>
+<p>$\sum_{k=-\infty}^{+\infty}|\hat{\phi}(\omega+2 k \pi)|^{2}=1$</p>
+
+      
+      
+        
+      
+    </div>
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
     <a href="/2020/09/16/%E7%A9%BA%E9%97%B4%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2/">
       空间坐标变换
     </a>
@@ -772,56 +973,41 @@ P0-&gt;O-&gt;P1 M'
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="AutoHotKey-使用"><a class="header-anchor" href="#AutoHotKey-使用"></a>AutoHotKey 使用</h1>
-<p>在整理电子书的时候, 看到从一些网站下载的电子书中含有水印, 文字插入等难以通过PDF编辑器批量选中删除的内容, 于是考虑采用脚本, 批量操作的方法实现这一目标.</p>
-<p><code>AutoHotKey</code>就是这样一款卓越的脚本语言. 虽然充分理解和运用这一工具需要很多时间和精力, 但是在处理简单任务的时候, AHK上手也十分容易.<br>
-本文的一点资料在<a href="https://cdn.jsdelivr.net/gh/18wang/media@20.9.15/AutoHotKey%E5%85%A5%E9%97%A8/" target="_blank" rel="noopener">这里</a></p>
-<p>安装完AHK之后, 打开 Help 可以看到全部的帮助文件.</p>
-<h2 id="1-目标–删除位于文档固定位置的字符"><a class="header-anchor" href="#1-目标–删除位于文档固定位置的字符"></a>1. 目标–删除位于文档固定位置的字符</h2>
- <img src="https://cdn.jsdelivr.net/gh/18wang/media/AutoHotKey入门/1.jpg" style="transform:rotate(0deg);" width =100%>         
+        <h1 id="AutoHotKey-使用"><a href="#AutoHotKey-使用" class="headerlink" title="AutoHotKey 使用"></a>AutoHotKey 使用</h1><p>在整理电子书的时候, 看到从一些网站下载的电子书中含有水印, 文字插入等难以通过PDF编辑器批量选中删除的内容, 于是考虑采用脚本, 批量操作的方法实现这一目标.   </p>
+<p><code>AutoHotKey</code>就是这样一款卓越的脚本语言. 虽然充分理解和运用这一工具需要很多时间和精力, 但是在处理简单任务的时候, AHK上手也十分容易.<br>本文的一点资料在<a href="https://cdn.jsdelivr.net/gh/18wang/media@20.9.15/AutoHotKey%E5%85%A5%E9%97%A8/" target="_blank" rel="noopener">这里</a></p>
+<p>安装完AHK之后, 打开 Help 可以看到全部的帮助文件. </p>
+<h2 id="1-目标—删除位于文档固定位置的字符"><a href="#1-目标—删除位于文档固定位置的字符" class="headerlink" title="1. 目标—删除位于文档固定位置的字符"></a>1. 目标—删除位于文档固定位置的字符</h2><p> <img src="https://cdn.jsdelivr.net/gh/18wang/media/AutoHotKey入门/1.jpg" style="transform:rotate(0deg);" width =100%>         </p>
 <ul>
 <li>需要删除的文本位于文档的固定位置</li>
 </ul>
-<img src="https://cdn.jsdelivr.net/gh/18wang/media/AutoHotKey入门/2.jpg" style="transform:rotate(0deg);" width =600>
+<p><img src="https://cdn.jsdelivr.net/gh/18wang/media/AutoHotKey入门/2.jpg" style="transform:rotate(0deg);" width =600></p>
 <ul>
-<li>可以通过<code>调整到编辑模式</code>, <code>右键文本</code>, <code>Delete键*</code>, <code>去往下一页相同位置</code> 的循环进行手动删除.</li>
+<li>可以通过<code>调整到编辑模式</code>, <code>右键文本</code>, <code>Delete键*</code>, <code>去往下一页相同位置</code> 的循环进行手动删除. </li>
 </ul>
-<img src="https://cdn.jsdelivr.net/gh/18wang/media/AutoHotKey入门/4.jpg" style="transform:rotate(0deg);" width =600>
+<p><img src="https://cdn.jsdelivr.net/gh/18wang/media/AutoHotKey入门/4.jpg" style="transform:rotate(0deg);" width =600></p>
 <blockquote>
-<p>* 非常值得注意的一点是, 当该页不存在文本或者文本已经被删除时, Delete键不起作用, 页面卡住, 须按 <code>Esc</code> 键退出.<br>
-<img src="https://cdn.jsdelivr.net/gh/18wang/media/AutoHotKey入门/3.jpg" style="transform:rotate(0deg);" width =600></p>
+<p>* 非常值得注意的一点是, 当该页不存在文本或者文本已经被删除时, Delete键不起作用, 页面卡住, 须按 <code>Esc</code> 键退出.<br><img src="https://cdn.jsdelivr.net/gh/18wang/media/AutoHotKey入门/3.jpg" style="transform:rotate(0deg);" width =600></p>
 </blockquote>
-<h2 id="2-方案–AHK循环操作"><a class="header-anchor" href="#2-方案–AHK循环操作"></a>2. 方案–AHK循环操作</h2>
-<h3 id="1-触发"><a class="header-anchor" href="#1-触发"></a>1. 触发</h3>
-<ul>
-<li>
-<p>运行 AHK 脚本, 任务栏出现 H 图标, 等待执行</p>
-</li>
-<li>
-<p>AHK 包含了一系列的 <code>热键(HotKey)</code>, 热键位于 <code>::</code> 的左侧, 在进行热键点击后, 会触发下面的语句</p>
+<h2 id="2-方案—AHK循环操作"><a href="#2-方案—AHK循环操作" class="headerlink" title="2. 方案—AHK循环操作"></a>2. 方案—AHK循环操作</h2><h3 id="1-触发"><a href="#1-触发" class="headerlink" title="1. 触发"></a>1. 触发</h3><ul>
+<li>运行 AHK 脚本, 任务栏出现 H 图标, 等待执行</li>
+<li><p>AHK 包含了一系列的 <code>热键(HotKey)</code>, 热键位于 <code>::</code> 的左侧, 在进行热键点击后, 会触发下面的语句</p>
 <figure class="highlight ahk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">^j::</span></span><br><span class="line"><span class="built_in">Send,</span> My First Script  <span class="comment">; sth</span></span><br><span class="line"><span class="keyword">return</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <ol>
 <li><code>^j</code> 表示点击<code>Control+j</code>, <code>Send</code> 可以发送文本和各种命令, <code>;</code> 右侧是不被执行的注释, 可以是中文</li>
-<li>AHK 中, 命令和命令或参数之间, 用 “,” &quot; &quot; 分隔, 空格和逗号可以一起使用</li>
+<li>AHK 中, 命令和命令或参数之间, 用 “,” “ “ 分隔, 空格和逗号可以一起使用 </li>
 </ol>
 </blockquote>
 </li>
-<li>
-<p>当然一个脚本也可以没有热键/热字串, 直接执行命令, 但那往往会难以控制, 比较糟糕</p>
+<li><p>当然一个脚本也可以没有热键/热字串, 直接执行命令, 但那往往会难以控制, 比较糟糕</p>
 </li>
 </ul>
-<h3 id="2-循环"><a class="header-anchor" href="#2-循环"></a>2. 循环</h3>
-<ul>
+<h3 id="2-循环"><a href="#2-循环" class="headerlink" title="2. 循环"></a>2. 循环</h3><ul>
 <li>AHK 提供了循环命令, 一个命令有多个参数时, 用 <code>{}</code> 把它们括起来<figure class="highlight ahk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Loop %</span>RepeatCount% &#123;    <span class="comment">; 重复次数</span></span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Loop,</span> <span class="number">3</span>       <span class="comment">; 一个例子</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">  MsgBox,</span> Iteration number is <span class="variable">%A_Index%</span>.  <span class="comment">; A_Index will be 1, 2, then 3</span></span><br><span class="line"><span class="built_in">  Sleep,</span> <span class="number">100</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="3-退出"><a class="header-anchor" href="#3-退出"></a>3. 退出</h3>
-<ul>
+<h3 id="3-退出"><a href="#3-退出" class="headerlink" title="3. 退出"></a>3. 退出</h3></li>
 <li>AHK 中可以随处添加 <code>return</code>, 帮助你修改错误和规避运行风险</li>
 </ul>
-<h2 id="3-程序-ahk"><a class="header-anchor" href="#3-程序-ahk"></a>3. 程序-- **.ahk</h2>
-<figure class="highlight ahk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">+s::</span>            <span class="comment">; PDF 编辑模式, 单页显示模式</span></span><br><span class="line"><span class="built_in">Loop,</span> <span class="number">1</span>         <span class="comment">; 循环次数 = 页数</span></span><br><span class="line">&#123;</span><br><span class="line">    Send &#123;Click, right&#125;     <span class="comment">; 右击</span></span><br><span class="line">    Send &#123;Delete&#125;           <span class="comment">; 删除</span></span><br><span class="line">    Send &#123;Esc&#125;              <span class="comment">; 退出(如需要)</span></span><br><span class="line">    Send &#123;Down&#125;             <span class="comment">; 下一页</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-程序—-ahk"><a href="#3-程序—-ahk" class="headerlink" title="3. 程序—**.ahk"></a>3. 程序—**.ahk</h2><figure class="highlight ahk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">+s::</span>            <span class="comment">; PDF 编辑模式, 单页显示模式</span></span><br><span class="line"><span class="built_in">Loop,</span> <span class="number">1</span>         <span class="comment">; 循环次数 = 页数</span></span><br><span class="line">&#123;</span><br><span class="line">    Send &#123;Click, right&#125;     <span class="comment">; 右击</span></span><br><span class="line">    Send &#123;Delete&#125;           <span class="comment">; 删除</span></span><br><span class="line">    Send &#123;Esc&#125;              <span class="comment">; 退出(如需要)</span></span><br><span class="line">    Send &#123;Down&#125;             <span class="comment">; 下一页</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span></span><br></pre></td></tr></table></figure>
       
       
         
@@ -1809,124 +1995,6 @@ b2:1.398749418138334e-07
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/2020/05/10/%E8%92%B2%E5%AE%87%E7%90%A6%E8%80%83%E7%A0%94%E6%88%90%E7%BB%A9%E6%8E%92%E5%90%8D%E4%BC%B0%E7%AE%97/">
-      蒲宇琦考研成绩排名估算
-    </a>
-  </h2>
-
-
-      
-      <div class='new-meta-box'>
-        
-          
-        
-          
-            
-<div class='new-meta-item author'>
-  <a href="https://github.com/18wang" rel="nofollow">
-    <img src="https://avatars0.githubusercontent.com/u/25820978">
-    <p></p>
-  </a>
-</div>
-
-          
-        
-          
-            
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：May 10, 2020</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="研究蒲宇琦成绩排名-结合研究生考试的成绩分布情况"><a class="header-anchor" href="#研究蒲宇琦成绩排名-结合研究生考试的成绩分布情况"></a>研究蒲宇琦成绩排名_结合研究生考试的成绩分布情况</h2>
-<p>尝试应用一两个具体的例子</p>
-<ul>
-<li>中南财经政法大学的例子表明, 样本太少异常难受</li>
-<li>江苏2018年高考的例子表明, 十分接近正态分布(因为缺乏完整数据, 难以直接估算)</li>
-<li>调整蒲宇琦西南交大的数据, 还是较为准确地刻画了整个考生的成绩分布.</li>
-</ul>
-<p>结果:<br>
-分数线 349.6126342475794<br>
-均分 317.4427612973726<br>
-他的成绩 356.62492204051085<br>
-成绩排名 130.84695647606708</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">sample = np.random.normal(loc=<span class="number">10</span> ,size=<span class="number">1000</span>)   </span><br><span class="line"></span><br><span class="line">plt.hist(sample)    <span class="comment"># 用正态分布练一下 PDF 图像</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/18wang/media/pyq/output_1_0.svg" alt="svg"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">sample = np.random.normal(loc=<span class="number">10</span> ,size=<span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line">hist, bin_edges = np.histogram(sample)      <span class="comment"># CDF 画法</span></span><br><span class="line">cdf = np.cumsum(hist)</span><br><span class="line">plt.plot(cdf)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/18wang/media/pyq/output_2_0.svg" alt="svg"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""网上找了一个例子, 太难了, 样本数量过小"""</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 中南财经政法大学 统计与数学学院2020年硕士研究生入学考试初试成绩分数段公告</span></span><br><span class="line"><span class="comment"># http://tsxy.zuel.edu.cn/2020/0417/c4801a240926/page.htm</span></span><br><span class="line"></span><br><span class="line">rawZN = <span class="string">"""['400分以上,395分以上	390分以上	385分以上	380分以上	375分以上	370分以上	365分以上	360分以上	355分以上	350分以上	345分以上']</span></span><br><span class="line"><span class="string">[[2	4	5	10	15	15	17	19	21	26	29	33</span></span><br><span class="line"><span class="string">2	4	6	6	8	12	14	19	23	29	39	46</span></span><br><span class="line"><span class="string">28	38	55	73	103	135	167	209	243	275	311	344]]"""</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 格式上进行一些处理</span></span><br><span class="line">rawZN = rawZN.replace(<span class="string">"\t"</span>, <span class="string">","</span>)                </span><br><span class="line">titleZN, dataZN = rawZN.split(<span class="string">"\n"</span>,maxsplit=<span class="number">1</span>)</span><br><span class="line">titleZN = titleZN.replace(<span class="string">","</span>, <span class="string">"\',\'"</span>)</span><br><span class="line">dataZN = dataZN.replace(<span class="string">"\n"</span>, <span class="string">"],["</span>)</span><br><span class="line"></span><br><span class="line">titleZN = eval(titleZN)</span><br><span class="line">dataZN =  eval(dataZN)</span><br><span class="line"></span><br><span class="line">dataZN = np.array(dataZN)</span><br><span class="line">print(dataZN)</span><br><span class="line"></span><br><span class="line">pureZN = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> dataZN:</span><br><span class="line">    i[<span class="number">1</span>:] -= i[:<span class="number">-1</span>].copy()</span><br><span class="line">    pureZN.append(i)</span><br><span class="line"></span><br><span class="line">pureZN = np.array(pureZN)</span><br><span class="line">print(pureZN)</span><br><span class="line"></span><br><span class="line">t = <span class="number">1</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> pureZN:</span><br><span class="line">    plt.subplot(eval(<span class="string">'31'</span>+str(t)))</span><br><span class="line">    t += <span class="number">1</span></span><br><span class="line">    <span class="comment"># hist, bin_edges = np.histogram(i)</span></span><br><span class="line">    plt.plot(i)</span><br><span class="line">    plt.xticks(range(len(titleZN))[::<span class="number">3</span>], titleZN[::<span class="number">3</span>])  <span class="comment">## 可以设置坐标字</span></span><br><span class="line"><span class="comment"># hist, bin_edges = np.histogram(sample)</span></span><br><span class="line"><span class="comment"># cdf = np.cumsum(hist)</span></span><br><span class="line"><span class="comment"># plt.plot(cdf)</span></span><br><span class="line"></span><br><span class="line">plt.rcParams[<span class="string">'font.sans-serif'</span>]=[<span class="string">'SimHei'</span>] <span class="comment">#用来正常显示中文标签</span></span><br><span class="line">plt.rcParams[<span class="string">'axes.unicode_minus'</span>]=<span class="literal">False</span> <span class="comment">#用来正常显示负号</span></span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<pre><code>[[  2   4   5  10  15  15  17  19  21  26  29  33]
- [  2   4   6   6   8  12  14  19  23  29  39  46]
- [ 28  38  55  73 103 135 167 209 243 275 311 344]]
-[[ 2  2  1  5  5  0  2  2  2  5  3  4]
- [ 2  2  2  0  2  4  2  5  4  6 10  7]
- [28 10 17 18 30 32 32 42 34 32 36 33]]
-</code></pre>
-<p><img src="https://cdn.jsdelivr.net/gh/18wang/media/pyq/output_3_1.svg" alt="svg"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 江苏：2018年普通高考文理科逐分段统计表 理科部分</span></span><br><span class="line"><span class="comment"># https://gaokao.chsi.com.cn/gkxx/zc/ss/201806/20180624/1699971659.html</span></span><br><span class="line"></span><br><span class="line">rawJS = <span class="string">"""[106,129,153,176,206,244,294,349,403,481,554,632,729,824,941,1073,1212,1374,1532,1701,1905,2155,2410,2673,2977,3300,3640,4011,4417,4851,5337,5826,6386,6970,7558,8196,8894,9624,10397,11188,12010,12927,13878,14865,15908,16949,18069,19224,20426,21662,22956,24259,25683,27082,28578,30126,31696,33251,34844,36532,38197,39968,41732,43537,45377,47223,49066,50899,52843,54809,56818,58853,60827,62874,64881,66887,68883,70894,72878,74876,76939,78846,80785,82746,84717,86691,88640,90569,92470,94303,96130,97984,99833,101621,103400,105171,106842,108538,110109,111659,113259,114858,116332,117807,119232,120592,121985,123348,124643,125898,127159,128392,129577,130768,131884,133003,134133,135180,136221,137206,138195,139160,140082,141006,141853,142718,143558,144384,145131,145856,146562,147204,147854,148486,149146,149786,150353]"""</span></span><br><span class="line">titleJS = <span class="string">"""['411','410','409','408','407','406','405','404','403','402','401','400','399','398','397','396','395','394','393','392','391','390','389','388','387','386','385','384','383','382','381','380','379','378','377','376','375','374','373','372','371','370','369','368','367','366','365','364','363','362','361','360','359','358','357','356','355','354','353','352','351','350','349','348','347','346','345','344','343','342','341','340','339','338','337','336','335','334','333','332','331','330','329','328','327','326','325','324','323','322','321','320','319','318','317','316','315','314','313','312','311','310','309','308','307','306','305','304','303','302','301','300','299','298','297','296','295','294','293','292','291','290','289','288','287','286','285','284','283','282','281','280','279','278','277','276','275']"""</span></span><br><span class="line">rawJS = np.array(eval(rawJS))</span><br><span class="line">titleJS = eval(titleJS)</span><br><span class="line">titleJS = [int(i) <span class="keyword">for</span> i <span class="keyword">in</span> titleJS]</span><br><span class="line"></span><br><span class="line">total = rawJS[<span class="number">-1</span>]       <span class="comment"># 总人数</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">rawJS[<span class="number">1</span>:] -= rawJS[:<span class="number">-1</span>].copy()</span><br><span class="line"></span><br><span class="line">plt.figure(<span class="number">1</span>)</span><br><span class="line">plt.plot(rawJS/total)           <span class="comment"># 画PDF</span></span><br><span class="line">plt.xticks(range(len(titleJS))[::<span class="number">5</span>], titleJS[::<span class="number">5</span>])  <span class="comment">## 可以设置坐标字</span></span><br><span class="line">plt.rcParams[<span class="string">'font.sans-serif'</span>]=[<span class="string">'SimHei'</span>] <span class="comment">#用来正常显示中文标签</span></span><br><span class="line">plt.rcParams[<span class="string">'axes.unicode_minus'</span>]=<span class="literal">False</span> <span class="comment">#用来正常显示负号</span></span><br><span class="line"><span class="comment"># plt.show()</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sample = np.random.choice(titleJS, p=rawJS/total,size=<span class="number">10000</span>)</span><br><span class="line">meanJS = sample.mean()      <span class="comment"># 正态分布拟合</span></span><br><span class="line">delta = sample.std()</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> scipy.stats</span><br><span class="line"></span><br><span class="line">p = scipy.stats.norm.pdf(titleJS, meanJS, delta)  <span class="comment"># 返回N(mu,sigma^2)的概率密度函数在 x 处的值</span></span><br><span class="line">plt.plot(p)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">plt.figure(<span class="number">2</span>)</span><br><span class="line">cdfJS = rawJS.cumsum()      <span class="comment"># 画CDF</span></span><br><span class="line">plt.xticks(range(len(titleJS))[::<span class="number">5</span>], titleJS[::<span class="number">5</span>])  <span class="comment">## 可以设置坐标字</span></span><br><span class="line">plt.plot(cdfJS/total)</span><br><span class="line"><span class="comment"># plt.show()</span></span><br><span class="line">titleJS.sort()</span><br><span class="line">c = scipy.stats.norm.cdf(titleJS, meanJS, delta)</span><br><span class="line">plt.plot(c)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/18wang/media/pyq/output_4_0.svg" alt="svg"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/18wang/media/pyq/output_4_1.svg" alt="svg"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> scipy.stats</span><br><span class="line"></span><br><span class="line">num = <span class="number">1560</span></span><br><span class="line">stopR = <span class="number">204</span></span><br><span class="line">stopPointR = <span class="number">349</span> </span><br><span class="line">puR = <span class="number">356</span></span><br><span class="line">mean = <span class="number">318</span></span><br><span class="line">std = <span class="number">28</span></span><br><span class="line"></span><br><span class="line">sampleRan = np.random.normal(mean, std, <span class="number">155400</span>)</span><br><span class="line">sample = np.sort(sampleRan) </span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算分数线</span></span><br><span class="line">stop = np.percentile(sample, <span class="number">100</span><span class="number">-100</span>*stopR/num)   <span class="comment"># percentile 返回百分位数对应的值</span></span><br><span class="line">print(<span class="string">'估计分数线'</span>, stop)</span><br><span class="line"><span class="comment"># 换算成蒲宇琦的分数</span></span><br><span class="line">meanR = stopPointR/stop*mean</span><br><span class="line">print(<span class="string">"实际均分"</span>,meanR) <span class="comment"># 实际 平均分</span></span><br><span class="line">pu = puR*mean/meanR</span><br><span class="line">print(pu)</span><br><span class="line"></span><br><span class="line">rank = scipy.stats.norm.cdf(pu, mean, std)</span><br><span class="line">print((<span class="number">1</span>-rank)*num)</span><br><span class="line"></span><br><span class="line">plt.rcParams[<span class="string">'font.sans-serif'</span>]=[<span class="string">'SimHei'</span>] <span class="comment">#用来正常显示中文标签</span></span><br><span class="line">plt.rcParams[<span class="string">'axes.unicode_minus'</span>]=<span class="literal">False</span> <span class="comment">#用来正常显示负号</span></span><br><span class="line"></span><br><span class="line">L = np.linspace(<span class="number">200</span>, <span class="number">430</span>, num=<span class="number">500</span>)</span><br><span class="line">Lpdf = scipy.stats.norm.pdf(L, meanR, std)</span><br><span class="line">plt.subplot(<span class="number">211</span>)</span><br><span class="line">plt.plot(L,Lpdf)</span><br><span class="line">plt.title(<span class="string">"成绩分布概率密度"</span>)</span><br><span class="line">plt.xlabel(<span class="string">"成绩"</span>)  <span class="comment"># x轴上的名字</span></span><br><span class="line">plt.ylabel(<span class="string">"概率密度"</span>)  <span class="comment"># y轴上的名字</span></span><br><span class="line"><span class="comment"># 画分数线</span></span><br><span class="line">point1 = [stop,scipy.stats.norm.pdf(stop, meanR, std)]</span><br><span class="line">plt.plot([point1[<span class="number">0</span>],point1[<span class="number">0</span>]],[point1[<span class="number">1</span>],<span class="number">0</span>],<span class="string">'r--'</span>,linewidth = <span class="number">2</span>)</span><br><span class="line">plt.annotate(<span class="string">'分数线'</span>, xy=point1)</span><br><span class="line"><span class="comment"># 画蒲宇琦</span></span><br><span class="line">point1 = [puR,scipy.stats.norm.pdf(pu, meanR, std)]</span><br><span class="line">plt.plot([point1[<span class="number">0</span>],point1[<span class="number">0</span>]],[point1[<span class="number">1</span>],<span class="number">0</span>],<span class="string">'g--'</span>,linewidth = <span class="number">1.5</span>)</span><br><span class="line">plt.annotate(<span class="string">'pyq'</span>, xy=point1)</span><br><span class="line">plt.xlim((L[<span class="number">0</span>],L[<span class="number">-1</span>]))</span><br><span class="line">plt.ylim((<span class="number">0</span>,<span class="number">0.015</span>))</span><br><span class="line">plt.xticks([int(i) <span class="keyword">for</span> i <span class="keyword">in</span> L[::<span class="number">20</span>]], [int(i) <span class="keyword">for</span> i <span class="keyword">in</span> L[::<span class="number">20</span>]])  <span class="comment">## 可以设置坐标字</span></span><br><span class="line"></span><br><span class="line">Lcdf = scipy.stats.norm.cdf(L, meanR, std)</span><br><span class="line">plt.subplot(<span class="number">212</span>)</span><br><span class="line">plt.plot(L,Lcdf*num)</span><br><span class="line">plt.title(<span class="string">"成绩排名(累计分布)"</span>)</span><br><span class="line">plt.xticks([int(i) <span class="keyword">for</span> i <span class="keyword">in</span> L[::<span class="number">20</span>]], [int(i) <span class="keyword">for</span> i <span class="keyword">in</span> L[::<span class="number">20</span>]])  <span class="comment">## 可以设置坐标字</span></span><br><span class="line">plt.yticks(range(num,<span class="number">0</span>,<span class="number">-1</span>)[::<span class="number">100</span>], [i <span class="keyword">for</span> i <span class="keyword">in</span> range(num)[::<span class="number">100</span>]])</span><br><span class="line">plt.xlabel(<span class="string">"成绩"</span>)  <span class="comment"># x轴上的名字</span></span><br><span class="line">plt.ylabel(<span class="string">"排名"</span>)  <span class="comment"># y轴上的名字</span></span><br><span class="line"><span class="comment"># 画分数线</span></span><br><span class="line">point1 = [stop,scipy.stats.norm.cdf(stop, meanR, std)*num]</span><br><span class="line">plt.plot([point1[<span class="number">0</span>],point1[<span class="number">0</span>],L[<span class="number">0</span>]],[<span class="number">0</span>,point1[<span class="number">1</span>],point1[<span class="number">1</span>]],<span class="string">'r--'</span>,linewidth = <span class="number">2</span>)</span><br><span class="line">plt.annotate(<span class="string">'分数线'</span>, xy=[point1[<span class="number">0</span>]<span class="number">-4</span>, point1[<span class="number">1</span>]<span class="number">-80</span>])</span><br><span class="line"><span class="comment"># 画蒲宇琦</span></span><br><span class="line">point1 = [puR,scipy.stats.norm.cdf(pu, meanR, std)*num]</span><br><span class="line">plt.plot([point1[<span class="number">0</span>],point1[<span class="number">0</span>],L[<span class="number">0</span>]],[<span class="number">0</span>,point1[<span class="number">1</span>],point1[<span class="number">1</span>]],<span class="string">'g--'</span>,linewidth = <span class="number">1.5</span>)</span><br><span class="line">plt.annotate(<span class="string">'pyq'</span>, xy=[point1[<span class="number">0</span>]+<span class="number">2</span>, point1[<span class="number">1</span>]<span class="number">-20</span>])</span><br><span class="line"></span><br><span class="line">plt.xlim((L[<span class="number">0</span>],L[<span class="number">-1</span>]))</span><br><span class="line">plt.ylim((<span class="number">0</span>,<span class="number">1.05</span>*num))</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<pre><code>估计分数线 349.6126342475794
-实际均分 317.4427612973726
-356.62492204051085
-130.84695647606708
-</code></pre>
-<p><img src="https://cdn.jsdelivr.net/gh/18wang/media/pyq/output_5_1.svg" alt="svg"></p>
-
-      
-      
-        
-      
-    </div>
-  </section>
-</article>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1940,7 +2008,7 @@ b2:1.398749418138334e-07
         
           <a class="next" rel="next" href="/archives/2020/page/2/">
             <section class="post next white-box shadow">
-              &nbsp;下一頁&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
+              &nbsp;Next&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
             </section>
           </a>
         
@@ -2106,19 +2174,19 @@ b2:1.398749418138334e-07
       
     
       
-        <div><p>博客內容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh_TW" target="_blank" rel="noopener">姓名標示-非商業性-相同方式分享 4.0 國際 (CC BY-NC-SA 4.0) 協議</a></p>
+        <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
 </div>
       
     
       
-        本站使用
+        Use
         <a href="https://volantis.js.org/" target="_blank" class="codename">Volantis</a>
-        作為主題
+        as theme
         
-          ，
-          總訪問量為
+          , 
+          total visits
           <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
-          次
+          times
         
       
     

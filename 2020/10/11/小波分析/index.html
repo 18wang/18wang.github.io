@@ -16,7 +16,7 @@
 
   <!-- 页面元数据 -->
   
-    <title>pyinstaller用法 - 18wang</title>
+    <title>小波分析 - 18wang</title>
   
   
 
@@ -377,8 +377,8 @@
         
   
     <h1 class="title">
-      <a href="/2020/09/03/pyinstaller%E7%94%A8%E6%B3%95/">
-        pyinstaller用法
+      <a href="/2020/10/11/%E5%B0%8F%E6%B3%A2%E5%88%86%E6%9E%90/">
+        小波分析
       </a>
     </h1>
   
@@ -409,7 +409,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Sep 3, 2020</p>
+    <p>发布于：Oct 11, 2020</p>
   </a>
 </div>
 
@@ -431,7 +431,125 @@
       <section class="article typo">
         <div class="article-entry" itemprop="articleBody">
           
-          
+          <h2 id="小波变换"><a href="#小波变换" class="headerlink" title="小波变换"></a>小波变换</h2><h3 id="重要参数"><a href="#重要参数" class="headerlink" title="重要参数"></a>重要参数</h3><ul>
+<li>scaling 尺度系数 $s$<br>可以表示为 <script type="math/tex; mode=display">\Psi\left(\frac{\mathrm{t}}{\mathrm{s}}\right) \mathrm{s}>0</script><blockquote>
+<p>信号在时间尺度上的拉伸&amp;压缩, s越大, 拉伸越大. 即 和等效频率成反比关系.</p>
+</blockquote>
+</li>
+<li>shifting 平移<blockquote>
+<p>用于对齐小波对应的信号位置</p>
+</blockquote>
+</li>
+<li>center frequency 中心频率 $C_f$<br>和傅里叶变换的<code>等效频率</code>为<script type="math/tex; mode=display">F_{e q}=\frac{C_{f}}{s \delta t}</script>$\delta t$为采样间隔</li>
+</ul>
+<h3 id="连续小波变换-Continuous-wavelet-transform-CWT"><a href="#连续小波变换-Continuous-wavelet-transform-CWT" class="headerlink" title="连续小波变换 Continuous wavelet transform CWT"></a>连续小波变换 Continuous wavelet transform CWT</h3><h3 id="离散小波变换-Discrete-wavelet-transform"><a href="#离散小波变换-Discrete-wavelet-transform" class="headerlink" title="离散小波变换 Discrete wavelet transform"></a>离散小波变换 Discrete wavelet transform</h3><h3 id="第2讲课后练习：证明Fourier变换的性质"><a href="#第2讲课后练习：证明Fourier变换的性质" class="headerlink" title="第2讲课后练习：证明Fourier变换的性质"></a>第2讲课后练习：证明Fourier变换的性质</h3><p> 姓名: <strong>汪星宇</strong><br> 学号: <strong>XS20073058</strong></p>
+<p>(4) $F[f * g]=\hat{f} \cdot \hat{g}$</p>
+<p>证明:</p>
+<p>$F[f * g] = \int_{-\infty}^{+\infty} \left[ \int_{-\infty}^{+\infty} f(\tau)g(t-\tau) d \tau \right] e^{-j\omega t}dt$</p>
+<p>$ = \int_{-\infty}^{+\infty} f(\tau) \left[ \int_{-\infty}^{+\infty} g(t-\tau)  e^{-j\omega (t-\tau)} dt \right] e^{-j\omega \tau} d\tau $</p>
+<p>$ = \int_{-\infty}^{+\infty} f(\tau)e^{-j\omega \tau} d\tau  \int_{-\infty}^{+\infty} g(t-\tau)  e^{-j\omega (t-\tau)} d(t-\tau)  $</p>
+<p>$ = \hat{f} \cdot \hat{g} $</p>
+<p><br></p>
+<p>(5) $\langle f, g\rangle_{L^{2}}=\frac{1}{2 \pi}\langle\hat{f}, \hat{g}\rangle_{L^{2}}$</p>
+<p>证明:</p>
+<p>对于 $f \in \mathbf{L}^{2}(\mathbb{R})$ 和 $g \in \mathbf{L}^{2}(\mathbb{R})$ , 有 $\langle f, g\rangle=\int_{-\infty}^{+\infty} f(t) g^{*}(t) d t$</p>
+<p>令 $ h=f \star \bar{g} $, 其中 $\bar{g}(t)=g^{*}(-t)$</p>
+<p>$h(t)=\int_{-\infty}^{+\infty} f(\tau) g^{<em>}(-t+\tau) d\tau$ , 则 $ h(0) = \int_{-\infty}^{+\infty} f(t) g^{</em>}(t) dt $</p>
+<p>依据 $F[f^{<em>}(t)] = \hat{f}^{</em>}(-\omega)$ 和<code>(4)式</code>可知, $\hat{h}(\omega)=\hat{f}(\omega) \hat{g}^{*}(\omega)$</p>
+<p>对$\hat{h}(\omega)$做<code>IFT</code>可得, $ h(0) = \frac{1}{2 \pi} \int_{-\infty}^{+\infty} \hat{h}(\omega) d \omega=\frac{1}{2 \pi} \int_{-\infty}^{+\infty} \hat{f}(\omega) \hat{g}^{*}(\omega) d \omega$</p>
+<p>由上, $\int_{-\infty}^{+\infty} f(t) g^{<em>}(t) dt = h(0) =\frac{1}{2 \pi} \int_{-\infty}^{+\infty} \hat{f}(\omega) \hat{g}^{</em>}(\omega) d \omega$</p>
+<p>即  $ \langle f, g\rangle_{L^{2}}=\frac{1}{2 \pi}\langle\hat{f}, \hat{g}\rangle_{L^{2}} $</p>
+<blockquote>
+<p>参考 mallat3 P39</p>
+</blockquote>
+<h3 id="第3讲课后练习：证明序列采样率变化后的性质"><a href="#第3讲课后练习：证明序列采样率变化后的性质" class="headerlink" title="第3讲课后练习：证明序列采样率变化后的性质"></a>第3讲课后练习：证明序列采样率变化后的性质</h3><p> 姓名: <strong>汪星宇</strong><br> 学号: <strong>XS20073058</strong></p>
+<p>(1) $Y_{D}\left(\mathrm{e}^{i \omega}\right)=\frac{1}{M} \sum_{k=0}^{M-1} X\left(e^{i(\omega-2 \pi k) / M}\right)$ </p>
+<p>证明:</p>
+<p>设$x^{‘}(n)=\left\{\begin{array}{lc} x(n), &amp;\text{n为M倍数} \ 0,&amp; \text{其他.}<br>\end{array}\right.$</p>
+<p>则 $y_{D}(n)=x(M n)=x^{‘}(Mn)$</p>
+<p>因此 $Y_{D}(e^{i\omega})=\sum_{n=-\infty}^{\infty}x^{‘}(Mn)e^{-i\omega n}$</p>
+<p>令 $k=Mn$. 则 $Y_{D}(e^{i\omega})=\sum_{k=-\infty}^{\infty}x^{‘}(k)e^{-i\omega k/M} =X^{‘}(e^{i\omega /M})$ </p>
+<p>令 $x^{‘}(n)=c_{M}(n)x(n)$, 其中 $c_{M}(n)=\left\{\begin{array}{lc}1, &amp; \text {n为M倍数} \ 0, &amp; \text { 其他. }\end{array}\right.$</p>
+<p>对 $c_{M}(n)$ 进行傅里叶展开得到 $c_{M}(n)=\frac{1}{M} \sum_{k=0}^{M-1} \exp \left(\frac{i 2 \pi k n}{M}\right)$</p>
+<p>因此 $x^{‘}(n)$ 的傅里叶变换为 </p>
+<p>$X^{‘}(e^{i\omega})=\sum_{n=-\infty}^{\infty} x(n) c_{M}(n) e^{-i\omega n}$</p>
+<p>$=\frac{1}{M} \sum_{k=0}^{M-1} \sum_{n=-\infty}^{\infty} x(n)e^{-in(\omega-2\pi k/M)}=\frac{1}{M} \sum_{k=0}^{M-1} X(e^{i(\omega-2\pi k/M)})$</p>
+<p>对应 $y_{D}(n)$ 的变换为 $Y_{D}\left(\mathrm{e}^{i \omega}\right) = \frac{1}{M} \sum_{k=0}^{M-1} X(e^{i(\omega/M-2\pi k/M)})$</p>
+<p>即 $Y_{D}\left(\mathrm{e}^{i \omega}\right)=\frac{1}{M} \sum_{k=0}^{M-1} X\left(e^{i(\omega-2 \pi k) / M}\right)$ </p>
+<p><a href="https://www.sciencedirect.com/topics/engineering/decimator" target="_blank" rel="noopener">证明参考</a></p>
+<p><br></p>
+<p>(2) $Y_{E}\left(\mathrm{e}^{i \omega}\right)=X\left(\mathrm{e}^{i \omega L}\right)$</p>
+<p>证明:<br>$y_{E}(n)=\left\{\begin{array}{l}x(n / L), n=0,\plusmn L,\plusmn 2L,…  \ 0, otherwise \end{array}\right.$</p>
+<p>有 $Y_{E}\left(\mathrm{e}^{i \omega}\right) = \sum_{n=-\infty }^{+\infty} y_{E}(n)e^{-i\omega n}$</p>
+<p>令 $n=kL, k\in \mathbb{Z}$</p>
+<p>$Y_{E}\left(\mathrm{e}^{i \omega}\right) = \sum_{k=-\infty }^{+\infty} x(kL/L)e^{-i\omega kL} = \sum_{k=-\infty }^{+\infty} x(k)e^{-i(\omega L) k} = X\left(\mathrm{e}^{i \omega L}\right)$</p>
+<h3 id="第4讲课后练习：证明Haar小波滤波器组的性质"><a href="#第4讲课后练习：证明Haar小波滤波器组的性质" class="headerlink" title="第4讲课后练习：证明Haar小波滤波器组的性质"></a>第4讲课后练习：证明Haar小波滤波器组的性质</h3><p> 姓名: <strong>汪星宇</strong><br> 学号: <strong>XS20073058</strong></p>
+<ol>
+<li>证明下式对应的变换可以用图1所示的重构滤波结构实现，其中$\widetilde{H}$和$\widetilde{G}$如题2所示：</li>
+</ol>
+<p><img src="4.png" style="transform:rotate(0deg);" width =80%></p>
+<p>证明:<br>$c_j$ 上采样之后的信号为 $\left\{\begin{array}{l} c^{‘}_{j,2k} = c_{j,k}   \ c^{‘}_{j,2k+1} =0 \end{array}\right.$</p>
+<p>$d_j$ 上采样之后的信号为 $\left\{\begin{array}{l} d^{‘}_{j,2k} = d_{j,k}   \ d^{‘}_{j,2k+1} =0 \end{array}\right.$</p>
+<p>则 $\left\{\begin{array}{l} c_{j-1,2k}=\sum_{n}{} \left[ \widetilde{h}(n) c^{‘}_{j,2k-n} + \widetilde{g}(n) d^{‘}_{j,2k-n} \right] \ c_{j-1,2k+1}=\sum_{n}{} \left[ \widetilde{h}(n) c^{‘}_{j,2k+1-n} + \widetilde{g}(n) d^{‘}_{j,2k+1-n} \right] \end{array}\right.$</p>
+<p>根据 $\left\{\begin{array}{l}c_{j-1,2 k}=\frac{1}{\sqrt{2}}\left(c_{j, k}+d_{j, k}\right) \ c_{j-1,2 k+1}=\frac{1}{\sqrt{2}}\left(c_{j, k}-d_{j, k}\right)\end{array}\right.$</p>
+<p>可以解得 $\widetilde{h}(0)=\frac{1}{\sqrt{2}}, \widetilde{g}(0)=\frac{1}{\sqrt{2}}, \widetilde{h}(1)=\frac{1}{\sqrt{2}}, \widetilde{g}(1)=-\frac{1}{\sqrt{2}}$</p>
+<p>即存在 $\widetilde{H}(z), \widetilde{G}(z)$ 使得重构滤波器能够满足对应变换. </p>
+<p><br></p>
+<ol>
+<li>证明下图所示的Haar小波滤波器组是完全重构滤波器组，也即系统的输出与输入相同（至多相差某个延时） </li>
+</ol>
+<p><img src="4-2.png" style="transform:rotate(0deg);" width =90%></p>
+<p>其中<br><img src="4-3.png" style="transform:rotate(0deg);" width =50%></p>
+<p>证明:</p>
+<p>根据多采样率系统的性质, 在<code>Z变换域</code>上给出如下证明.</p>
+<p>对于$M$倍下采样而言, 输出信号 $Y_{D}(z)=\frac{1}{M} \sum_{k=0}^{M-1} X\left(e^{-2 \pi k i / M} z^{\frac{1}{M}}\right)$</p>
+<p>对于$L$倍上采样, 输出信号 $Y_{E}\left(z\right)=X\left(z^{L}\right)$</p>
+<p>上图系统中, $L=M=2$ 连续通过下采样和上采样系统的输出信号 $Y(z)=\frac{1}{2} \sum_{k=0}^{2-1} X\left((e^{-2 \pi k i / 2} z^{\frac{1}{2}})^{2}\right)=\frac{1}{2}X(z)+\frac{1}{2}X(e^{-2\pi }z) = X(z)$ </p>
+<p>即 $H_{ML}(z) = 1$</p>
+<p>则整个系统函数为 $\frac{1}{2} H(z)\widetilde{H}(z)+\frac{1}{2} G(z)\widetilde{G}(z) = \frac{1}{2}\cdot \frac{1}{2}(1+1+z+z^{-1}+1+1-z-z^{-1})=1$</p>
+<p>所以该滤波器组是完全重构滤波器组.</p>
+<h3 id="第5讲课后练习：证明连续小波变换完全重构定理等"><a href="#第5讲课后练习：证明连续小波变换完全重构定理等" class="headerlink" title="第5讲课后练习：证明连续小波变换完全重构定理等"></a>第5讲课后练习：证明连续小波变换完全重构定理等</h3><p> 姓名: <strong>汪星宇</strong><br> 学号: <strong>XS20073058</strong></p>
+<ol>
+<li>证明小波完全重构定理：</li>
+</ol>
+<p><img src="1.bmp" style="transform:rotate(0deg);" width =80%></p>
+<p>(1) $f(t)=\frac{1}{C_{\psi}} \int_{0}^{+\infty} \int_{-\infty}^{+\infty} W f(s, u) \frac{1}{\sqrt{s}} \psi\left(\frac{t-u}{s}\right) d u \frac{1}{s^{2}} d s$</p>
+<p>证明:</p>
+<p>已知 $\psi_{u, s}(t)=\frac{1}{\sqrt{s}} \psi\left(\frac{t-u}{s}\right)$, $\psi_{s}(t)=\frac{1}{\sqrt{s}} \psi\left(\frac{-t}{s}\right)$</p>
+<p>$W f(s, u) = \left(f\star \psi_{s}^{<em>}\right)(u)=\int_{-\infty}^{+\infty}f(t) \frac{1}{\sqrt{s}} \psi ^ {</em>} \left(\frac{t-u}{s}\right) dt$</p>
+<p>则 $\int_{-\infty}^{+\infty} W f(s, u) \frac{1}{\sqrt{s}} \psi\left(\frac{t-u}{s}\right) du = \left(W f(s,u) \star \psi_{s}^{‘}\right)(t)= \left(f\star\psi^{*}_{s}\star\psi_{s}^{‘}\right)(t)$</p>
+<p>其中 $\psi_{s}^{‘}(t) =\psi_{s}(-t) = \frac{1}{\sqrt{s}} \psi\left(\frac{t}{s}\right)$</p>
+<p>因此, 右式 $=\frac{1}{C_{\psi}} \int_{0}^{+\infty} \int_{-\infty}^{+\infty} W f(s, u) \frac{1}{\sqrt{s}} \psi\left(\frac{t-u}{s}\right) d u \frac{1}{s^{2}} d s$</p>
+<p>$= \frac{1}{C_{\psi}} \int_{0}^{+\infty} \left(f\star\psi^{*}_{s}\star\psi_{s}^{‘}\right)(t) \frac{1}{s^{2}} ds$</p>
+<p>且有 $\hat{\psi}^{<em>}_{s}(\omega) = \sqrt{s}\hat{\psi}^{</em>}(\omega s)$, $\hat{\psi}^{‘}_{s}(\omega) = \sqrt{s}\hat{\psi}(\omega s)$</p>
+<p>对右式做傅里叶变换可得</p>
+<p>右侧 $= \frac{1}{C_{\psi}} \int_{-\infty}^{+\infty} \int_{0}^{+\infty} \left(f\star\psi^{*}_{s}\star\psi_{s}^{‘}\right)(t) \frac{1}{s^{2}}ds \cdot e^{-j\omega t}dt$</p>
+<p>$=\frac{1}{C_{\psi}}  \int_{0}^{+\infty} \int_{-\infty}^{+\infty}\left(f\star\psi^{*}_{s}\star\psi_{s}^{‘}\right)(t) e^{-j\omega t}dt\cdot\frac{1}{s^{2}}ds$</p>
+<script type="math/tex; mode=display">=\frac{1}{C_{\psi}} \hat{f}(\omega) \int_{0}^{+\infty} |\hat{\psi}(\omega s)|^{2}\frac{1}{s}ds \tag{1.1}</script><p>令 $\omega s=k$ </p>
+<p>上式 $=\frac{1}{C_{\psi}} \hat{f}(\omega) \int_{0}^{+\infty} |\hat{\psi}(k)|^{2}\frac{\omega}{k}dk\frac{1}{\omega}$</p>
+<p>$= \hat{f}(\omega) \left[\int_{0}^{+\infty} |\hat{\psi}(k)|^{2}\frac{1}{k}dk \right] / \left[\int_{0}^{+\infty} \frac{|\hat{\psi}(\omega)|^{2}}{\omega} d \omega \right] = \hat{f}(\omega)$</p>
+<p>由此得证.<br><br></p>
+<p>(2) $\int_{-\infty}^{+\infty}|f(t)|^{2} d t=\frac{1}{C_{y}} \int_{0}^{+\infty} \int_{-\infty}^{+\infty}|W f(s, u)|^{2} d u \frac{1}{s^{2}} d s$<br>证明:</p>
+<p>根据<a href="https://www.zhihu.com/question/22891656" target="_blank" rel="noopener">帕塞瓦尔定理</a>可知, 对连续信号 $f(t)$, 有 $\int_{-\infty}^{+\infty}|f(t)|^{2} dt = \frac{1}{2\pi}\int_{-\infty}^{+\infty}|\hat{f}(\omega)|^{2} d\omega$</p>
+<p>由(1)中 公式(1.1) 可得 </p>
+<p>左式 $\frac{1}{2\pi}\int_{-\infty}^{+\infty}|\hat{f}(\omega)|^{2} d\omega =\frac{1}{2\pi}\int_{-\infty}^{+\infty} \left[ \frac{1}{C_{\psi}} \hat{f}(\omega) \int_{0}^{+\infty} |\hat{\psi}(\omega s)|^{2}\frac{1}{s}ds \right] \cdot \hat{f}^{*}(\omega) d\omega$</p>
+<p>$=\frac{1}{2\pi} \frac{1}{C_{\psi}} \int_{-\infty}^{+\infty} \int_{0}^{+\infty} |\hat{f}(\omega)|^{2}  |\hat{\psi}(\omega s)|^{2}\frac{1}{s}ds  d\omega$</p>
+<p>因为 $W f(s, u) = \left(f\star \psi_{s}^{<em>}\right)(u)$, 所以 $\hat{Wf}(s, \omega) = \hat{f}(\omega) \sqrt{s}\hat{\psi}^{</em>}(\omega s)$</p>
+<p>右式的帕塞瓦尔恒等式为 $\frac{1}{C_{y}} \int_{0}^{+\infty} \int_{-\infty}^{+\infty}|W f(s, u)|^{2} d u \frac{1}{s^{2}} d s =\frac{1}{2\pi} \frac{1}{C_{y}} \int_{0}^{+\infty} \int_{-\infty}^{+\infty}|\hat{W f}(s, \omega)|^{2}d\omega \frac{1}{s^{2}}ds$</p>
+<p>$=\frac{1}{2\pi} \frac{1}{C_{y}} \int_{0}^{+\infty} \int_{-\infty}^{+\infty}|\hat{f}(\omega)\cdot \hat{\psi}(\omega s)|^{2}\frac{1}{s} d\omega ds$</p>
+<p>因此左式=右式, 命题得证.<br><br></p>
+<ol>
+<li>证明正交MRA满足如下性质：</li>
+</ol>
+<p><img src="2.bmp" style="transform:rotate(0deg);" width =40%></p>
+<p>证明:</p>
+<p>对于不同空间 $V_{j}$, 有 $span\{\phi_{j,k}(t)|k\in \mathbb{Z}\} $</p>
+<p>$\begin{aligned}\langle\phi(t), \phi(t-k)\rangle &amp;=\int_{-\infty}^{+\infty} \phi(t) \phi^{*}(t-k) d t =\phi \star \bar{\phi}(k) \end{aligned}$</p>
+<p>其中 $\bar{\phi}(t)=\phi^{*}(-t)$</p>
+<p>$\{\phi(t-k)|k\in \mathbb{Z}\}$ 是一组标准正交基时, 需满足 $\phi \star \bar{\phi}(k)=\delta(k)$ </p>
+<p>对其做傅里叶变换可得</p>
+<p>$\sum_{k=-\infty}^{+\infty}|\hat{\phi}(\omega+2 k \pi)|^{2}=1$</p>
+
           
             <br>
             
@@ -469,10 +587,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-16T14:05:38+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-10-21T17:07:17+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Sep 16, 2020</p>
+    <p>更新于：Oct 21, 2020</p>
   </a>
 </div>
 
@@ -496,7 +614,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://github.com/18wang/2020/09/03/pyinstaller%E7%94%A8%E6%B3%95/&title=pyinstaller用法 - 18wang&summary="
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://github.com/18wang/2020/10/11/%E5%B0%8F%E6%B3%A2%E5%88%86%E6%9E%90/&title=小波分析 - 18wang&summary="
           
           >
           
@@ -508,7 +626,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://github.com/18wang/2020/09/03/pyinstaller%E7%94%A8%E6%B3%95/&title=pyinstaller用法 - 18wang&summary="
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://github.com/18wang/2020/10/11/%E5%B0%8F%E6%B3%A2%E5%88%86%E6%9E%90/&title=小波分析 - 18wang&summary="
           
           >
           
@@ -520,7 +638,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=https://github.com/18wang/2020/09/03/pyinstaller%E7%94%A8%E6%B3%95/&title=pyinstaller用法 - 18wang&summary="
+          href="http://service.weibo.com/share/share.php?url=https://github.com/18wang/2020/10/11/%E5%B0%8F%E6%B3%A2%E5%88%86%E6%9E%90/&title=小波分析 - 18wang&summary="
           
           >
           
@@ -544,20 +662,22 @@
         
           <div class="prev-next">
             
-              <a class='prev' href='/2020/09/12/%E5%AF%B9%E7%A7%B0%E4%BF%A1%E5%8F%B7%E6%B1%82%E5%B7%AE%E6%B3%95%E5%AF%BB%E6%89%BE%E6%9C%80%E5%80%BC/'>
-                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>对称信号求差法寻找最值</p>
-                <p class='content'>对称信号求差法寻找最值
-兴哥给了我几组数据, 里面包括了(方位角/俯仰角), 光强值, 距离. 需要寻找最大光强值, 得到对应的角度; 寻找最小的距离值, 得到对应的角度.
-尤其是 光强-角度 ...</p>
+              <a class='prev' href='/2021/03/31/VS%20Code%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE-%E5%BA%94%E7%94%A8%E5%95%86%E5%BA%97%E8%81%94%E7%BD%91/'>
+                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>VS Code代理设置-应用商店联网</p>
+                <p class='content'>VS Code代理设置-应用商店联网因为之前对电脑的设置, 导致VS Code无法联网, 网上找了一些教程, 不能完全解决问题. 
+需要在设置中填入正确的端口号, 端口号可以在代理中找到, 或自...</p>
               </a>
             
             
-              <a class='next' href='/2020/08/24/Python%E6%A8%A1%E6%8B%9F%E7%82%B9%E4%BA%91%E7%94%9F%E6%88%90/'>
-                <p class='title'>Python模拟点云生成<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-                <p class='content'>模拟点云生成
-用python生成点云, 加入一点噪声, 包括平面, 直线和圆柱面的点云
-比较容易, numpy 生成点, 列方程, 画图, 保存(点云的保存要注意一点技巧)
-1234567891...</p>
+              <a class='next' href='/2020/09/16/%E7%A9%BA%E9%97%B4%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2/'>
+                <p class='title'>空间坐标变换<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+                <p class='content'>空间坐标变换
+1. 以当前坐标为中心的变换矩阵
+平移矩阵:
+$$
+Mm=\left[\begin{array}{llll}
+1 &amp; 0 &amp; 0 &amp; d x \
+0 &am...</p>
               </a>
             
           </div>
@@ -585,7 +705,7 @@
 
   <script>
     window.subData = {
-      title: 'pyinstaller用法',
+      title: '小波分析',
       tools: true
     }
   </script>
@@ -600,6 +720,20 @@
     
     
 
+
+  <section class="widget toc-wrapper shadow desktop mobile">
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#小波变换"><span class="toc-text">小波变换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#重要参数"><span class="toc-text">重要参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#连续小波变换-Continuous-wavelet-transform-CWT"><span class="toc-text">连续小波变换 Continuous wavelet transform CWT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#离散小波变换-Discrete-wavelet-transform"><span class="toc-text">离散小波变换 Discrete wavelet transform</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第2讲课后练习：证明Fourier变换的性质"><span class="toc-text">第2讲课后练习：证明Fourier变换的性质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第3讲课后练习：证明序列采样率变化后的性质"><span class="toc-text">第3讲课后练习：证明序列采样率变化后的性质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第4讲课后练习：证明Haar小波滤波器组的性质"><span class="toc-text">第4讲课后练习：证明Haar小波滤波器组的性质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第5讲课后练习：证明连续小波变换完全重构定理等"><span class="toc-text">第5讲课后练习：证明连续小波变换完全重构定理等</span></a></li></ol></li></ol>
+    </div>
+  </section>
 
 
   

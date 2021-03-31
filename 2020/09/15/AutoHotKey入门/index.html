@@ -431,56 +431,41 @@
       <section class="article typo">
         <div class="article-entry" itemprop="articleBody">
           
-          <h1 id="AutoHotKey-使用"><a class="header-anchor" href="#AutoHotKey-使用"></a>AutoHotKey 使用</h1>
-<p>在整理电子书的时候, 看到从一些网站下载的电子书中含有水印, 文字插入等难以通过PDF编辑器批量选中删除的内容, 于是考虑采用脚本, 批量操作的方法实现这一目标.</p>
-<p><code>AutoHotKey</code>就是这样一款卓越的脚本语言. 虽然充分理解和运用这一工具需要很多时间和精力, 但是在处理简单任务的时候, AHK上手也十分容易.<br>
-本文的一点资料在<a href="https://cdn.jsdelivr.net/gh/18wang/media@20.9.15/AutoHotKey%E5%85%A5%E9%97%A8/" target="_blank" rel="noopener">这里</a></p>
-<p>安装完AHK之后, 打开 Help 可以看到全部的帮助文件.</p>
-<h2 id="1-目标–删除位于文档固定位置的字符"><a class="header-anchor" href="#1-目标–删除位于文档固定位置的字符"></a>1. 目标–删除位于文档固定位置的字符</h2>
- <img src="https://cdn.jsdelivr.net/gh/18wang/media/AutoHotKey入门/1.jpg" style="transform:rotate(0deg);" width =100%>         
+          <h1 id="AutoHotKey-使用"><a href="#AutoHotKey-使用" class="headerlink" title="AutoHotKey 使用"></a>AutoHotKey 使用</h1><p>在整理电子书的时候, 看到从一些网站下载的电子书中含有水印, 文字插入等难以通过PDF编辑器批量选中删除的内容, 于是考虑采用脚本, 批量操作的方法实现这一目标.   </p>
+<p><code>AutoHotKey</code>就是这样一款卓越的脚本语言. 虽然充分理解和运用这一工具需要很多时间和精力, 但是在处理简单任务的时候, AHK上手也十分容易.<br>本文的一点资料在<a href="https://cdn.jsdelivr.net/gh/18wang/media@20.9.15/AutoHotKey%E5%85%A5%E9%97%A8/" target="_blank" rel="noopener">这里</a></p>
+<p>安装完AHK之后, 打开 Help 可以看到全部的帮助文件. </p>
+<h2 id="1-目标—删除位于文档固定位置的字符"><a href="#1-目标—删除位于文档固定位置的字符" class="headerlink" title="1. 目标—删除位于文档固定位置的字符"></a>1. 目标—删除位于文档固定位置的字符</h2><p> <img src="https://cdn.jsdelivr.net/gh/18wang/media/AutoHotKey入门/1.jpg" style="transform:rotate(0deg);" width =100%>         </p>
 <ul>
 <li>需要删除的文本位于文档的固定位置</li>
 </ul>
-<img src="https://cdn.jsdelivr.net/gh/18wang/media/AutoHotKey入门/2.jpg" style="transform:rotate(0deg);" width =600>
+<p><img src="https://cdn.jsdelivr.net/gh/18wang/media/AutoHotKey入门/2.jpg" style="transform:rotate(0deg);" width =600></p>
 <ul>
-<li>可以通过<code>调整到编辑模式</code>, <code>右键文本</code>, <code>Delete键*</code>, <code>去往下一页相同位置</code> 的循环进行手动删除.</li>
+<li>可以通过<code>调整到编辑模式</code>, <code>右键文本</code>, <code>Delete键*</code>, <code>去往下一页相同位置</code> 的循环进行手动删除. </li>
 </ul>
-<img src="https://cdn.jsdelivr.net/gh/18wang/media/AutoHotKey入门/4.jpg" style="transform:rotate(0deg);" width =600>
+<p><img src="https://cdn.jsdelivr.net/gh/18wang/media/AutoHotKey入门/4.jpg" style="transform:rotate(0deg);" width =600></p>
 <blockquote>
-<p>* 非常值得注意的一点是, 当该页不存在文本或者文本已经被删除时, Delete键不起作用, 页面卡住, 须按 <code>Esc</code> 键退出.<br>
-<img src="https://cdn.jsdelivr.net/gh/18wang/media/AutoHotKey入门/3.jpg" style="transform:rotate(0deg);" width =600></p>
+<p>* 非常值得注意的一点是, 当该页不存在文本或者文本已经被删除时, Delete键不起作用, 页面卡住, 须按 <code>Esc</code> 键退出.<br><img src="https://cdn.jsdelivr.net/gh/18wang/media/AutoHotKey入门/3.jpg" style="transform:rotate(0deg);" width =600></p>
 </blockquote>
-<h2 id="2-方案–AHK循环操作"><a class="header-anchor" href="#2-方案–AHK循环操作"></a>2. 方案–AHK循环操作</h2>
-<h3 id="1-触发"><a class="header-anchor" href="#1-触发"></a>1. 触发</h3>
-<ul>
-<li>
-<p>运行 AHK 脚本, 任务栏出现 H 图标, 等待执行</p>
-</li>
-<li>
-<p>AHK 包含了一系列的 <code>热键(HotKey)</code>, 热键位于 <code>::</code> 的左侧, 在进行热键点击后, 会触发下面的语句</p>
+<h2 id="2-方案—AHK循环操作"><a href="#2-方案—AHK循环操作" class="headerlink" title="2. 方案—AHK循环操作"></a>2. 方案—AHK循环操作</h2><h3 id="1-触发"><a href="#1-触发" class="headerlink" title="1. 触发"></a>1. 触发</h3><ul>
+<li>运行 AHK 脚本, 任务栏出现 H 图标, 等待执行</li>
+<li><p>AHK 包含了一系列的 <code>热键(HotKey)</code>, 热键位于 <code>::</code> 的左侧, 在进行热键点击后, 会触发下面的语句</p>
 <figure class="highlight ahk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">^j::</span></span><br><span class="line"><span class="built_in">Send,</span> My First Script  <span class="comment">; sth</span></span><br><span class="line"><span class="keyword">return</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <ol>
 <li><code>^j</code> 表示点击<code>Control+j</code>, <code>Send</code> 可以发送文本和各种命令, <code>;</code> 右侧是不被执行的注释, 可以是中文</li>
-<li>AHK 中, 命令和命令或参数之间, 用 “,” &quot; &quot; 分隔, 空格和逗号可以一起使用</li>
+<li>AHK 中, 命令和命令或参数之间, 用 “,” “ “ 分隔, 空格和逗号可以一起使用 </li>
 </ol>
 </blockquote>
 </li>
-<li>
-<p>当然一个脚本也可以没有热键/热字串, 直接执行命令, 但那往往会难以控制, 比较糟糕</p>
+<li><p>当然一个脚本也可以没有热键/热字串, 直接执行命令, 但那往往会难以控制, 比较糟糕</p>
 </li>
 </ul>
-<h3 id="2-循环"><a class="header-anchor" href="#2-循环"></a>2. 循环</h3>
-<ul>
+<h3 id="2-循环"><a href="#2-循环" class="headerlink" title="2. 循环"></a>2. 循环</h3><ul>
 <li>AHK 提供了循环命令, 一个命令有多个参数时, 用 <code>{}</code> 把它们括起来<figure class="highlight ahk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Loop %</span>RepeatCount% &#123;    <span class="comment">; 重复次数</span></span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Loop,</span> <span class="number">3</span>       <span class="comment">; 一个例子</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">  MsgBox,</span> Iteration number is <span class="variable">%A_Index%</span>.  <span class="comment">; A_Index will be 1, 2, then 3</span></span><br><span class="line"><span class="built_in">  Sleep,</span> <span class="number">100</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="3-退出"><a class="header-anchor" href="#3-退出"></a>3. 退出</h3>
-<ul>
+<h3 id="3-退出"><a href="#3-退出" class="headerlink" title="3. 退出"></a>3. 退出</h3></li>
 <li>AHK 中可以随处添加 <code>return</code>, 帮助你修改错误和规避运行风险</li>
 </ul>
-<h2 id="3-程序-ahk"><a class="header-anchor" href="#3-程序-ahk"></a>3. 程序-- **.ahk</h2>
-<figure class="highlight ahk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">+s::</span>            <span class="comment">; PDF 编辑模式, 单页显示模式</span></span><br><span class="line"><span class="built_in">Loop,</span> <span class="number">1</span>         <span class="comment">; 循环次数 = 页数</span></span><br><span class="line">&#123;</span><br><span class="line">    Send &#123;Click, right&#125;     <span class="comment">; 右击</span></span><br><span class="line">    Send &#123;Delete&#125;           <span class="comment">; 删除</span></span><br><span class="line">    Send &#123;Esc&#125;              <span class="comment">; 退出(如需要)</span></span><br><span class="line">    Send &#123;Down&#125;             <span class="comment">; 下一页</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-程序—-ahk"><a href="#3-程序—-ahk" class="headerlink" title="3. 程序—**.ahk"></a>3. 程序—**.ahk</h2><figure class="highlight ahk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">+s::</span>            <span class="comment">; PDF 编辑模式, 单页显示模式</span></span><br><span class="line"><span class="built_in">Loop,</span> <span class="number">1</span>         <span class="comment">; 循环次数 = 页数</span></span><br><span class="line">&#123;</span><br><span class="line">    Send &#123;Click, right&#125;     <span class="comment">; 右击</span></span><br><span class="line">    Send &#123;Delete&#125;           <span class="comment">; 删除</span></span><br><span class="line">    Send &#123;Esc&#125;              <span class="comment">; 退出(如需要)</span></span><br><span class="line">    Send &#123;Down&#125;             <span class="comment">; 下一页</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span></span><br></pre></td></tr></table></figure>
           
             <br>
             
@@ -518,10 +503,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-16T12:34:01+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-19T14:58:28+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Sep 16, 2020</p>
+    <p>更新于：Sep 19, 2020</p>
   </a>
 </div>
 
@@ -662,7 +647,7 @@ Mm=\left[\begin{array}{llll}
 
 
     <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-目标–删除位于文档固定位置的字符"><span class="toc-text">1. 目标–删除位于文档固定位置的字符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-方案–AHK循环操作"><span class="toc-text">2. 方案–AHK循环操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-触发"><span class="toc-text">1. 触发</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-循环"><span class="toc-text">2. 循环</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-退出"><span class="toc-text">3. 退出</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-程序-ahk"><span class="toc-text">3. 程序-- **.ahk</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-目标—删除位于文档固定位置的字符"><span class="toc-text">1. 目标—删除位于文档固定位置的字符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-方案—AHK循环操作"><span class="toc-text">2. 方案—AHK循环操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-触发"><span class="toc-text">1. 触发</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-循环"><span class="toc-text">2. 循环</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-退出"><span class="toc-text">3. 退出</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-程序—-ahk"><span class="toc-text">3. 程序—**.ahk</span></a></li></ol>
     </div>
   </section>
 
@@ -741,19 +726,19 @@ Mm=\left[\begin{array}{llll}
       
     
       
-        <div><p>博客內容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh_TW" target="_blank" rel="noopener">姓名標示-非商業性-相同方式分享 4.0 國際 (CC BY-NC-SA 4.0) 協議</a></p>
+        <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
 </div>
       
     
       
-        本站使用
+        Use
         <a href="https://volantis.js.org/" target="_blank" class="codename">Volantis</a>
-        作為主題
+        as theme
         
-          ，
-          總訪問量為
+          , 
+          total visits
           <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
-          次
+          times
         
       
     
